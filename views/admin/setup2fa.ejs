@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Setup 2FA - User</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <h1>Setup 2FA</h1>
+        <p>
+            Scan the QR code with Google Authenticator and enter the code below:
+        </p>
+        <img src="<%= qrcode %>" alt="QR Code" />
+        <form action="/admin/setup2fa" method="POST">
+            <input type="hidden" name="secret" value="<%= secret %>" />
+            <input
+                type="text"
+                name="token"
+                placeholder="2FA Code"
+                required
+            /><br />
+            <button type="submit">Verify</button>
+        </form>
+    </body>
+</html>
