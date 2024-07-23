@@ -78,7 +78,7 @@ router.post("/login", async (req, res) => {
     const admin = await Admin.findOne({ username });
 
     if (admin && (await admin.matchPassword(password))) {
-        req.session.username = admin.username;
+        req.session.adminUsername = admin.username;
         req.session.isAdminLoggedIn = true;
 
         // Redirect to 2FA setup if not set up, else to 2FA verification
@@ -138,7 +138,7 @@ router.get("/setup2fa", async (req, res) => {
     }
 
     const secret = speakeasy.generateSecret({
-        name: req.session.username + "asm2",
+        name: req.session.adminUsername + "asm2",
     });
 
     qrcode.toDataURL(secret.otpauth_url, (err, data_url) => {
@@ -158,7 +158,7 @@ router.post("/setup2fa", async (req, res) => {
     });
 
     if (verified) {
-        const admin = await Admin.findOne({ username: req.session.username });
+        const admin = await Admin.findOne({ username: req.session.adminUsername });
         admin.twoFASecret = secret;
         await admin.save();
         res.redirect("/admin/dashboard");
@@ -177,7 +177,7 @@ router.post("/verify2fa", async (req, res) => {
         return res.redirect("/admin/login");
     }
     const { token } = req.body;
-    const admin = await Admin.findOne({ username: req.session.username });
+    const admin = await Admin.findOne({ username: req.session.adminUsername });
 
     const verified = speakeasy.totp.verify({
         secret: admin.twoFASecret,
@@ -259,8 +259,8 @@ router.post("/add-tour", upload.array("images", 10), async (req, res) => {
         recommendedPeopleCount: peopleCount,
         basePrice: price,
         about: description,
-        included: included.split("\n"),
-        excluded: excluded.split("\n"),
+        included: included.split("\n").filter(x => Boolean(x)).map(x => x.trim()),
+        excluded: excluded.split("\n").filter(x => Boolean(x)).map(x => x.trim()),
         plan: tourPlan,
         images,
     });
