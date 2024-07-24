@@ -61,6 +61,22 @@ const upload = initS3Upload();
 router.get("/", (req, res) => {
     res.redirect("/user/login");
 });
+
+router.get('/checkUsername/:username', async (req, res) => {
+    try {
+        const { username } = req.params;
+        const user = await User.findOne({ username: username });
+
+        if (user) {
+            return res.status(200).json({ isTaken: true });
+        }
+
+        return res.status(200).json({ isTaken: false });
+    } catch (error) {
+        console.error('Error checking username:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
 router.get("/login", async (req, res) => {
     if (req.session.isLoggedIn) {
         return res.redirect("/");
@@ -100,7 +116,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-    const { username, password, secret, token } = req.body;
+    const { username, password1: password, secret, "2fatoken": token } = req.body;
 
     let twoFactorEnabled = false;
 
@@ -122,68 +138,6 @@ router.post("/register", async (req, res) => {
     req.session.isUserLoggedIn = true;
     res.redirect("/");
 });
-
-// 2FA setup route
-router.get("/setup2fa", async (req, res) => {
-    if (!req.session.isAdminLoggedIn) {
-        return res.redirect("/admin/login");
-    }
-
-    const secret = speakeasy.generateSecret({
-        name: req.session.username + "asm2",
-    });
-
-    qrcode.toDataURL(secret.otpauth_url, (err, data_url) => {
-        res.render("admin/setup2fa", { secret: secret.base32, qrcode: data_url });
-    });
-});
-
-// router.post("/setup2fa", async (req, res) => {
-//     if (!req.session.isAdminLoggedIn) {
-//         return res.redirect("/admin/login");
-//     };
-//     const { secret, token } = req.body;
-//     const verified = speakeasy.totp.verify({
-//         secret,
-//         encoding: "base32",
-//         token,
-//     });
-
-//     if (verified) {
-//         const admin = await User.findOne({ username: req.session.username });
-//         admin.twoFASecret = secret;
-//         await admin.save();
-//         res.redirect("/admin/dashboard");
-//     } else {
-//         res.redirect("/admin/setup2fa");
-//     }
-// });
-
-// // 2FA verification route
-// router.get("/verify2fa", (req, res) => {
-//     res.render("admin/verify2fa");
-// });
-
-// router.post("/verify2fa", async (req, res) => {
-//     if (!req.session.isAdminLoggedIn) {
-//         return res.redirect("/admin/login");
-//     }
-//     const { token } = req.body;
-//     const admin = await User.findOne({ username: req.session.username });
-
-//     const verified = speakeasy.totp.verify({
-//         secret: admin.twoFASecret,
-//         encoding: "base32",
-//         token,
-//     });
-
-//     if (verified) {
-//         req.session.is2FAVerified = true;
-//         res.redirect("/admin/dashboard");
-//     } else {
-//         res.redirect("/admin/verify2fa");
-//     }
-// });
 
 // // Admin dashboard route
 // router.get("/dashboard", async (req, res) => {

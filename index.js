@@ -27,24 +27,41 @@ app.set("views", __dirname + "/views");
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 
+const userSession = session({
+    name: 'user.sid',
+    secret: "swintouruser",
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: "mongodb+srv://r3zenix:i3MvACPd9JFrdfi9@main.awegdum.mongodb.net/?retryWrites=true&w=majority&appName=Main",
+    }),
+});
+
+const adminSession = session({
+    name: 'admin.sid',
+    secret: "swintouradmin",
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: "mongodb+srv://r3zenix:i3MvACPd9JFrdfi9@main.awegdum.mongodb.net/?retryWrites=true&w=majority&appName=Main",
+    }),
+});
+
+
+
+
 // Session middleware
-app.use(
-    session({
-        secret: "your-secret-key",
-        resave: false,
-        saveUninitialized: false,
-        store: MongoStore.create({
-            mongoUrl: "mongodb+srv://r3zenix:i3MvACPd9JFrdfi9@main.awegdum.mongodb.net/?retryWrites=true&w=majority&appName=Main",
-        }),
-    })
-);
+app.use("/user", userSession);
+app.use("/admin", adminSession);
 
 // Routes
 const indexRouter = require("./routes/index");
 const adminRouter = require("./routes/admin");
+const userRouter = require("./routes/user");
 
 app.use("/tours", indexRouter);
 app.use("/admin", adminRouter);
+app.use("/user", userRouter);
 
 // Start server
 app.listen(PORT, () => {

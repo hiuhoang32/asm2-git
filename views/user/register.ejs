@@ -9,8 +9,8 @@
         };
         setTheme();
     </script>
-    <meta logo="assets/images/logo/logo.png">
-    <meta white-logo="assets/images/logo/logo-white.png">
+    <meta logo="/assets/images/logo/logo.png">
+    <meta white-logo="/assets/images/logo/logo-white.png">
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,17 +36,17 @@
     <meta name="currency" content="$">
     <!-- Title -->
     <title>Multipurpose travel and tour booking </title>
-    <link rel="icon" type="image/x-icon" sizes="20x20" href="assets/images/icon/favicon.png">
+    <link rel="icon" type="image/x-icon" sizes="20x20" href="/assets/images/icon/favicon.png">
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-5.3.0.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-5.3.0.min.css">
     <!-- Fonts & icon -->
-    <link rel="stylesheet" type="text/css" href="assets/css/remixicon.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/remixicon.css">
     <!-- Plugin -->
-    <link rel="stylesheet" type="text/css" href="assets/css/plugin.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/plugin.css">
     <!-- Main CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/main-style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main-style.css">
     <!-- RTL CSS::When Need RTL Uncomments File -->
-    <!-- <link rel="stylesheet" type="text/css" href="assets/css/rtl.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/rtl.css"> -->
 </head>
 <body>
     <header>
@@ -62,7 +62,7 @@
                                     <div class="top-header-left d-flex align-items-center">
                                         <!-- Logo-->
                                         <div class="logo">
-                                            <a href="index.html"><img src="assets/images/logo/logo.png" alt="logo" class="changeLogo"></a>
+                                            <a href="index.html"><img src="/assets/images/logo/logo.png" alt="logo" class="changeLogo"></a>
                                         </div>
                                         <!-- search box -->
                                         <div class="search-box search-bar d-none d-lg-block">
@@ -283,7 +283,7 @@
                                     <a href="tour-details.html">
                                         <div class="search-flex">
                                             <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-1.jpeg" alt="travello">
+                                                <img src="/assets/images/gallery/search-img-1.jpeg" alt="travello">
                                             </div>
                                             <div class="content">
                                                 <h4 class="title line-clamp-1">
@@ -303,7 +303,7 @@
                                     <a href="tour-details.html">
                                         <div class="search-flex">
                                             <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-2.jpeg" alt="travello">
+                                                <img src="/assets/images/gallery/search-img-2.jpeg" alt="travello">
                                             </div>
                                             <div class="content">
                                                 <h4 class="title line-clamp-1">
@@ -324,7 +324,7 @@
                                     <a href="tour-details.html">
                                         <div class="search-flex">
                                             <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-3.jpeg" alt="travello">
+                                                <img src="/assets/images/gallery/search-img-3.jpeg" alt="travello">
                                             </div>
                                             <div class="content">
                                                 <h4 class="title line-clamp-1">
@@ -347,7 +347,7 @@
                                     <a href="tour-details.html">
                                         <div class="search-flex">
                                             <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-1.jpeg" alt="travello">
+                                                <img src="/assets/images/gallery/search-img-1.jpeg" alt="travello">
                                             </div>
                                             <div class="content">
                                                 <h4 class="title line-clamp-1">
@@ -367,7 +367,7 @@
                                     <a href="tour-details.html">
                                         <div class="search-flex">
                                             <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-2.jpeg" alt="travello">
+                                                <img src="/assets/images/gallery/search-img-2.jpeg" alt="travello">
                                             </div>
                                             <div class="content">
                                                 <h4 class="title line-clamp-1">
@@ -388,7 +388,7 @@
                                     <a href="tour-details.html">
                                         <div class="search-flex">
                                             <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-3.jpeg" alt="travello">
+                                                <img src="/assets/images/gallery/search-img-3.jpeg" alt="travello">
                                             </div>
                                             <div class="content">
                                                 <h4 class="title line-clamp-1">
@@ -610,42 +610,39 @@
                             <!-- Logo -->
                             <div class="logo mb-40">
                                 <a href="index.html" class="mb-30 d-block">
-                                    <img src="assets/images/logo/logo.png" alt="logo" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="logo" class="changeLogo">
                                 </a>
                             </div>
                             <!-- Form -->
-                            <form action="#" method="POST">
+                            <form action="/user/register" method="POST" id="registerForm">
                                 <div class="contact-form mb-24">
-                                    <label class="contact-label">Name </label>
-                                    <input class="form-control contact-input" type="text" placeholder="Enter Your Name">
-                                </div>
-                                <div class="contact-form mb-24">
-                                    <label class="contact-label">Email </label>
-                                    <input class="form-control contact-input" type="email" placeholder="Email">
+                                    <label class="contact-label">Username </label>
+                                    <input class="form-control contact-input" type="text" name="username" placeholder="Enter username" id="username">
                                 </div>
 
                                 <!-- Password -->
                                 <div class="position-relative contact-form mb-24">
                                     <label class="contact-label">Enter Password</label>
                                     <input type="password" class="form-control contact-input password-input"
-                                        id="txtPasswordLogin" placeholder="Enter Password">
+                                        id="txtPasswordLogin" name="password1" placeholder="Enter Password">
                                     <i class="toggle-password ri-eye-line"></i>
                                 </div>
                                 <!-- Password -->
                                 <div class="position-relative contact-form mb-24">
                                     <label class="contact-label">Confirm Password</label>
                                     <input type="password" class="form-control contact-input password-input"
-                                        id="txtPasswordLogin2" placeholder="Confirm Password">
+                                        id="txtPasswordLogin2" name="password2" placeholder="Confirm Password">
                                     <i class="toggle-password ri-eye-line"></i>
                                 </div>
-                                <img style="width: 50%" src="assets/images/default/Example-QR-code.webp">
+                                <input type="hidden" name="secret" value="<%= secret %>" />
+                                <img style="width: 50%" src="<%= qrcode %>" alt="QR code">
                                 <div class="position-relative contact-form mb-24">
                                     <label class="contact-label">2FA Code</label>
-                                    <input type="number" class="form-control contact-input"
-                                        id="txtPasswordLogin2" placeholder="2FA Code">
+                                    <input type="number" name="2fatoken" class="form-control contact-input"
+                                        id="2faToken" placeholder="2FA Code">
                                 </div>
 
-                                <a href="javascript:void(0)" class="btn-primary-fill justify-content-center w-100">
+                                <a href="javascript:void(0)" class="btn-primary-fill justify-content-center w-100" id="registerBtn">
                                     <span class="d-flex justify-content-center gap-6">
                                         <span >Register</span>
                                     </span>
@@ -682,14 +679,14 @@
                                     <h4 class="title">Company</h4>
                                     <ul class="listing">
                                         <li class="single-lsit">
-                                            <a href="about.html">About Us</a>
+                                            <a href="/about.html">About Us</a>
                                         </li>
                                         <li class="single-lsit">
-                                            <a href="news.html">News</a>
+                                            <a href="/news.html">News</a>
                                         </li>
-                                        <li class="single-lsit"><a href="faq.html">Faq</a></li>
+                                        <li class="single-lsit"><a href="/faq.html">Faq</a></li>
                                         <li class="single-lsit">
-                                            <a href="contact.html">Contact</a>
+                                            <a href="/contact.html">Contact</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -700,12 +697,12 @@
                                 <div class="footer-tittle">
                                     <h4 class="title">Explore</h4>
                                     <ul class="listing">
-                                        <li class="single-lsit"><a href="faq.html">Faq</a></li>
+                                        <li class="single-lsit"><a href="/faq.html">Faq</a></li>
                                         <li class="single-lsit">
                                             <a href="/tours">Tour Listings</a>
                                         </li>
                                         <li class="single-lsit">
-                                            <a href="destination.html">Destination</a>
+                                            <a href="/destination.html">Destination</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -716,12 +713,12 @@
                                 <div class="footer-tittle">
                                     <h4 class="title">Quick Links</h4>
                                     <ul class="listing">
-                                        <li class="single-lsit"><a href="index.html">Home</a></li>
+                                        <li class="single-lsit"><a href="/index.html">Home</a></li>
                                         <li class="single-lsit">
-                                            <a href="about.html">About Us</a>
+                                            <a href="/about.html">About Us</a>
                                         </li>
                                         <li class="single-lsit">
-                                            <a href="contact.html">Contact Us</a>
+                                            <a href="/contact.html">Contact Us</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -761,7 +758,7 @@
                         <div class="footer-content">
                             <div class="d-flex flex-column gap-20">
                                 <div class="logo">
-                                    <img src="assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
                                 </div>
                                 <p class="pera">
                                     Travel is a transformative and enriching experience that
@@ -822,12 +819,47 @@
     <!-- Add an search-overlay element -->
     <div class="search-overlay"></div>
     <!-- jquery-->
-    <script src="assets/js/jquery-3.7.0.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap-5.3.0.min.js"></script>
+    <script src="/assets/js/jquery-3.7.0.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap-5.3.0.min.js"></script>
     <!-- Plugin -->
-    <script src="assets/js/plugin.js"></script>
+    <script src="/assets/js/plugin.js"></script>
     <!-- Main js-->
-    <script src="assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script>
+        document.getElementById('registerBtn').addEventListener('click', async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password1 = document.getElementById('txtPasswordLogin').value;
+            const password2 = document.getElementById('txtPasswordLogin2').value;
+
+            if (password1 !== password2) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            // Check if username is taken
+            try {
+                const response = await fetch(`/user/checkUsername/${username}`);
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Error checking username.');
+                }
+
+                if (data.isTaken) {
+                    alert('Username is already taken.');
+                    return;
+                }
+
+                // If username is not taken, submit the form
+                document.getElementById('registerForm').submit();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error checking the username.');
+            }
+        });
+    </script>
 </body>
 </html>

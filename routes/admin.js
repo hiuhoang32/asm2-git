@@ -97,7 +97,7 @@ router.get('/logout', (req, res) => {
         if (err) {
             return res.redirect('/admin/login');
         }
-        res.clearCookie('connect.sid'); // Assuming you're using the default session cookie name
+        res.clearCookie('admin.sid'); // Assuming you're using the default session cookie name
         res.redirect('/admin/login');
     });
 });
