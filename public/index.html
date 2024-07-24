@@ -1,0 +1,2461 @@
+<!DOCTYPE html>
+<html lang="zxx" dir="lrt">
+<head>
+    <script>
+        const setTheme = (theme) => {
+            theme ??= localStorage.theme || "light";
+            document.documentElement.dataset.theme = theme;
+            localStorage.theme = theme;
+        };
+        setTheme();
+    </script>
+    <meta logo="assets/images/logo/logo.png">
+    <meta white-logo="assets/images/logo/logo-white.png">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="SwinTours - Multipurpose travel and tour booking.">
+    <meta name="keywords" content="travel, trip booking,tour, hotel, tour guide, tourism, blog, flight, travel agency, tourism agency, accommodation">
+    <meta name="author" content="inittheme">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Multipurpose travel and tour booking as an assets">
+    <meta property="og:site_name" content="SwinTours">
+    <meta property="og:description" content="Multipurpose travel and tour booking as an assets">
+    <meta name="twitter:title" content="Multipurpose travel and tour booking">
+    <meta name="twitter:description" content="Multipurpose travel and tour booking">
+    <meta name="twitter:image" content="https://twitter.com/inittheme/photo">
+    <meta name="twitter:card" content="summary">
+    <meta name="google-site-verification" content="...">
+    <meta name="facebook-domain-verification" content="...">
+    <meta name="csrf-token" content="...">
+    <meta name="currency" content="$">
+    <title>SwinTours - Multipurpose travel and tour booking as an assets</title>
+    <link rel="icon" type="image/x-icon" sizes="20x20" href="assets/images/icon/favicon.png">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-5.3.0.min.css">
+    <!-- Fonts & icon -->
+    <link rel="stylesheet" type="text/css" href="assets/css/remixicon.css">
+    <!-- Plugin -->
+    <link rel="stylesheet" type="text/css" href="assets/css/plugin.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/main-style.css">
+</head>
+<body>
+    <header class="header-area-two">
+        <!-- Header top -->
+        <!-- Header menu -->
+        <div class="main-header header-sticky hero-bg-two">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="menu-wrapper">
+                            <!-- Main-menu for desktop -->
+                            <div class="main-menu">
+                                <nav>
+                                    <div class="d-flex justify-content-between align-items-center position-relative">
+                                        <!-- Logo-->
+                                        <div class="logo">
+                                            <a href="index.html"><img src="assets/images/logo/logo.png" alt="logo" class="changeLogo"></a>
+                                        </div>
+                                        <ul class="listing d-none d-lg-block" id="navigation">
+                                            <li class="single-list">
+                                                <a href="index.html" class="single">Home</a>
+                                            </li>
+                                            <li class="single-list">
+                                                <a href="about.html" class="single">About</a>
+                                            </li>
+                                            <li class="single-list">
+                                                <a href="/tours" class="single">Tour Package</a>
+                                            </li>
+                                            <li class="single-list">
+                                                <a href="javascript:void(0)" class="single">About Us <i
+                                                        class="ri-arrow-down-s-line"></i></a>
+                                                <ul class="submenu">
+                                                    <li class="single-list">
+                                                        <a href="faq.html" class="single">FAQs</a>
+                                                    </li>
+                                                    <li class="single-list">
+                                                        <a href="privacy-policy.html" class="single">Privacy
+                                                            Policy</a>
+                                                    </li>
+                                                    <li class="single-list">
+                                                        <a href="terms-condition.html"
+                                                            class="single">Terms And Condition</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="single-list">
+                                                <a href="javascript:void(0)" class="single">User <img src="path/to/profile-picture.jpg" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture"> <i
+                                                        class="ri-arrow-down-s-line"></i></a>
+                                                <ul class="submenu">
+                                                    <li class="single-list">
+                                                         <a class="single">Username: JohnDoe</a>
+                                                    </li>
+                                                    <li class="single-list">
+                                                        <a class="single">Balance: $100.00</a>
+                                                    </li>
+                                                    <li class="single-list">
+                                                        <a class="single">Change Profile Picture</a>
+                                                    </li>
+                                                    <li class="single-list">
+                                                        <a class="single">Log Out</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="d-block d-lg-none">
+                                                <div class="header-right pl-15">
+                                                    <div class="d-flex align-items-center gap-12">
+                                                        <div class="lang search-bar">
+                                                            <i class="ri-search-line"></i>
+                                                        </div>
+                                                        <div class="divider gradient-divider"></div>
+                                                        <div class="money">
+                                                            <p class="pera">USD</p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="sign-btn">
+                                                        <a href="login.html" class="btn-secondary-sm">Sign In</a>
+                                                    </div> -->
+                                                    <div id="user-info" class="profile-container">
+                                                        <div class="profile-submenu">
+                                                            <p>Username: <span id="profile-username">JohnDoe</span></p>
+                                                            <p>Balance: <span id="profile-balance">$100.00</span></p>
+                                                            <button id="change-profile-picture" class="btn btn-secondary">Change Profile Picture</button>
+                                                            <button id="logout-button" class="btn btn-danger">Logout</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                        <!-- Header Right -->
+                                        <div class="d-none d-lg-block">
+                                            <div class="header-right">
+                                                <div class="d-flex align-items-center gap-12">
+                                                    <div class="lang search-bar">
+                                                        <i class="ri-search-line"></i>
+                                                    </div>
+                                                    <div class="divider gradient-divider"></div>
+                                                    <div class="money">
+                                                        <p class="pera">USD</p>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="sign-btn">
+                                                    <a href="login.html" class="btn-secondary-sm">Sign In</a>
+                                                </div> -->
+                                                <div id="user-info" class="profile-container">
+                                                    <img src="path/to/profile-picture.jpg" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture">
+                                                    <div class="profile-submenu">
+                                                        <p>Username: <span id="profile-username">JohnDoe</span></p>
+                                                        <p>Balance: <span id="profile-balance">$100.00</span></p>
+                                                        <button id="change-profile-picture" class="btn btn-secondary">Change Profile Picture</button>
+                                                        <button id="logout-button" class="btn btn-danger">Logout</button>
+                                                    </div>
+                                                </div>
+                                                <!-- Theme Mode -->
+                                                <button class="ToggleThemeButton change-theme-mode m-0 p-0 border-0">
+                                                    <i class="ri-sun-line"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- Mobile Device Seach & Theme Mode -->
+                                        <div class="search-header-position d-block d-lg-none">
+                                            <div class="d-flex gap-15">
+                                                <div class="search-bar">
+                                                    <a href="javascript:void(0)" class="rounded-btn">
+                                                        <i  class="ri-search-line"></i>
+                                                    </a>
+                                                </div>
+                                                <!-- Theme Mode -->
+                                                <button class="ToggleThemeButton change-theme-mode m-0 p-0 border-0">
+                                                    <i class="ri-sun-line"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- / Mobile Device Seach & Theme Mode-->
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="div">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Search box -->
+        <div class="search-container">
+            <div class="top-section">
+                <div class="search-icon">
+                    <i class="ri-search-line"></i>
+                </div>
+                <div class="modal-search-box">
+                    <input type="text" id="searchField" class="search-field"
+                        placeholder="Destination, Agency, Country">
+                    <button id="closeSearch" class="close-search-btn">
+                        <kbd class="light-text"> ESC </kbd>
+                    </button>
+                </div>
+            </div>
+            <div class="body-section">
+                <div class="row">
+                    <div class="col-md-8">
+                        <ul class="listing">
+                            <li>
+                                <h4 class="search-label">Recent</h4>
+                            </li>
+                            <li class="single-list">
+                                <a href="tour-details.html">
+                                    <div class="search-flex">
+                                        <div class="content-img">
+                                            <img src="assets/images/gallery/search-img-1.jpeg" alt="SwinTours">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title line-clamp-1">
+                                                Dubai by Night City Tour with Fountain show
+                                            </h4>
+                                            <p class="pera line-clamp-2">
+                                                Wonderful evening escapade starting at Madinat
+                                                Jumeirah to the musical fountains to see another.
+                                                Wonderful evening escapade starting at Madinat
+                                                Jumeirah to the musical fountains to see another
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="single-list">
+                                <a href="tour-details.html">
+                                    <div class="search-flex">
+                                        <div class="content-img">
+                                            <img src="assets/images/gallery/search-img-2.jpeg" alt="SwinTours">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title line-clamp-1">
+                                                Dubai: Premium Red Dunes, Camels, Stargazing & 5*
+                                                BBQ at Al Khayma Camp™️
+                                            </h4>
+                                            <p class="pera line-clamp-2">
+                                                Give a great end to your day in Dubai with our
+                                                premium evening Red Dune Desert Safari. Give a great
+                                                end to your day in Dubai with our premium evening
+                                                Red Dune Desert Safari.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="single-list">
+                                <a href="tour-details.html">
+                                    <div class="search-flex">
+                                        <div class="content-img">
+                                            <img src="assets/images/gallery/search-img-3.jpeg" alt="SwinTours">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title line-clamp-1">
+                                                Admission to Global Village in Dubai
+                                            </h4>
+                                            <p class="pera line-clamp-2">
+                                                Admission to Dubai’s biggest, multicultural festival
+                                                park with replicas of iconic landmarks. Admission to
+                                                Dubai’s biggest, multicultural festival park with
+                                                replicas of iconic landmarks
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <h4 class="search-label">Recent</h4>
+                            </li>
+                            <li class="single-list">
+                                <a href="tour-details.html">
+                                    <div class="search-flex">
+                                        <div class="content-img">
+                                            <img src="assets/images/gallery/search-img-1.jpeg" alt="SwinTours">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title line-clamp-1">
+                                                Dubai by Night City Tour with Fountain show
+                                            </h4>
+                                            <p class="pera line-clamp-2">
+                                                Wonderful evening escapade starting at Madinat
+                                                Jumeirah to the musical fountains to see another.
+                                                Wonderful evening escapade starting at Madinat
+                                                Jumeirah to the musical fountains to see another
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="single-list">
+                                <a href="tour-details.html">
+                                    <div class="search-flex">
+                                        <div class="content-img">
+                                            <img src="assets/images/gallery/search-img-2.jpeg" alt="SwinTours">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title line-clamp-1">
+                                                Dubai: Premium Red Dunes, Camels, Stargazing & 5*
+                                                BBQ at Al Khayma Camp™️
+                                            </h4>
+                                            <p class="pera line-clamp-2">
+                                                Give a great end to your day in Dubai with our
+                                                premium evening Red Dune Desert Safari. Give a great
+                                                end to your day in Dubai with our premium evening
+                                                Red Dune Desert Safari.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="single-list">
+                                <a href="tour-details.html">
+                                    <div class="search-flex">
+                                        <div class="content-img">
+                                            <img src="assets/images/gallery/search-img-3.jpeg" alt="SwinTours">
+                                        </div>
+                                        <div class="content">
+                                            <h4 class="title line-clamp-1">
+                                                Admission to Global Village in Dubai
+                                            </h4>
+                                            <p class="pera line-clamp-2">
+                                                Admission to Dubai’s biggest, multicultural festival
+                                                park with replicas of iconic landmarks. Admission to
+                                                Dubai’s biggest, multicultural festival park with
+                                                replicas of iconic landmarks
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="right-section" id="filterMenu">
+                            <h4 class="title">Filter Options</h4>
+                            <!-- List of Filter -->
+                            <ul class="listing">
+                                <li>
+                                    <h4 class="search-label">Post Type</h4>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Posts (3)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Posts (3)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Links (44)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Blogs (23)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- List of Filter -->
+                            <ul class="listing">
+                                <li>
+                                    <h4 class="search-label">Categories</h4>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Articles (3)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Poll (3)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Article (44)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Blogs (23)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- List of Filter -->
+                            <ul class="listing">
+                                <li>
+                                    <h4 class="search-label">Travel</h4>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Articles (3)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Poll (3)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Article (44)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="single-list">
+                                    <div class="d-flex align-items-center gap-8">
+                                        <label class="checkbox-label">
+                                            <input class="checkbox-style" type="checkbox" value="remember"
+                                                name="remember">
+                                            <span class="checkmark-style"></span>
+                                        </label>
+                                        <div class="content">
+                                            <p class="pera">Blogs (23)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="div">
+                        <div class="filter_menu"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / End-Search -->
+    </header>
+    <main>
+        <!-- Hero area S t a r t-->
+        <section class="hero-padding-two hero-bg-two position-relative">
+            <div class="container">
+                <div class="row  g-4 align-items-center justify-content-between position-relative">
+                    <div class="col-xl-7 col-lg-6">
+                        <div class="hero-caption-two position-relative">
+                            <span class="highlights wow fadeInUp d-block" data-wow-delay="0.0s">Explore The Word</span>
+                            <h4 class="title wow fadeInUp" data-wow-delay="0.1s">  Plan Tours And Own It In Just A Click! </h4>
+                            <p class="pera wow fadeInUp" data-wow-delay="0.3s">
+                                Lorem ipsum dolor sit amet consectetur. Feugiat id sed
+                                consectetur amet. Mollis mi mattis ullamcorper sit praesent
+                                erat turpis. At pulvinar pellentesque est pellentesque
+                            </p>
+                            <div class="button-section wow fadeInUp" data-wow-delay="0.5s">
+                                <a href="payment.html" class="btn-secondary-sm hero-book-btn">Start Booking</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-6">
+                        <div class="search-tour-card sidenav-active">
+                            <div class="section-title text-center">
+                                <h4 class="title">Search Tours</h4>
+                                <p class="pera"> Lorem ipsum dolor sit amet consectetur. Feugiat id sed. </p>
+                            </div>
+                            <div class="plan-section-two">
+                                <div class="select-dropdown-section">
+                                    <div class="d-flex gap-10 align-items-center">
+                                        <i class="ri-map-pin-line"></i>
+                                        <h4 class="select2-title">Destination</h4>
+                                    </div>
+                                    <select class="destination-dropdown">
+                                        <option value="1">Hanoi, Vietnam</option>
+                                        <option value="2">Da Nang, Vietnam</option>
+                                        <option value="3">Sydney, Australia</option>
+                                    </select>
+                                </div>
+                                <div class="select-dropdown-section">
+                                    <div class="d-flex gap-10 align-items-center">
+                                        <i class="ri-flight-takeoff-fill"></i>
+                                        <h4 class="select2-title">Tour Type</h4>
+                                    </div>
+                                    <select class="destination-dropdown">
+                                        <option value="1">Booking Type</option>
+                                        <option value="2">Advance Type</option>
+                                        <option value="3">Pre-book Type</option>
+                                    </select>
+                                </div>
+                                <div class="dropdown-section position-relative user-picker-dropdown">
+                                    <div class="d-flex gap-10 align-items-center">
+                                        <i class="ri-user-line"></i>
+                                        <div class="custom-dropdown">
+                                            <h4 class="title">Guests</h4>
+                                            <div class="arrow">
+                                                <i class="ri-arrow-down-s-line"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user-result">02</div>
+                                    <div class="user-picker dropdown-shadow">
+                                        <div class="user-category">
+                                            <div class="category-name">
+                                                <h4 class="title">Adults</h4>
+                                                <p class="pera">12 years old and above</p>
+                                            </div>
+                                            <div class="qty-container">
+                                                <button class="qty-btn-minus mr-1" type="button">
+                                                    <i class="ri-subtract-fill"></i>
+                                                </button>
+                                                <input type="text" name="qty" value="0"
+                                                    class="input-qty input-rounded">
+                                                <button class="qty-btn-plus ml-1" type="button">
+                                                    <i class="ri-add-fill"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="user-category">
+                                            <div class="category-name">
+                                                <h4 class="title">Children</h4>
+                                                <p class="pera">2-11 years old</p>
+                                            </div>
+                                            <div class="qty-container">
+                                                <button class="qty-btn-minus mr-1" type="button">
+                                                    <i class="ri-subtract-fill"></i>
+                                                </button>
+                                                <input type="text" name="qty" value="0"
+                                                    class="input-qty input-rounded">
+                                                <button class="qty-btn-plus ml-1" type="button">
+                                                    <i class="ri-add-fill"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="user-category">
+                                            <div class="category-name">
+                                                <h4 class="title">infant</h4>
+                                                <p class="pera">belwo 2 years</p>
+                                            </div>
+                                            <div class="qty-container">
+                                                <button class="qty-btn-minus mr-1" type="button">
+                                                    <i class="ri-subtract-fill"></i>
+                                                </button>
+                                                <input type="text" name="qty" value="0"
+                                                    class="input-qty input-rounded">
+                                                <button class="qty-btn-plus ml-1" type="button">
+                                                    <i class="ri-add-fill"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="btn-section">
+                                            <a href="javascript:void(0)" class="done-btn">Done</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sign-btn">
+                                    <a href="/tours" class="btn-secondary-lg">Search Plan</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <!-- shape 01 -->
+            <div class="shape-one d-none d-lg-block">
+                <img src="assets/images/hero/hero-bg-two-shape.png" alt="SwinTours">
+            </div>
+            <!-- shape 02 -->
+            <div class="shape-two d-none d-lg-block">
+                <img src="assets/images/hero/hero-bg-two.png" alt="SwinTours">
+            </div>
+        </section>
+        <!--/ End-of Hero-->
+
+        <!-- Brand S t a r t -->
+        <section class="why-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="border-section-title">
+                            <h4 class="title">Why Would You Like Us</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="swiper whySwiper-active">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="why-points">
+                                        <div class="why-point">
+                                            <div class="why-icon">
+                                                <span>$</span>
+                                            </div>
+                                            <div class="why-content">
+                                                <h4 class="title line-clamp-1">Best Price Guarantee</h4>
+                                                <p class="pera line-clamp-3">
+                                                    A "Best Price Guarantee" is a commitment offered by
+                                                    businesses, typically in the retail or hospitality
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="why-points">
+                                        <div class="why-point">
+                                            <div class="why-icon">
+                                                <span>$</span>
+                                            </div>
+                                            <div class="why-content">
+                                                <h4 class="title line-clamp-1">Easy & Quick Booking</h4>
+                                                <p class="pera line-clamp-3">
+                                                    A "Best Price Guarantee" is a commitment offered by
+                                                    businesses, typically in the retail or hospitality
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="why-points">
+                                        <div class="why-point">
+                                            <div class="why-icon">
+                                                <span>$</span>
+                                            </div>
+                                            <div class="why-content">
+                                                <h4 class="title line-clamp-1">Tour Guide</h4>
+                                                <p class="pera line-clamp-3">
+                                                    A "Best Price Guarantee" is a commitment offered by
+                                                    businesses, typically in the retail or hospitality
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="why-points">
+                                        <div class="why-point">
+                                            <div class="why-icon">
+                                                <span>$</span>
+                                            </div>
+                                            <div class="why-content">
+                                                <h4 class="title line-clamp-1">Best Price Guarantee</h4>
+                                                <p class="pera line-clamp-3">
+                                                    A "Best Price Guarantee" is a commitment offered by
+                                                    businesses, typically in the retail or hospitality
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--/ End of Brand -->
+
+        <!-- Special area S t a r t -->
+        <section class="special-area top-padding">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="section-title mx-430 mx-auto text-center">
+                            <span class="highlights fancy-font font-400 text-center">special offers</span>
+                            <h4 class="title">
+                                Winter Our Big Offers to Inspire You
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-6 col-md-6">
+                        <a href="/tours" class="offer-banner imgEffect4 wow fadeInLeft" data-wow-delay="0.0s">
+                            <img src="assets/images/gallery/special-offer.png" alt="SwinTours">
+                            <div class="offer-content">
+                                <p class="highlights-text">Save up to</p>
+                                <h4 class="title">50%</h4>
+                                <p class="pera">Let’s Explore The World</p>
+                                <div class="location">
+                                    <i class="ri-map-pin-line"></i>
+                                    <p class="name">Bangkok, Thailand</p>
+                                </div>
+                                <div class="btn-secondary-sm radius-30"> Booking Now </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <a href="/tours" class="offer-banner imgEffect4 wow fadeInRight" data-wow-delay="0.0s">
+                            <img src="assets/images/gallery/offercard-3.jpg" alt="SwinTours">
+                            <div class="offer-content-two">
+                                <h4 class="title">Nearby Hotel</h4>
+                                <p class="pera">
+                                    Up to <span class="highlights-text">50%</span> Off The Best
+                                    Hotels Near
+                                </p>
+                                <div class="location">
+                                    <i class="ri-map-pin-line"></i>
+                                    <p class="name">Bangkok, Thailand</p>
+                                </div>
+                                <div class="btn-secondary-sm radius-30"> Booking Now </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--/ End-of Special-->
+
+        <!-- About Us area S t a r t -->
+        <section class="about-area bottom-padding1 position-relative">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-xl-5 col-lg-5">
+                        <div class="section-title mx-430 mb-30">
+                            <span class="highlights fancy-font font-400">Tour Booking</span>
+                            <h4 class="title">Check Availability</h4>
+                            <p class="pera">
+                                Lorem ipsum dolor sit amet consectetur. Commodo at diam dolor
+                                ipsum dolor. Amet mauris amet enim dolor enim. Nisi etiam
+                                mauris cras velit vel commodo volutpat vestibulum. Feugiat et
+                                turpis congue viverra.
+                            </p>
+                            <div class="about-imp-link">
+                                <div class="icon">
+                                    <i class="ri-phone-line"></i>
+                                </div>
+                                <div class="content">
+                                    <p class="pera">Call Anytime</p>
+                                    <h4 class="title">00 (888) +123456</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="available-card">
+                            <!-- Open Calender -->
+                            <form action="#" class="mb-20">
+                                <input type="text" name="daterange" class="custom-form"
+                                    value="03/12/2023 - 4/15/2023">
+                            </form>
+                            <!-- / Open Calender -->
+                            <!-- user qty card -->
+                            <div class="user-qty-card">
+                                <div class="user-quantity">
+                                    <div class="user-category">
+                                        <div class="category-name">
+                                            <h4 class="title">Adults</h4>
+                                            <p class="pera">Ages 18+</p>
+                                        </div>
+                                        <div class="qty-container">
+                                            <button class="qty-btn-minus-two mr-1" type="button">
+                                                <i class="ri-subtract-fill"></i>
+                                            </button>
+                                            <input type="text" name="qty" value="0"
+                                                class="input-qty-two input-rounded">
+                                            <button class="qty-btn-plus-two ml-1" type="button">
+                                                <i class="ri-add-fill"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="user-category">
+                                        <div class="category-name">
+                                            <h4 class="title">Children</h4>
+                                            <p class="pera">Ages 5-18</p>
+                                        </div>
+                                        <div class="qty-container">
+                                            <button class="qty-btn-minus-two mr-1" type="button">
+                                                <i class="ri-subtract-fill"></i>
+                                            </button>
+                                            <input type="text" name="qty" value="0"
+                                                class="input-qty-two input-rounded">
+                                            <button class="qty-btn-plus-two ml-1" type="button">
+                                                <i class="ri-add-fill"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="count-guest">
+                                    <h4 class="title">
+                                        Guests <span class="calc-user">0</span>
+                                    </h4>
+                                </div>
+                                <div class="mt-30">
+                                    <button type="submit" class="btn-primary-fill w-100">
+                                        Check Availability
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- / user qty card -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-about-two">
+                <img src="assets/images/icon/about-shape.png" alt="SwinTours">
+            </div>
+        </section>
+        <!--/ End-of About US-->
+
+        <!-- Destination area S t a r t -->
+        <section class="destination-section-two bottom-padding1">
+            <div class="destination-area-two position-relative">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7 col-lg-7">
+                            <div class="section-title text-center mx-430 mx-auto position-relative">
+                                <span class="highlights">Destination List</span>
+                                <h4 class="title">
+                                    We Provide Top Tourist Destinations
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <a href="destination-details.html" class="destination-banner-two h-calc wow fadeInUp" data-wow-delay="0.s">
+                                <img src="assets/images/destination/destination-6.png" alt="SwinTours">
+                                <div class="destination-content-two">
+                                    <div class="ratting-badge">
+                                        <span>7 Tour</span>
+                                    </div>
+                                    <div class="destination-info-two">
+                                        <div class="destination-name">
+                                            <p class="pera">Srilanka</p>
+                                        </div>
+                                        <div class="button-section">
+                                            <div class="arrow"><i class="ri-arrow-right-line"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <a href="destination-details.html" class="destination-banner-two h-calc wow fadeInUp" data-wow-delay="0.1s">
+                                <img src="assets/images/destination/destination-7.png" alt="SwinTours">
+                                <div class="destination-content-two">
+                                    <div class="ratting-badge">
+                                        <span>7 Tour</span>
+                                    </div>
+                                    <div class="destination-info-two">
+                                        <div class="destination-name">
+                                            <p class="pera">Srilanka</p>
+                                        </div>
+                                        <div class="button-section">
+                                            <div class="arrow">
+                                                <i class="ri-arrow-right-line"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <a href="destination-details.html" class="destination-banner-two  h-calc wow fadeInUp" data-wow-delay="0.2s">
+                                <img src="assets/images/destination/destination-8.png" alt="SwinTours">
+                                <div class="destination-content-two">
+                                    <div class="ratting-badge">
+                                        <span>7 Tour</span>
+                                    </div>
+                                    <div class="destination-info-two">
+                                        <div class="destination-name">
+                                            <p class="pera">Srilanka</p>
+                                        </div>
+                                        <div class="button-section">
+                                            <div class="arrow">
+                                                <i class="ri-arrow-right-line"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="destination-offer-two h-calc wow fadeInUp" data-wow-delay="0.3s">
+                                <div class="destination-content-offer">
+                                    <span class="highlights">20% off</span>
+                                    <h4 class="title">The Best For Less</h4>
+                                    <a href="payment.html" class="btn-secondary-sm">Booking Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--/ End-of Destination -->
+
+        <!-- About Us area S t a r t -->
+        <section class="about-area-two about-bg-before section-padding2">
+            <div class="container">
+                <div class="row align-items-center position-relative">
+                    <div class="col-lg-8">
+                        <div class="section-title mx-526 mb-30">
+                            <span class="highlights">about us</span>
+                            <h4 class="title">Experience The World With Our Company</h4>
+                            <p class="pera">
+                                Travel is a transformative and enriching experience that
+                                allows individuals to explore new destinations, cultures, and
+                                landscapes
+                            </p>
+                            <p class="pera">
+                                It is a fundamental human activity that has been practiced for
+                                centuries and continues to be a source of joy, learning, and
+                                personal growth
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="discover-circle ">
+                            <a href="about.html" class="discover-btn">Discover More <i class="ri-arrow-right-up-line"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-banner-two">
+                    <h4 class="watermark-text ">15+ years of experience</h4>
+                    <div class="video-section">
+                        <!-- Video -->
+                        <div class="hero-bg-video">
+                            <video class="hero-slider-video video-cover radius-30" 
+                                poster="assets/images/gallery/about-curve-banner.png" loop autoplay muted>
+                                <source src="assets/images/videos/travel4.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        <img src="assets/images/gallery/about-curve-banner.png" alt="SwinTours">
+                        <div class="rectangle-shape d-none d-sm-block">
+                            <div class="sticky-corner right-corner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35"
+                                    fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M35 0V35C35 15.67 19.33 0 -1.53184e-05 0H35Z" fill="#daedef"></path>
+                                </svg>
+                            </div>
+                            <div class="sticky-corner bottom-corner">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35"
+                                    fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M35 0V35C35 15.67 19.33 0 -1.53184e-05 0H35Z" fill="#daedef"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="d-none d-sm-block " data-fancybox="video-gallery">
+                            <div class="video-player">
+                                <i class="ri-play-fill"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--/ End-of About US-->
+
+        <!-- Packages S t a r t -->
+        <section class="package-area section-padding2">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="section-title mx-430 mx-auto text-center">
+                            <span class="highlights">Popular Packages</span>
+                            <h4 class="title">
+                                Most Favorite Tour Place in The World
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav nav-pills package-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item package-item" role="presentation">
+                        <button class="nav-link package-nav active" id="pills-london-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-london" role="tab" aria-controls="pills-london" aria-selected="true">
+                            London
+                        </button>
+                    </li>
+                    <li class="nav-item package-item" role="presentation">
+                        <button class="nav-link package-nav" id="pills-bangkok-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-bangkok" role="tab" aria-controls="pills-bangkok"
+                            aria-selected="false">
+                            Bangkok
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link package-nav" id="pills-hongkong-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-hongkong" role="tab" aria-controls="pills-hongkong"
+                            aria-selected="false">
+                            Hong Kong
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link package-nav" id="pills-manchester-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-manchester" role="tab" aria-controls="pills-manchester"
+                            aria-selected="false">
+                            Manchester
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link package-nav" id="pills-dubai-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-dubai" role="tab" aria-controls="pills-dubai" aria-selected="false">
+                            Dubai
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-london" role="tabpanel"
+                        aria-labelledby="pills-london-tab">
+                        <div class="row g-4">
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-4.png" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-3.png" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-2.png" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-10.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-bangkok" role="tabpanel" aria-labelledby="pills-bangkok-tab">
+                        <div class="row g-4">
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-5.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-6.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-7.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-8.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-hongkong" role="tabpanel" aria-labelledby="pills-hongkong-tab">
+                        <div class="row g-4">
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-9.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-10.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-11.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-12.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-manchester" role="tabpanel"
+                        aria-labelledby="pills-manchester-tab">
+                        <div class="row g-4">
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-13.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-14.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-15.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-16.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-dubai" role="tabpanel" aria-labelledby="pills-dubai-tab">
+                        <div class="row g-4">
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-17.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-18.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-19.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-sm-6">
+                                <div class="package-card">
+                                    <div class="package-img imgEffect4">
+                                        <a href="tour-details.html">
+                                            <img src="assets/images/package/package-20.jpg" alt="SwinTours">
+                                        </a>
+                                        <div class="image-badge">
+                                            <p class="pera">Featured</p>
+                                        </div>
+                                    </div>
+                                    <div class="package-content">
+                                        <h4 class="area-name">
+                                            <a href="tour-details.html">Dusitd2 Samyan Bangkok</a>
+                                        </h4>
+                                        <div class="location">
+                                            <i class="ri-map-pin-line"></i>
+                                            <div class="name">Bangkok, Thailand</div>
+                                        </div>
+                                        <div class="packages-person">
+                                            <div class="count">
+                                                <i class="ri-time-line"></i>
+                                                <p class="pera">3 Days 2 Night</p>
+                                            </div>
+                                            <div class="count">
+                                                <i class="ri-user-line"></i>
+                                                <p class="pera">2 Person</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-review">
+                                            <div class="d-flex gap-10">
+                                                <p class="light-pera">From</p>
+                                                <p class="pera">$95</p>
+                                            </div>
+                                            <div class="rating">
+                                                <i class="ri-star-s-fill"></i>
+                                                <p class="pera">4.7 (20 Reviews)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="section-button d-inline-block">
+                            <a href="/tours">
+                                <div class="btn-primary-icon-sm">
+                                    <p class="pera">View All Tour</p>
+                                    <i class="ri-arrow-right-up-line"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--/ End of Packages -->
+
+        <!-- Promotion S t a r t -->
+        <section class="platform-area platform-area-bg">
+            <div class="container">
+                <div class="row align-items-end">
+                    <div class="col-lg-8">
+                        <div class="app-section-padding">
+                            <div class="hero-caption-one position-relative">
+                                <span class="highlight">Our Platform</span>
+                                <h4 class="title">
+                                    Enjoy And Book This App All Over The World
+                                </h4>
+                                <p class="pera">
+                                    Lorem ipsum dolor sit amet consectetur. Curabitur volutpat
+                                    tellus id vulputate viverra. Sapien non mauris risus
+                                </p>
+                            </div>
+                            <div class="hero-footer position-relative">
+                                <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" data-fancybox="video-gallery" class="wow bounceIn" data-wow-delay=".2s">
+                                    <div class="video-player">
+                                        <i class="ri-play-fill"></i>
+                                    </div>
+                                </a>
+                                <a href="javascript:void(0)" class="pera position-relative">Download Our Apps</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="hero-banner d-none d-lg-block wow fadeInUp" data-wow-delay="0.2s">
+                            <img src="assets/images/gallery/promotion.png" alt="SwinTours">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--/ End of Promotion -->
+
+        <!-- Testimonial S t a r t -->
+        <section class="testimonial-area top-padding">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="section-title mx-430 mx-auto text-center">
+                            <span class="highlights">Testimonial</span>
+                            <h4 class="title">
+                                What They’re Talking About Our Service
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-lg-6">
+                        <div class="swiper h-calc testimonialTwo-active">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide testimonial-card-two h-calc">
+                                    <div class="testimonial-header">
+                                        <div class="logo">
+                                            <img src="assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-body">
+                                        <p class="pera">
+                                            Lorem ipsum dolor sit amet consectetur. Sed at libero
+                                            amet sed cursus. Id elementum sodales facilisis libero
+                                            ante egestas vitae morbi purus. Purus elementum faucibus
+                                            semper duis morbi fringilla quam curabitur fames.
+                                            Volutpat aliquet sed massa varius viverra cras non.
+                                            Molestie enim commodo quis viverra magna mattis varius
+                                            ac.
+                                        </p>
+                                    </div>
+                                    <div class="testimonial-footer">
+                                        <div class="all-user">
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user-count">
+                                                <p class="user-count">D</p>
+                                            </div>
+                                            <div class="user-info">
+                                                <p class="name">David Malan</p>
+                                                <p class="designation">Traveler</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide testimonial-card-two h-calc">
+                                    <div class="testimonial-header">
+                                        <div class="logo">
+                                            <img src="assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-body">
+                                        <p class="pera">
+                                            Sed at libero amet sed cursus. Id elementum sodales
+                                            Lorem ipsum dolor sit amet consectetur. facilisis libero
+                                            ante egestas vitae morbi purus. Purus elementum faucibus
+                                            semper duis morbi fringilla quam curabitur fames.
+                                            Volutpat aliquet sed massa varius viverra cras non.
+                                            Molestie enim commodo quis viverra magna mattis varius
+                                            ac.
+                                        </p>
+                                    </div>
+                                    <div class="testimonial-footer">
+                                        <div class="all-user">
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user-count">
+                                                <p class="user-count">D</p>
+                                            </div>
+                                            <div class="user-info">
+                                                <p class="name">David Malan</p>
+                                                <p class="designation">Traveler</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide testimonial-card-two h-calc">
+                                    <div class="testimonial-header">
+                                        <div class="logo">
+                                            <img src="assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-body">
+                                        <p class="pera">
+                                            Molestie enim commodo quis viverra magna mattis varius
+                                            ac. Lorem ipsum dolor sit amet consectetur. Sed at
+                                            libero amet sed cursus. Id elementum sodales facilisis
+                                            libero ante egestas vitae morbi purus. Purus elementum
+                                            faucibus semper duis morbi fringilla quam curabitur
+                                            fames. Volutpat aliquet sed massa varius viverra cras
+                                            non.
+                                        </p>
+                                    </div>
+                                    <div class="testimonial-footer">
+                                        <div class="all-user">
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user-count">
+                                                <p class="user-count">D</p>
+                                            </div>
+                                            <div class="user-info">
+                                                <p class="name">David Malan</p>
+                                                <p class="designation">Traveler</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-next">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                            <div class="swiper-button-prev">
+                                <i class="ri-arrow-left-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="testimonial-banner d-none d-lg-block">
+                            <img src="assets/images/testimonial/testimonial-banner.png" alt="SwinTours">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--/ End of Testimonial -->
+
+        <!-- Brand S t a r t -->
+        <div class="branding pt-30">
+            <div class="container">
+                <div class="swiper brandSwiper-active">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="assets/images/brand/brand-1.jpeg" alt="SwinTours">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/images/brand/brand-2.jpg" alt="SwinTours">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/images/brand/brand-3.jpg" alt="SwinTours">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/images/brand/brand-4.png" alt="SwinTours">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/images/brand/brand-5.png" alt="SwinTours">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/images/brand/brand-1.jpeg" alt="SwinTours">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/images/brand/brand-2.jpg" alt="SwinTours">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End of Brand -->
+
+        <!-- News S t a r t -->
+        <section class="news-area section-padding2">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="section-title text-center mx-605 mx-auto position-relative mb-60">
+                            <span class="highlights">News & Article</span>
+                            <h4 class="title">
+                                Latest News & Articles From The Blog Posts
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-xl-4 col-lg-4 col-sm-6">
+                        <article class="news-card-two wow fadeInUp" data-wow-delay="0.0s">
+                            <figure class="news-banner-two imgEffect">
+                                <a href="news-details.html"><img src="assets/images/news/news-4.png" alt="SwinTours"></a>
+                            </figure>
+                            <div class="news-content">
+                                <div class="heading">
+                                    <span class="heading-pera">Tour Guide</span>
+                                </div>
+                                <h4 class="title line-clamp-2">
+                                    <a href="news-details.html">The World is a Book and Those Who do not Travel Read
+                                        Only
+                                        One Page.</a>
+                                </h4>
+                                <div class="news-info">
+                                    <div class="d-flex gap-10 align-items-center">
+                                        <div class="all-user">
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="time">10 min read</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-sm-6">
+                        <article class="news-card-two wow fadeInUp" data-wow-delay="0.1s">
+                            <figure class="news-banner-two imgEffect">
+                                <a href="news-details.html"><img src="assets/images/news/news-5.png" alt="SwinTours"></a>
+                            </figure>
+                            <div class="news-content">
+                                <div class="heading">
+                                    <span class="heading-pera">Tour Guide</span>
+                                </div>
+                                <h4 class="title line-clamp-2">
+                                    <a href="news-details.html">The World is a Book and Those Who do not Travel Read
+                                        Only
+                                        One Page.</a>
+                                </h4>
+                                <div class="news-info">
+                                    <div class="d-flex gap-10 align-items-center">
+                                        <div class="all-user">
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="time">10 min read</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-sm-6">
+                        <article class="news-card-two wow fadeInUp" data-wow-delay="0.2s">
+                            <figure class="news-banner-two imgEffect">
+                                <a href="news-details.html"><img src="assets/images/news/news-6.png" alt="SwinTours"></a>
+                            </figure>
+                            <div class="news-content">
+                                <div class="heading">
+                                    <span class="heading-pera">Tour Guide</span>
+                                </div>
+                                <h4 class="title line-clamp-2">
+                                    <a href="news-details.html">The World is a Book and Those Who do not Travel Read
+                                        Only
+                                        One Page.</a>
+                                </h4>
+                                <div class="news-info">
+                                    <div class="d-flex gap-10 align-items-center">
+                                        <div class="all-user">
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                            </div>
+                                            <div class="happy-user">
+                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="time">10 min read</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <div class="section-button d-inline-block wow fadeInUp" data-wow-delay="0.3s">
+                        <a href="news.html">
+                            <div class="btn-primary-icon-sm">
+                                <p class="pera">View All News</p>
+                                <i class="ri-arrow-right-up-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--/ End of News -->
+    </main>
+
+    <!-- Footer S t a r t -->
+    <footer>
+        <div class="footer-wrapper footer-bg">
+            <div class="container">
+                <div class="footer-area">
+                    <div class="row g-4">
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-footer-caption">
+                                <div class="footer-tittle">
+                                    <h4 class="title">Company</h4>
+                                    <ul class="listing">
+                                        <li class="single-lsit">
+                                            <a href="about.html">About Us</a>
+                                        </li>
+                                        <li class="single-lsit">
+                                            <a href="news.html">News</a>
+                                        </li>
+                                        <li class="single-lsit"><a href="faq.html">Faq</a></li>
+                                        <li class="single-lsit">
+                                            <a href="contact.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-footer-caption">
+                                <div class="footer-tittle">
+                                    <h4 class="title">Explore</h4>
+                                    <ul class="listing">
+                                        <li class="single-lsit"><a href="faq.html">Faq</a></li>
+                                        <li class="single-lsit">
+                                            <a href="/tours">Tour Listings</a>
+                                        </li>
+                                        <li class="single-lsit">
+                                            <a href="destination.html">Destination</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-footer-caption">
+                                <div class="footer-tittle">
+                                    <h4 class="title">Quick Links</h4>
+                                    <ul class="listing">
+                                        <li class="single-lsit"><a href="index.html">Home</a></li>
+                                        <li class="single-lsit">
+                                            <a href="about.html">About Us</a>
+                                        </li>
+                                        <li class="single-lsit">
+                                            <a href="contact.html">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-footer-caption">
+                                <div class="footer-tittle">
+                                    <h4 class="title">Contact</h4>
+                                    <ul class="listing">
+                                        <li class="single-lsit">
+                                            <a href="#" class="mb-20 d-block">70/A Floor Divo Tower Melbourne,
+                                                Australia</a>
+                                        </li>
+                                        <li class="single-lsit">
+                                            <a href="#">
+                                                <div class="d-flex gap-12">
+                                                    <i class="ri-phone-line"></i> (00) +888 123456 789
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="single-lsit">
+                                            <a href="#">
+                                                <div class="d-flex gap-12">
+                                                    <i class="ri-mail-line"></i> example@gmail.com
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-middle-area">
+                    <div class="footer-body">
+                        <div class="footer-content">
+                            <div class="d-flex flex-column gap-20">
+                                <div class="logo">
+                                    <img src="assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
+                                </div>
+                                <p class="pera">
+                                    Travel is a transformative and enriching experience that
+                                    allows individuals to explore new destinations, cultures,
+                                    and landscapes.
+                                </p>
+                            </div>
+                            <div class="footer-right">
+                                <h4 class="title">Subscribe Our Newsletter</h4>
+                                <div class="subscribe-wraper">
+                                    <input class="footer-search" type="search" name="footer"
+                                        placeholder="Enter Your Email">
+                                    <button class="subscribe-btn">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <ul class="listing">
+                            <li class="single-list">
+                                <a href="terms-condition.html" class="single">Terms And Condition</a>
+                            </li>
+                            <li class="single-list">
+                                <a href="privacy-policy.html" class="single">Privacy and Cookies Statement</a>
+                            </li>
+                            <li class="single-list">
+                                <a href="contact.html" class="single">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- footer-bottom area -->
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="d-flex justify-content-between gap-14 flex-wrap">
+                                <p class="pera">
+                                    © <span class="current-year">2023</span> initTheme. All rights
+                                    reserved
+                                </p>
+                                <p class="pera">Powered by @SwinTours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--/ End-of Footer -->
+
+    <!-- Scroll Up  -->
+    <div class="progressParent" id="back-top">
+        <svg class="backCircle svg-inner" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- Add an search-overlay element -->
+    <div class="search-overlay"></div>
+    <!-- jquery-->
+    <script src="assets/js/jquery-3.7.0.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap-5.3.0.min.js"></script>
+    <!-- Plugin -->
+    <script src="assets/js/plugin.js"></script>
+    <!-- Main js-->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
