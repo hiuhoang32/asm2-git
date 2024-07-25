@@ -9,8 +9,8 @@
         };
         setTheme();
     </script>
-    <meta logo="assets/images/logo/logo.png">
-    <meta white-logo="assets/images/logo/logo-white.png">
+    <meta logo="/assets/images/logo/logo.png">
+    <meta white-logo="/assets/images/logo/logo-white.png">
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,15 +32,15 @@
     <meta name="csrf-token" content="...">
     <meta name="currency" content="$">
     <title>SwinTours - Multipurpose travel and tour booking as an assets</title>
-    <link rel="icon" type="image/x-icon" sizes="20x20" href="assets/images/icon/favicon.png">
+    <link rel="icon" type="image/x-icon" sizes="20x20" href="/assets/images/icon/favicon.png">
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-5.3.0.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-5.3.0.min.css">
     <!-- Fonts & icon -->
-    <link rel="stylesheet" type="text/css" href="assets/css/remixicon.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/remixicon.css">
     <!-- Plugin -->
-    <link rel="stylesheet" type="text/css" href="assets/css/plugin.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/plugin.css">
     <!-- Main CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/main-style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main-style.css">
 </head>
 <body>
     <header class="header-area-two">
@@ -57,7 +57,7 @@
                                     <div class="d-flex justify-content-between align-items-center position-relative">
                                         <!-- Logo-->
                                         <div class="logo">
-                                            <a href="index.html"><img src="assets/images/logo/logo.png" alt="logo" class="changeLogo"></a>
+                                            <a href="index.html"><img src="/assets/images/logo/logo.png" alt="logo" class="changeLogo"></a>
                                         </div>
                                         <ul class="listing d-none d-lg-block" id="navigation">
                                             <li class="single-list">
@@ -115,16 +115,8 @@
                                                             <p class="pera">USD</p>
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="sign-btn">
-                                                        <a href="/user/login" class="btn-secondary-sm">Sign In</a>
-                                                    </div> -->
-                                                    <div id="user-info" class="profile-container">
-                                                        <div class="profile-submenu">
-                                                            <p>Username: <span id="profile-username">JohnDoe</span></p>
-                                                            <p>Balance: <span id="profile-balance">$100.00</span></p>
-                                                            <button id="change-profile-picture" class="btn btn-secondary">Change Profile Picture</button>
-                                                            <button id="logout-button" class="btn btn-danger">Logout</button>
-                                                        </div>
+                                                    <div class="sign-btn">
+                                                        <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -212,7 +204,7 @@
                                 <a href="tour-details.html">
                                     <div class="search-flex">
                                         <div class="content-img">
-                                            <img src="assets/images/gallery/search-img-1.jpeg" alt="SwinTours">
+                                            <img src="/assets/images/gallery/search-img-1.jpeg" alt="SwinTours">
                                         </div>
                                         <div class="content">
                                             <h4 class="title line-clamp-1">
@@ -232,7 +224,7 @@
                                 <a href="tour-details.html">
                                     <div class="search-flex">
                                         <div class="content-img">
-                                            <img src="assets/images/gallery/search-img-2.jpeg" alt="SwinTours">
+                                            <img src="/assets/images/gallery/search-img-2.jpeg" alt="SwinTours">
                                         </div>
                                         <div class="content">
                                             <h4 class="title line-clamp-1">
@@ -253,7 +245,7 @@
                                 <a href="tour-details.html">
                                     <div class="search-flex">
                                         <div class="content-img">
-                                            <img src="assets/images/gallery/search-img-3.jpeg" alt="SwinTours">
+                                            <img src="/assets/images/gallery/search-img-3.jpeg" alt="SwinTours">
                                         </div>
                                         <div class="content">
                                             <h4 class="title line-clamp-1">
@@ -276,7 +268,7 @@
                                 <a href="tour-details.html">
                                     <div class="search-flex">
                                         <div class="content-img">
-                                            <img src="assets/images/gallery/search-img-1.jpeg" alt="SwinTours">
+                                            <img src="/assets/images/gallery/search-img-1.jpeg" alt="SwinTours">
                                         </div>
                                         <div class="content">
                                             <h4 class="title line-clamp-1">
@@ -296,7 +288,7 @@
                                 <a href="tour-details.html">
                                     <div class="search-flex">
                                         <div class="content-img">
-                                            <img src="assets/images/gallery/search-img-2.jpeg" alt="SwinTours">
+                                            <img src="/assets/images/gallery/search-img-2.jpeg" alt="SwinTours">
                                         </div>
                                         <div class="content">
                                             <h4 class="title line-clamp-1">
@@ -317,7 +309,7 @@
                                 <a href="tour-details.html">
                                     <div class="search-flex">
                                         <div class="content-img">
-                                            <img src="assets/images/gallery/search-img-3.jpeg" alt="SwinTours">
+                                            <img src="/assets/images/gallery/search-img-3.jpeg" alt="SwinTours">
                                         </div>
                                         <div class="content">
                                             <h4 class="title line-clamp-1">
@@ -633,11 +625,11 @@
             </div>
             <!-- shape 01 -->
             <div class="shape-one d-none d-lg-block">
-                <img src="assets/images/hero/hero-bg-two-shape.png" alt="SwinTours">
+                <img src="/assets/images/hero/hero-bg-two-shape.png" alt="SwinTours">
             </div>
             <!-- shape 02 -->
             <div class="shape-two d-none d-lg-block">
-                <img src="assets/images/hero/hero-bg-two.png" alt="SwinTours">
+                <img src="/assets/images/hero/hero-bg-two.png" alt="SwinTours">
             </div>
         </section>
         <!--/ End-of Hero-->
@@ -744,7 +736,7 @@
                 <div class="row g-4">
                     <div class="col-lg-6 col-md-6">
                         <a href="/tours" class="offer-banner imgEffect4 wow fadeInLeft" data-wow-delay="0.0s">
-                            <img src="assets/images/gallery/special-offer.png" alt="SwinTours">
+                            <img src="/assets/images/gallery/special-offer.png" alt="SwinTours">
                             <div class="offer-content">
                                 <p class="highlights-text">Save up to</p>
                                 <h4 class="title">50%</h4>
@@ -759,7 +751,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <a href="/tours" class="offer-banner imgEffect4 wow fadeInRight" data-wow-delay="0.0s">
-                            <img src="assets/images/gallery/offercard-3.jpg" alt="SwinTours">
+                            <img src="/assets/images/gallery/offercard-3.jpg" alt="SwinTours">
                             <div class="offer-content-two">
                                 <h4 class="title">Nearby Hotel</h4>
                                 <p class="pera">
@@ -865,7 +857,7 @@
                 </div>
             </div>
             <div class="shape-about-two">
-                <img src="assets/images/icon/about-shape.png" alt="SwinTours">
+                <img src="/assets/images/icon/about-shape.png" alt="SwinTours">
             </div>
         </section>
         <!--/ End-of About US-->
@@ -887,7 +879,7 @@
                     <div class="row g-4">
                         <div class="col-xl-3 col-lg-4 col-sm-6">
                             <a href="destination-details.html" class="destination-banner-two h-calc wow fadeInUp" data-wow-delay="0.s">
-                                <img src="assets/images/destination/destination-6.png" alt="SwinTours">
+                                <img src="/assets/images/destination/destination-6.png" alt="SwinTours">
                                 <div class="destination-content-two">
                                     <div class="ratting-badge">
                                         <span>7 Tour</span>
@@ -905,7 +897,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-4 col-sm-6">
                             <a href="destination-details.html" class="destination-banner-two h-calc wow fadeInUp" data-wow-delay="0.1s">
-                                <img src="assets/images/destination/destination-7.png" alt="SwinTours">
+                                <img src="/assets/images/destination/destination-7.png" alt="SwinTours">
                                 <div class="destination-content-two">
                                     <div class="ratting-badge">
                                         <span>7 Tour</span>
@@ -925,7 +917,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-4 col-sm-6">
                             <a href="destination-details.html" class="destination-banner-two  h-calc wow fadeInUp" data-wow-delay="0.2s">
-                                <img src="assets/images/destination/destination-8.png" alt="SwinTours">
+                                <img src="/assets/images/destination/destination-8.png" alt="SwinTours">
                                 <div class="destination-content-two">
                                     <div class="ratting-badge">
                                         <span>7 Tour</span>
@@ -990,13 +982,13 @@
                         <!-- Video -->
                         <div class="hero-bg-video">
                             <video class="hero-slider-video video-cover radius-30" 
-                                poster="assets/images/gallery/about-curve-banner.png" loop autoplay muted>
-                                <source src="assets/images/videos/travel4.mp4" type="video/mp4">
+                                poster="/assets/images/gallery/about-curve-banner.png" loop autoplay muted>
+                                <source src="/assets/images/videos/travel4.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
 
-                        <img src="assets/images/gallery/about-curve-banner.png" alt="SwinTours">
+                        <img src="/assets/images/gallery/about-curve-banner.png" alt="SwinTours">
                         <div class="rectangle-shape d-none d-sm-block">
                             <div class="sticky-corner right-corner">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35"
@@ -1080,7 +1072,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-4.png" alt="SwinTours">
+                                            <img src="/assets/images/package/package-4.png" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1121,7 +1113,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-3.png" alt="SwinTours">
+                                            <img src="/assets/images/package/package-3.png" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1162,7 +1154,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-2.png" alt="SwinTours">
+                                            <img src="/assets/images/package/package-2.png" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1203,7 +1195,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-10.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-10.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1248,7 +1240,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-5.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-5.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1289,7 +1281,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-6.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-6.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1330,7 +1322,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-7.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-7.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1371,7 +1363,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-8.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-8.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1416,7 +1408,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-9.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-9.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1457,7 +1449,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-10.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-10.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1498,7 +1490,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-11.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-11.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1539,7 +1531,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-12.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-12.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1585,7 +1577,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-13.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-13.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1626,7 +1618,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-14.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-14.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1667,7 +1659,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-15.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-15.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1708,7 +1700,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-16.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-16.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1753,7 +1745,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-17.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-17.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1794,7 +1786,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-18.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-18.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1835,7 +1827,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-19.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-19.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1876,7 +1868,7 @@
                                 <div class="package-card">
                                     <div class="package-img imgEffect4">
                                         <a href="tour-details.html">
-                                            <img src="assets/images/package/package-20.jpg" alt="SwinTours">
+                                            <img src="/assets/images/package/package-20.jpg" alt="SwinTours">
                                         </a>
                                         <div class="image-badge">
                                             <p class="pera">Featured</p>
@@ -1960,7 +1952,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="hero-banner d-none d-lg-block wow fadeInUp" data-wow-delay="0.2s">
-                            <img src="assets/images/gallery/promotion.png" alt="SwinTours">
+                            <img src="/assets/images/gallery/promotion.png" alt="SwinTours">
                         </div>
                     </div>
                 </div>
@@ -1988,7 +1980,7 @@
                                 <div class="swiper-slide testimonial-card-two h-calc">
                                     <div class="testimonial-header">
                                         <div class="logo">
-                                            <img src="assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
+                                            <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                         </div>
                                     </div>
                                     <div class="testimonial-body">
@@ -2005,16 +1997,16 @@
                                     <div class="testimonial-footer">
                                         <div class="all-user">
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-1.jpeg" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-2.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-3.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-4.jpeg" alt="SwinTours">
                                             </div>
                                             <div class="happy-user-count">
                                                 <p class="user-count">D</p>
@@ -2029,7 +2021,7 @@
                                 <div class="swiper-slide testimonial-card-two h-calc">
                                     <div class="testimonial-header">
                                         <div class="logo">
-                                            <img src="assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
+                                            <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                         </div>
                                     </div>
                                     <div class="testimonial-body">
@@ -2046,16 +2038,16 @@
                                     <div class="testimonial-footer">
                                         <div class="all-user">
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-3.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-4.jpeg" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-1.jpeg" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-2.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user-count">
                                                 <p class="user-count">D</p>
@@ -2070,7 +2062,7 @@
                                 <div class="swiper-slide testimonial-card-two h-calc">
                                     <div class="testimonial-header">
                                         <div class="logo">
-                                            <img src="assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
+                                            <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                         </div>
                                     </div>
                                     <div class="testimonial-body">
@@ -2087,16 +2079,16 @@
                                     <div class="testimonial-footer">
                                         <div class="all-user">
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-2.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-1.jpeg" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-3.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-4.jpeg" alt="SwinTours">
                                             </div>
                                             <div class="happy-user-count">
                                                 <p class="user-count">D</p>
@@ -2119,7 +2111,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="testimonial-banner d-none d-lg-block">
-                            <img src="assets/images/testimonial/testimonial-banner.png" alt="SwinTours">
+                            <img src="/assets/images/testimonial/testimonial-banner.png" alt="SwinTours">
                         </div>
                     </div>
                 </div>
@@ -2133,25 +2125,25 @@
                 <div class="swiper brandSwiper-active">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="assets/images/brand/brand-1.jpeg" alt="SwinTours">
+                            <img src="/assets/images/brand/brand-1.jpeg" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="assets/images/brand/brand-2.jpg" alt="SwinTours">
+                            <img src="/assets/images/brand/brand-2.jpg" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="assets/images/brand/brand-3.jpg" alt="SwinTours">
+                            <img src="/assets/images/brand/brand-3.jpg" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="assets/images/brand/brand-4.png" alt="SwinTours">
+                            <img src="/assets/images/brand/brand-4.png" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="assets/images/brand/brand-5.png" alt="SwinTours">
+                            <img src="/assets/images/brand/brand-5.png" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="assets/images/brand/brand-1.jpeg" alt="SwinTours">
+                            <img src="/assets/images/brand/brand-1.jpeg" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="assets/images/brand/brand-2.jpg" alt="SwinTours">
+                            <img src="/assets/images/brand/brand-2.jpg" alt="SwinTours">
                         </div>
                     </div>
                 </div>
@@ -2176,7 +2168,7 @@
                     <div class="col-xl-4 col-lg-4 col-sm-6">
                         <article class="news-card-two wow fadeInUp" data-wow-delay="0.0s">
                             <figure class="news-banner-two imgEffect">
-                                <a href="news-details.html"><img src="assets/images/news/news-4.png" alt="SwinTours"></a>
+                                <a href="news-details.html"><img src="/assets/images/news/news-4.png" alt="SwinTours"></a>
                             </figure>
                             <div class="news-content">
                                 <div class="heading">
@@ -2191,16 +2183,16 @@
                                     <div class="d-flex gap-10 align-items-center">
                                         <div class="all-user">
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-1.jpeg" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-2.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-3.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-4.jpeg" alt="SwinTours">
                                             </div>
                                         </div>
                                     </div>
@@ -2212,7 +2204,7 @@
                     <div class="col-xl-4 col-lg-4 col-sm-6">
                         <article class="news-card-two wow fadeInUp" data-wow-delay="0.1s">
                             <figure class="news-banner-two imgEffect">
-                                <a href="news-details.html"><img src="assets/images/news/news-5.png" alt="SwinTours"></a>
+                                <a href="news-details.html"><img src="/assets/images/news/news-5.png" alt="SwinTours"></a>
                             </figure>
                             <div class="news-content">
                                 <div class="heading">
@@ -2227,16 +2219,16 @@
                                     <div class="d-flex gap-10 align-items-center">
                                         <div class="all-user">
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-1.jpeg" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-2.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-3.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-4.jpeg" alt="SwinTours">
                                             </div>
                                         </div>
                                     </div>
@@ -2248,7 +2240,7 @@
                     <div class="col-xl-4 col-lg-4 col-sm-6">
                         <article class="news-card-two wow fadeInUp" data-wow-delay="0.2s">
                             <figure class="news-banner-two imgEffect">
-                                <a href="news-details.html"><img src="assets/images/news/news-6.png" alt="SwinTours"></a>
+                                <a href="news-details.html"><img src="/assets/images/news/news-6.png" alt="SwinTours"></a>
                             </figure>
                             <div class="news-content">
                                 <div class="heading">
@@ -2263,16 +2255,16 @@
                                     <div class="d-flex gap-10 align-items-center">
                                         <div class="all-user">
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-1.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-1.jpeg" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-2.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-2.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-3.png" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-3.png" alt="SwinTours">
                                             </div>
                                             <div class="happy-user">
-                                                <img src="assets/images/hero/user-4.jpeg" alt="SwinTours">
+                                                <img src="/assets/images/hero/user-4.jpeg" alt="SwinTours">
                                             </div>
                                         </div>
                                     </div>
@@ -2388,7 +2380,7 @@
                         <div class="footer-content">
                             <div class="d-flex flex-column gap-20">
                                 <div class="logo">
-                                    <img src="assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="pera">
                                     Travel is a transformative and enriching experience that
@@ -2450,12 +2442,12 @@
     <!-- Add an search-overlay element -->
     <div class="search-overlay"></div>
     <!-- jquery-->
-    <script src="assets/js/jquery-3.7.0.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap-5.3.0.min.js"></script>
+    <script src="/assets/js/jquery-3.7.0.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap-5.3.0.min.js"></script>
     <!-- Plugin -->
-    <script src="assets/js/plugin.js"></script>
+    <script src="/assets/js/plugin.js"></script>
     <!-- Main js-->
-    <script src="assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>

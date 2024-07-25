@@ -22,9 +22,8 @@ mongoose
 // Set EJS as the view engine
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
-
+app.use("/assets", express.static(__dirname + "/public/assets"));
 // Middleware
-app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 
 const userSession = session({
@@ -49,19 +48,28 @@ const adminSession = session({
 
 
 
-
-// Session middleware
-app.use("/user", userSession);
-app.use("/admin", adminSession);
+app.use((req, res, next) => {
+    if (req.path.startsWith('/admin')) {
+        return next();
+    }
+    userSession(req, res, next);
+});
+app.use('/admin', adminSession);
 
 // Routes
 const indexRouter = require("./routes/index");
+const tourRouter = require("./routes/tour");
 const adminRouter = require("./routes/admin");
 const userRouter = require("./routes/user");
 
-app.use("/tours", indexRouter);
+app.use("/tours", tourRouter);
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
+
+app.use("/", indexRouter);
+
+
+
 
 // Start server
 app.listen(PORT, () => {

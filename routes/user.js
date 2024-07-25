@@ -78,6 +78,9 @@ router.get('/checkUsername/:username', async (req, res) => {
     }
 });
 router.get("/login", async (req, res) => {
+    if (req.session.username && req.session.isUserLoggedIn) {
+        return res.redirect("/");
+    };
     if (req.session.isLoggedIn) {
         return res.redirect("/");
     };
@@ -85,14 +88,24 @@ router.get("/login", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+    if (req.session.username && req.session.isUserLoggedIn) {
+        return res.redirect("/");
+    };
     const { username, password } = req.body;
     const user = await User.findOne({ username });
 
-    if (user && (await user.matchPassword(password))) {
-        req.session.username = user.username;
-        req.session.isUserLoggedIn = true;
+    if (user) {
+        const matchPassword = await user.matchPassword(password);
+        if (!matchPassword) {
+            res.redirect("/user/login");
+        } else {
+            req.session.username = user.username;
+            req.session.isUserLoggedIn = true;
+            res.redirect("/");
+        };
+
     } else {
-        res.redirect("/");
+        res.redirect("/user/login");
     }
 });
 
@@ -101,12 +114,15 @@ router.get('/logout', (req, res) => {
         if (err) {
             return res.redirect('/');
         }
-        res.clearCookie('connect.sid'); // Assuming you're using the default session cookie name
+        res.clearCookie('user.sid'); // Assuming you're using the default session cookie name
         res.redirect('/');
     });
 });
 
 router.get("/register", (req, res) => {
+    if (req.session.username && req.session.isUserLoggedIn) {
+        return res.redirect("/");
+    };
     const secret = speakeasy.generateSecret({
         name: req.session.username + "-SwinTours",
     });
@@ -116,7 +132,12 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
+    if (req.session.username && req.session.isUserLoggedIn) {
+        return res.redirect("/");
+    };
     const { username, password1: password, secret, "2fatoken": token } = req.body;
+
+    console.log(req.body);
 
     let twoFactorEnabled = false;
 

@@ -13,7 +13,7 @@ async function comparePassword(passOne, passTwo) {
 
 // generateHashedPassword('').then(password => console.log(password));
 
-// comparePassword("thehieu1234567", "$2a$10$J9Emkvitm6xh.i0n47KIQ.ttRBAkn8wBydGA4D8SB08jKSdSwhMma").then(res => console.log(res));
+comparePassword("hieu123", "$2a$10$3bZ8ZCKoflnPh6U5tF12B.bahwofWLNBFIDdxQYatgF64aHgXZTde").then(res => console.log(res));
 
 
 
