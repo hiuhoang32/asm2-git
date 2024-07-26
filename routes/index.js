@@ -3,16 +3,12 @@ const router = express.Router();
 
 const User = require("../models/User");
 
-router.get('/:page', async (req, res) => {
+router.get('/', async (req, res) => {
+    let user;
     if (req.session.username && req.session.isUserLoggedIn) {
+        user = await User.findOne({ username: req.session.username });
     };
-    const page = req.params.page;
-    res.render(page, (err, html) => {
-        if (err) {
-            return res.status(404).send('Page not found');
-        }
-        res.send(html);
-    });
+    res.render('index.ejs', { user });
 });
 
 module.exports = router;

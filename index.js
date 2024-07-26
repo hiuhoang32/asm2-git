@@ -62,16 +62,18 @@ const tourRouter = require("./routes/tour");
 const adminRouter = require("./routes/admin");
 const userRouter = require("./routes/user");
 
+
+app.use("/", indexRouter);
+
 app.use("/tours", tourRouter);
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
 
-app.use("/", indexRouter);
 
 
 
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`); 
 });
