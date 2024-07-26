@@ -3,7 +3,7 @@ const router = express.Router();
 const speakeasy = require("speakeasy");
 const qrcode = require("qrcode");
 const bcrypt = require("bcryptjs");
-
+const path = require("path");
 const User = require("../models/User");
 const { S3Client } = require("@aws-sdk/client-s3");
 // const Tour = require("../models/Tour");
@@ -157,6 +157,30 @@ router.post("/register", async (req, res) => {
     await newUser.save();
     req.session.username = newUser.username;
     req.session.isUserLoggedIn = true;
+    res.redirect("/");
+});
+
+router.post("/changeAvatar", upload.array("avatar", 1), async (req, res) => {
+    if (!req.session.isUserLoggedIn || !req.session.username) {
+        return res.redirect("/user/login");
+    };
+    if (req.fileValidationError) {
+        return res.status(400).send(req.fileValidationError);
+    }
+
+    // Handle files and form data
+    const images = req.files.map((file) => file.location);
+    
+
+    const user = await User.findOneAndUpdate({ username: req.session.username });
+
+    if (!user) {
+        return res.redirect("/user/logout");
+    }
+
+    user.profilePicture = images[0];
+
+    await user.save();
     res.redirect("/");
 });
 

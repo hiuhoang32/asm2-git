@@ -86,24 +86,35 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li class="single-list">
-                                                <a href="javascript:void(0)" class="single">User <img src="path/to/profile-picture.jpg" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture"> <i
-                                                        class="ri-arrow-down-s-line"></i></a>
-                                                <ul class="submenu">
-                                                    <li class="single-list">
-                                                         <a class="single">Username: JohnDoe</a>
-                                                    </li>
-                                                    <li class="single-list">
-                                                        <a class="single">Balance: $100.00</a>
-                                                    </li>
-                                                    <li class="single-list">
-                                                        <a class="single">Change Profile Picture</a>
-                                                    </li>
-                                                    <li class="single-list">
-                                                        <a class="single">Log Out</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
+
+                                            <% if (user) { %>
+                                                <li class="single-list">
+                                                    <a href="javascript:void(0)" class="single">User <img src="<%= user.profilePicture %>" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture"> <i
+                                                            class="ri-arrow-down-s-line"></i></a>
+                                                    <ul class="submenu">
+                                                        <li class="single-list">
+                                                             <a class="single">Username: <%= user.username %></a>
+                                                        </li>
+                                                        <li class="single-list">
+                                                            <a class="single">Balance: $<%= user.balance || '0' %></a>
+                                                        </li>
+                                                        <li class="single-list" >
+                                                            <a class="single" href="javascript:void(0)" id="changeAvatarLink" onclick="handleChangeAvatar()">Change Profile Picture</a>
+                                                        </li>
+                                                        <form id="changeAvatarForm" action="/user/changeAvatar" method="POST" enctype="multipart/form-data" style="display: none;">
+                                                            <input type="file" id="avatarInput" name="avatar" accept="image/*" onchange="handleFileChange()">
+                                                        </form>
+                                                        <li class="single-list">
+                                                            <a class="single" href="/user/logout">Log Out</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            <% } else { %>
+                                                <li class="single-list">
+                                                    <a href="/user/login" class="single">Sign In</a>
+                                                </li>
+                                            <% } %>
+
                                             <li class="d-block d-lg-none">
                                                 <div class="header-right pl-15">
                                                     <div class="d-flex align-items-center gap-12">
@@ -134,17 +145,8 @@
                                                         <p class="pera">USD</p>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="sign-btn">
-                                                    <a href="/user/login" class="btn-secondary-sm">Sign In</a>
-                                                </div> -->
-                                                <div id="user-info" class="profile-container">
-                                                    <img src="path/to/profile-picture.jpg" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture">
-                                                    <div class="profile-submenu">
-                                                        <p>Username: <span id="profile-username">JohnDoe</span></p>
-                                                        <p>Balance: <span id="profile-balance">$100.00</span></p>
-                                                        <button id="change-profile-picture" class="btn btn-secondary">Change Profile Picture</button>
-                                                        <button id="logout-button" class="btn btn-danger">Logout</button>
-                                                    </div>
+                                                <div class="sign-btn">
+                                                    <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
                                                 </div>
                                                 <!-- Theme Mode -->
                                                 <button class="ToggleThemeButton change-theme-mode m-0 p-0 border-0">
@@ -736,14 +738,14 @@
                 <div class="row g-4">
                     <div class="col-lg-6 col-md-6">
                         <a href="/tours" class="offer-banner imgEffect4 wow fadeInLeft" data-wow-delay="0.0s">
-                            <img src="/assets/images/gallery/special-offer.png" alt="SwinTours">
+                            <img src="/assets/images/special/russia.jfif" alt="SwinTours">
                             <div class="offer-content">
                                 <p class="highlights-text">Save up to</p>
                                 <h4 class="title">50%</h4>
                                 <p class="pera">Let’s Explore The World</p>
                                 <div class="location">
                                     <i class="ri-map-pin-line"></i>
-                                    <p class="name">Bangkok, Thailand</p>
+                                    <p class="name">Russia</p>
                                 </div>
                                 <div class="btn-secondary-sm radius-30"> Booking Now </div>
                             </div>
@@ -751,7 +753,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <a href="/tours" class="offer-banner imgEffect4 wow fadeInRight" data-wow-delay="0.0s">
-                            <img src="/assets/images/gallery/offercard-3.jpg" alt="SwinTours">
+                            <img src="/assets/images/special/hongkong.jpg" alt="SwinTours">
                             <div class="offer-content-two">
                                 <h4 class="title">Nearby Hotel</h4>
                                 <p class="pera">
@@ -881,9 +883,6 @@
                             <a href="destination-details.html" class="destination-banner-two h-calc wow fadeInUp" data-wow-delay="0.s">
                                 <img src="/assets/images/destination/destination-6.png" alt="SwinTours">
                                 <div class="destination-content-two">
-                                    <div class="ratting-badge">
-                                        <span>7 Tour</span>
-                                    </div>
                                     <div class="destination-info-two">
                                         <div class="destination-name">
                                             <p class="pera">Srilanka</p>
@@ -899,9 +898,6 @@
                             <a href="destination-details.html" class="destination-banner-two h-calc wow fadeInUp" data-wow-delay="0.1s">
                                 <img src="/assets/images/destination/destination-7.png" alt="SwinTours">
                                 <div class="destination-content-two">
-                                    <div class="ratting-badge">
-                                        <span>7 Tour</span>
-                                    </div>
                                     <div class="destination-info-two">
                                         <div class="destination-name">
                                             <p class="pera">Srilanka</p>
@@ -919,9 +915,6 @@
                             <a href="destination-details.html" class="destination-banner-two  h-calc wow fadeInUp" data-wow-delay="0.2s">
                                 <img src="/assets/images/destination/destination-8.png" alt="SwinTours">
                                 <div class="destination-content-two">
-                                    <div class="ratting-badge">
-                                        <span>7 Tour</span>
-                                    </div>
                                     <div class="destination-info-two">
                                         <div class="destination-name">
                                             <p class="pera">Srilanka</p>
@@ -940,7 +933,7 @@
                                 <div class="destination-content-offer">
                                     <span class="highlights">20% off</span>
                                     <h4 class="title">The Best For Less</h4>
-                                    <a href="payment.html" class="btn-secondary-sm">Booking Now</a>
+                                    <a href="/tours" class="btn-secondary-sm">Booking Now</a>
                                 </div>
                             </div>
                         </div>
@@ -1985,13 +1978,7 @@
                                     </div>
                                     <div class="testimonial-body">
                                         <p class="pera">
-                                            Lorem ipsum dolor sit amet consectetur. Sed at libero
-                                            amet sed cursus. Id elementum sodales facilisis libero
-                                            ante egestas vitae morbi purus. Purus elementum faucibus
-                                            semper duis morbi fringilla quam curabitur fames.
-                                            Volutpat aliquet sed massa varius viverra cras non.
-                                            Molestie enim commodo quis viverra magna mattis varius
-                                            ac.
+                                            "Our family trip to Bangkok with SwinTours was unforgettable! From the seamless booking process to the meticulously planned itinerary, everything was perfect. The guide was knowledgeable and friendly, and the local experiences were authentic and enriching. Highly recommend SwinTours Tours for a stress-free and memorable vacation!"
                                         </p>
                                     </div>
                                     <div class="testimonial-footer">
@@ -2012,7 +1999,7 @@
                                                 <p class="user-count">D</p>
                                             </div>
                                             <div class="user-info">
-                                                <p class="name">David Malan</p>
+                                                <p class="name">John Doe</p>
                                                 <p class="designation">Traveler</p>
                                             </div>
                                         </div>
@@ -2026,13 +2013,7 @@
                                     </div>
                                     <div class="testimonial-body">
                                         <p class="pera">
-                                            Sed at libero amet sed cursus. Id elementum sodales
-                                            Lorem ipsum dolor sit amet consectetur. facilisis libero
-                                            ante egestas vitae morbi purus. Purus elementum faucibus
-                                            semper duis morbi fringilla quam curabitur fames.
-                                            Volutpat aliquet sed massa varius viverra cras non.
-                                            Molestie enim commodo quis viverra magna mattis varius
-                                            ac.
+                                            "SwinTours exceeded our expectations during our recent trip to Hanoi. The accommodation, transportation, and activities were top-notch, and the customer service was exceptional. We especially loved the personalized touches and attention to detail. This was our first time using SwinTours Tours, and it won't be our last!"
                                         </p>
                                     </div>
                                     <div class="testimonial-footer">
@@ -2067,13 +2048,7 @@
                                     </div>
                                     <div class="testimonial-body">
                                         <p class="pera">
-                                            Molestie enim commodo quis viverra magna mattis varius
-                                            ac. Lorem ipsum dolor sit amet consectetur. Sed at
-                                            libero amet sed cursus. Id elementum sodales facilisis
-                                            libero ante egestas vitae morbi purus. Purus elementum
-                                            faucibus semper duis morbi fringilla quam curabitur
-                                            fames. Volutpat aliquet sed massa varius viverra cras
-                                            non.
+                                            "I had an amazing experience with SwinTours Tours on my recent solo trip to Thailand. The tour was well-organized, and I felt safe and well taken care of throughout the journey. The included meals and activities were fantastic, offering a great mix of adventure and relaxation. SwinTours Tours truly knows how to create memorable travel experiences!"
                                         </p>
                                     </div>
                                     <div class="testimonial-footer">
@@ -2150,143 +2125,6 @@
             </div>
         </div>
         <!--/ End of Brand -->
-
-        <!-- News S t a r t -->
-        <section class="news-area section-padding2">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-7 col-lg-7">
-                        <div class="section-title text-center mx-605 mx-auto position-relative mb-60">
-                            <span class="highlights">News & Article</span>
-                            <h4 class="title">
-                                Latest News & Articles From The Blog Posts
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-4">
-                    <div class="col-xl-4 col-lg-4 col-sm-6">
-                        <article class="news-card-two wow fadeInUp" data-wow-delay="0.0s">
-                            <figure class="news-banner-two imgEffect">
-                                <a href="news-details.html"><img src="/assets/images/news/news-4.png" alt="SwinTours"></a>
-                            </figure>
-                            <div class="news-content">
-                                <div class="heading">
-                                    <span class="heading-pera">Tour Guide</span>
-                                </div>
-                                <h4 class="title line-clamp-2">
-                                    <a href="news-details.html">The World is a Book and Those Who do not Travel Read
-                                        Only
-                                        One Page.</a>
-                                </h4>
-                                <div class="news-info">
-                                    <div class="d-flex gap-10 align-items-center">
-                                        <div class="all-user">
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-1.jpeg" alt="SwinTours">
-                                            </div>
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-2.png" alt="SwinTours">
-                                            </div>
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-3.png" alt="SwinTours">
-                                            </div>
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-4.jpeg" alt="SwinTours">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="time">10 min read</p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-sm-6">
-                        <article class="news-card-two wow fadeInUp" data-wow-delay="0.1s">
-                            <figure class="news-banner-two imgEffect">
-                                <a href="news-details.html"><img src="/assets/images/news/news-5.png" alt="SwinTours"></a>
-                            </figure>
-                            <div class="news-content">
-                                <div class="heading">
-                                    <span class="heading-pera">Tour Guide</span>
-                                </div>
-                                <h4 class="title line-clamp-2">
-                                    <a href="news-details.html">The World is a Book and Those Who do not Travel Read
-                                        Only
-                                        One Page.</a>
-                                </h4>
-                                <div class="news-info">
-                                    <div class="d-flex gap-10 align-items-center">
-                                        <div class="all-user">
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-1.jpeg" alt="SwinTours">
-                                            </div>
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-2.png" alt="SwinTours">
-                                            </div>
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-3.png" alt="SwinTours">
-                                            </div>
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-4.jpeg" alt="SwinTours">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="time">10 min read</p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-sm-6">
-                        <article class="news-card-two wow fadeInUp" data-wow-delay="0.2s">
-                            <figure class="news-banner-two imgEffect">
-                                <a href="news-details.html"><img src="/assets/images/news/news-6.png" alt="SwinTours"></a>
-                            </figure>
-                            <div class="news-content">
-                                <div class="heading">
-                                    <span class="heading-pera">Tour Guide</span>
-                                </div>
-                                <h4 class="title line-clamp-2">
-                                    <a href="news-details.html">The World is a Book and Those Who do not Travel Read
-                                        Only
-                                        One Page.</a>
-                                </h4>
-                                <div class="news-info">
-                                    <div class="d-flex gap-10 align-items-center">
-                                        <div class="all-user">
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-1.jpeg" alt="SwinTours">
-                                            </div>
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-2.png" alt="SwinTours">
-                                            </div>
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-3.png" alt="SwinTours">
-                                            </div>
-                                            <div class="happy-user">
-                                                <img src="/assets/images/hero/user-4.jpeg" alt="SwinTours">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="time">10 min read</p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="col-12 text-center">
-                    <div class="section-button d-inline-block wow fadeInUp" data-wow-delay="0.3s">
-                        <a href="news.html">
-                            <div class="btn-primary-icon-sm">
-                                <p class="pera">View All News</p>
-                                <i class="ri-arrow-right-up-line"></i>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--/ End of News -->
     </main>
 
     <!-- Footer S t a r t -->
@@ -2440,6 +2278,18 @@
         </svg>
     </div>
     <!-- Add an search-overlay element -->
+    <script>
+        function handleChangeAvatar() {
+            document.getElementById('avatarInput').click();
+        }
+
+        function handleFileChange() {
+            const avatarInput = document.getElementById('avatarInput');
+            if (avatarInput.files.length > 0) {
+                document.getElementById('changeAvatarForm').submit();
+            }
+        }
+    </script>
     <div class="search-overlay"></div>
     <!-- jquery-->
     <script src="/assets/js/jquery-3.7.0.min.js"></script>
@@ -2449,5 +2299,6 @@
     <script src="/assets/js/plugin.js"></script>
     <!-- Main js-->
     <script src="/assets/js/main.js"></script>
+
 </body>
 </html>

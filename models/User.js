@@ -6,7 +6,11 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     profilePicture: {
         type: String,
-        default: "/assets/default/avatar.webp",
+        default: "/assets/images/default/avatar.webp",
+    },
+    balance: {
+        type: Number,
+        default: 0  
     },
     twoFASecret: { type: String }
 });
