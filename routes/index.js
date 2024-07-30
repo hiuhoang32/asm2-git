@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     if (req.session.username && req.session.isUserLoggedIn) {
         user = await User.findOne({ username: req.session.username });
     };
-    res.render('index.ejs', { user });
+    res.render('index.ejs', { user, tours });
 });
 
 module.exports = router;

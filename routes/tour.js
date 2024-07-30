@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Tour = require("../models/Tour");
+const User = require("../models/User");
 
 // Main page route
 router.get("/", async (req, res) => {

@@ -4,7 +4,7 @@
 
     @version         : 1.0.0
     @Template Name   : Travello
-    @Template author : initTheme
+    @Template author : SwinTours
     
     :: Swiper Slider Active         :: Nice Scroll js             
     :: Fancy box                    :: Hover Tilt Effect        

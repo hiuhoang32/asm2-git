@@ -4,7 +4,7 @@
 
     @version         : 1.0.0
     @Template Name   : Travello
-    @Template author : initTheme
+    @Template author : SwinTours
 
 
     :: Variables                :: News Card
@@ -18983,7 +18983,7 @@ button.applyBtn.btn.btn-sm.btn-primary {
 }
 
 .platform-area-bg {
-  background-image: url(../../assets/images/gallery/promotion-banner.png);
+  background-image: url(../../assets/images/promotion-banner/promotion-banner.png);
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -19427,7 +19427,7 @@ button.applyBtn.btn.btn-sm.btn-primary {
 }
 
 .platform-area-bg {
-  background-image: url(../../assets/images/gallery/promotion-banner.png);
+  background-image: url(../../assets/images/promotion-banner/promotion-banner.png);
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;

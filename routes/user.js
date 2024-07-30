@@ -9,6 +9,7 @@ const { S3Client } = require("@aws-sdk/client-s3");
 // const Tour = require("../models/Tour");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
+const crypto = require('crypto');
 
 function isImage(file) {
     const validMimeTypes = [
@@ -65,10 +66,11 @@ router.get("/", (req, res) => {
 router.get('/checkUsername/:username', async (req, res) => {
     try {
         const { username } = req.params;
+        if (!username) return res.status(404).json({ error: true });
         const user = await User.findOne({ username: username });
 
         if (user) {
-            return res.status(200).json({ isTaken: true });
+            return res.status(200).json({ isTaken: true, twoFactorEnabled: Boolean(user.twoFASecret) });
         }
 
         return res.status(200).json({ isTaken: false });
@@ -86,6 +88,123 @@ router.get("/login", async (req, res) => {
     };
     res.render("user/login");
 });
+
+router.get("/forgot-pass", async (req, res) => {
+    if (req.session.username && req.session.isUserLoggedIn) {
+        return res.redirect("/");
+    };
+    res.render("user/forgot-pass");
+});
+
+router.post("/forgot-pass", async (req, res) => {
+    if (req.session.username && req.session.isUserLoggedIn) {
+        return res.redirect("/");
+    };
+
+    res.redirect(`/user/verification?username=${req.body.username}`);
+});
+
+router.get('/verification', async (req, res) => {
+    if (req.session.username && req.session.isUserLoggedIn) {
+        return res.redirect("/");
+    };
+    const { username } = req.query;
+    if (!username) return res.redirect("/");
+    const userExist = await User.findOne({ username: username });
+
+    
+    if (!userExist) {
+        return res.redirect("/");
+    } 
+
+    if (!userExist.twoFASecret) return res.send("User has no 2FA method");
+
+    res.render("user/verification", { username });
+
+    // res.json(req.body);
+});
+
+router.post('/verification', async (req, res) => {
+    if (req.session.username && req.session.isUserLoggedIn) {
+        return res.redirect("/");
+    };
+    const { username, code } = req.body;
+    const userExist = await User.findOne({ username: username });
+
+    if (!userExist) {
+        return res.redirect("/");
+    }
+
+    if (!userExist.twoFASecret) return res.redirect("/");
+
+    const verified = speakeasy.totp.verify({
+        secret: userExist.twoFASecret,
+        encoding: "base32",
+        token: code,
+    });
+
+    if (verified) {
+        const changePassToken = crypto.randomBytes(32).toString('hex');
+        userExist.changePassToken = changePassToken;
+        userExist.expireDateChangePass = Date.now() + 900000;
+        await userExist.save();
+        return res.redirect(`/user/new-password?token=${changePassToken}`);
+    } else {
+        res.send("Wrong 2FA code. Please go back and correct it.");
+    }
+});
+
+router.get('/new-password', async (req, res) => {
+    if (req.session.username && req.session.isUserLoggedIn) {
+        return res.redirect("/");
+    };
+    const { token } = req.query;
+    if (!token) return res.redirect("/");
+
+    const userExist = await User.findOne({ changePassToken: token });
+
+    if (!userExist) {
+        return res.redirect("/");
+    };
+
+    if (!userExist.expireDateChangePass || userExist.expireDateChangePass < Date.now()) return res.send("Incorrect or expired change password link.");
+
+    res.render("user/new-password", { changePassToken: userExist.changePassToken });
+
+    // res.json(req.body);
+});
+
+router.post('/new-password', async (req, res) => {
+    if (req.session.username && req.session.isUserLoggedIn) {
+        return res.redirect("/");
+    };
+    const { changePassToken, txtPasswordLogin2 } = req.body;
+    if (!changePassToken) return res.redirect("/");
+
+    const userExist = await User.findOne({ changePassToken });
+
+    if (!userExist) {
+        return res.redirect("/");
+    };
+
+    if (!userExist.expireDateChangePass || userExist.expireDateChangePass < Date.now()) return res.send("Incorrect or expired change password link.");
+
+    if (!userExist.twoFASecret) return res.redirect("/");
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(txtPasswordLogin2, salt);
+
+    userExist.password = hashedPassword; 
+    userExist.changePassToken = null;
+
+    await userExist.save();
+
+    return res.send('<p>User password changed successfully.</p><br><a href="/">Home</a>');
+
+    // res.json(req.body);
+});
+
+
 
 router.post("/login", async (req, res) => {
     if (req.session.username && req.session.isUserLoggedIn) {
@@ -124,7 +243,7 @@ router.get("/register", (req, res) => {
         return res.redirect("/");
     };
     const secret = speakeasy.generateSecret({
-        name: req.session.username + "-SwinTours",
+        name: "SwinTours",
     });
     qrcode.toDataURL(secret.otpauth_url, (err, data_url) => {
         res.render("user/register", { secret: secret.base32, qrcode: data_url });
@@ -136,8 +255,6 @@ router.post("/register", async (req, res) => {
         return res.redirect("/");
     };
     const { username, password1: password, secret, "2fatoken": token } = req.body;
-
-    console.log(req.body);
 
     let twoFactorEnabled = false;
 
@@ -172,7 +289,7 @@ router.post("/changeAvatar", upload.array("avatar", 1), async (req, res) => {
     const images = req.files.map((file) => file.location);
     
 
-    const user = await User.findOneAndUpdate({ username: req.session.username });
+    const user = await User.findOne({ username: req.session.username });
 
     if (!user) {
         return res.redirect("/user/logout");

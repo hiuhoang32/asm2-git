@@ -12,7 +12,9 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0  
     },
-    twoFASecret: { type: String }
+    twoFASecret: { type: String },
+    changePassToken: { type: String },
+    expireDateChangePass: { type: Number }
 });
 
 userSchema.methods.matchPassword = async function (enteredPassword) {

@@ -175,7 +175,7 @@ router.get("/verify2fa", (req, res) => {
 router.post("/verify2fa", async (req, res) => {
     if (!req.session.isAdminLoggedIn) {
         return res.redirect("/admin/login");
-    }
+    };
     const { token } = req.body;
     const admin = await Admin.findOne({ username: req.session.adminUsername });
 

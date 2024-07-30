@@ -5,7 +5,7 @@
 
     @version         : 1.0.0
     @Template Name   : Travello
-    @Template author : initTheme
+    @Template author : SwinTours
 
     :: wow                   :: Slick nav [ Mobile menu ]
     :: Select-2              :: Nicescroll 
