@@ -75,9 +75,10 @@ const indexRouter = require("./routes/index");
 const tourRouter = require("./routes/tour");
 const adminRouter = require("./routes/admin");
 const userRouter = require("./routes/user");
+const staticRouter = require("./routes/static")
 
 app.use("/", indexRouter);
-
+app.use("/static", staticRouter);
 app.use("/tours", tourRouter);
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);

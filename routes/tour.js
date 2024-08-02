@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Tour = require("../models/Tour");
-const User = require("../models/User");
 
 // Main page route
 router.get("/", async (req, res) => {
     try {
         const tours = await Tour.find();
-        res.render("tours/tourList", { tours });
+        res.render("tours/tourList", { tours, user: req.user });
     } catch (err) {
         console.error(err);
         res.status(500).send("Server Error");
@@ -17,7 +16,7 @@ router.get("/", async (req, res) => {
 
 
 router.get("/detail/", async (req, res) => {
-    res.redirect("/tours");
+    res.redirect("/tours"); 
 });
 
 // Tour details route
@@ -27,7 +26,7 @@ router.get("/detail/:id", async (req, res) => {
         if (!tour) {
             return res.status(404).send("Tour not found");
         }
-        res.render("tours/tourDetail", { tour });
+        res.render("tours/tourDetail", { tour, user: req.user });
     } catch (err) {
         console.error(err);
         res.status(500).send("Server Error");

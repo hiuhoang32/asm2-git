@@ -9,8 +9,8 @@
         };
         setTheme();
     </script>
-    <meta logo="assets/images/logo/logo.png">
-    <meta white-logo="assets/images/logo/logo-white.png">
+    <meta logo="/assets/images/logo/logo.png">
+    <meta white-logo="/assets/images/logo/logo-white.png">
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,17 +36,17 @@
     <meta name="currency" content="$">
     <!-- Title -->
     <title>Multipurpose travel and tour booking </title>
-    <link rel="icon" type="image/x-icon" sizes="20x20" href="assets/images/icon/favicon.png">
+    <link rel="icon" type="image/x-icon" sizes="20x20" href="/assets/images/icon/favicon.png">
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-5.3.0.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-5.3.0.min.css">
     <!-- Fonts & icon -->
-    <link rel="stylesheet" type="text/css" href="assets/css/remixicon.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/remixicon.css">
     <!-- Plugin -->
-    <link rel="stylesheet" type="text/css" href="assets/css/plugin.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/plugin.css">
     <!-- Main CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/main-style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main-style.css">
     <!-- RTL CSS::When Need RTL Uncomments File -->
-    <!-- <link rel="stylesheet" type="text/css" href="assets/css/rtl.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/rtl.css"> -->
 </head>
 <body>
     <header>
@@ -62,7 +62,7 @@
                                     <div class="top-header-left d-flex align-items-center">
                                         <!-- Logo-->
                                         <div class="logo">
-                                            <a href="/"><img src="assets/images/logo/logo.png" alt="logo" class="changeLogo"></a>
+                                            <a href="/"><img src="/assets/images/logo/logo.png" alt="logo" class="changeLogo"></a>
                                         </div>
                                         <!-- search box -->
                                         <div class="search-box search-bar d-none d-lg-block">
@@ -161,23 +161,32 @@
                                                         </ul>
                                                     </li>
                                                     <li class="single-list">
-                                                        <a href="javascript:void(0)" class="single">User <img src="path/to/profile-picture.jpg" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture"> <i
-                                                                class="ri-arrow-down-s-line"></i></a>
-                                                        <ul class="submenu">
-                                                            <li class="single-list">
-                                                                 <a class="single">Username: JohnDoe</a>
-                                                            </li>
-                                                            <li class="single-list">
-                                                                <a class="single">Balance: $100.00</a>
-                                                            </li>
-                                                            <li class="single-list">
-                                                                <a class="single">Change Profile Picture</a>
-                                                            </li>
-                                                            <li class="single-list">
-                                                                <a class="single">Log Out</a>
-                                                            </li>
-                                                        </ul>
+                                                        <a href="/static/contact" class="single">Contact</a>
                                                     </li>
+                                                    <% if (user) { %>
+                                                        <li class="single-list">
+                                                            <a href="javascript:void(0)" class="single">User <img src="<%= user.profilePicture %>" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture"> <i
+                                                                    class="ri-arrow-down-s-line"></i></a>
+                                                            <ul class="submenu">
+                                                                <li class="single-list">
+                                                                     <a class="single">Username: <%= user.username %></a>
+                                                                </li>
+                                                                <li class="single-list">
+                                                                    <a class="single">Balance: $<%= user.balance || '0' %></a>
+                                                                </li>
+                                                                <li class="single-list" >
+                                                                    <a class="single" href="javascript:void(0)" id="changeAvatarLink" onclick="handleChangeAvatar()">Change Profile Picture</a>
+                                                                </li>
+                                                                <form id="changeAvatarForm" action="/user/changeAvatar" method="POST" enctype="multipart/form-data" style="display: none;">
+                                                                    <input type="file" id="avatarInput" name="avatar" accept="image/*" onchange="handleFileChange()">
+                                                                </form>
+                                                                <li class="single-list">
+                                                                    <a class="single" href="/user/logout">Log Out</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    <% } else { %>
+                                                    <% } %>
                                                     <li class="d-block d-lg-none">
                                                         <div class="header-right pl-15">
                                                             <div class="d-flex align-items-center gap-12">
@@ -189,7 +198,9 @@
                                                                     <p class="pera">USD</p>
                                                                 </div>
                                                             </div>
-
+                                                            <div class="sign-btn">
+                                                                <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
+                                                            </div>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -204,7 +215,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="sign-btn">
-                                                        <a href="/user/login" class="btn-secondary-sm">Sign In</a>
+                                                        <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
                                                     </div>
                                                     <!-- Theme Mode -->
                                                     <li class="single-list">
@@ -238,312 +249,6 @@
                         <button id="closeSearch" class="close-search-btn">
                             <kbd class="light-text"> ESC </kbd>
                         </button>
-                    </div>
-                </div>
-                <div class="body-section">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <ul class="listing">
-                                <li>
-                                    <h4 class="search-label">Recent</h4>
-                                </li>
-                                <li class="single-list">
-                                    <a href="tour-details.html">
-                                        <div class="search-flex">
-                                            <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-1.jpeg" alt="travello">
-                                            </div>
-                                            <div class="content">
-                                                <h4 class="title line-clamp-1">
-                                                    Dubai by Night City Tour with Fountain show
-                                                </h4>
-                                                <p class="pera line-clamp-2">
-                                                    Wonderful evening escapade starting at Madinat
-                                                    Jumeirah to the musical fountains to see another.
-                                                    Wonderful evening escapade starting at Madinat
-                                                    Jumeirah to the musical fountains to see another
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="single-list">
-                                    <a href="tour-details.html">
-                                        <div class="search-flex">
-                                            <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-2.jpeg" alt="travello">
-                                            </div>
-                                            <div class="content">
-                                                <h4 class="title line-clamp-1">
-                                                    Dubai: Premium Red Dunes, Camels, Stargazing & 5*
-                                                    BBQ at Al Khayma Camp™️
-                                                </h4>
-                                                <p class="pera line-clamp-2">
-                                                    Give a great end to your day in Dubai with our
-                                                    premium evening Red Dune Desert Safari. Give a great
-                                                    end to your day in Dubai with our premium evening
-                                                    Red Dune Desert Safari.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="single-list">
-                                    <a href="tour-details.html">
-                                        <div class="search-flex">
-                                            <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-3.jpeg" alt="travello">
-                                            </div>
-                                            <div class="content">
-                                                <h4 class="title line-clamp-1">
-                                                    Admission to Global Village in Dubai
-                                                </h4>
-                                                <p class="pera line-clamp-2">
-                                                    Admission to Dubai’s biggest, multicultural festival
-                                                    park with replicas of iconic landmarks. Admission to
-                                                    Dubai’s biggest, multicultural festival park with
-                                                    replicas of iconic landmarks
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <h4 class="search-label">Recent</h4>
-                                </li>
-                                <li class="single-list">
-                                    <a href="tour-details.html">
-                                        <div class="search-flex">
-                                            <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-1.jpeg" alt="travello">
-                                            </div>
-                                            <div class="content">
-                                                <h4 class="title line-clamp-1">
-                                                    Dubai by Night City Tour with Fountain show
-                                                </h4>
-                                                <p class="pera line-clamp-2">
-                                                    Wonderful evening escapade starting at Madinat
-                                                    Jumeirah to the musical fountains to see another.
-                                                    Wonderful evening escapade starting at Madinat
-                                                    Jumeirah to the musical fountains to see another
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="single-list">
-                                    <a href="tour-details.html">
-                                        <div class="search-flex">
-                                            <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-2.jpeg" alt="travello">
-                                            </div>
-                                            <div class="content">
-                                                <h4 class="title line-clamp-1">
-                                                    Dubai: Premium Red Dunes, Camels, Stargazing & 5*
-                                                    BBQ at Al Khayma Camp™️
-                                                </h4>
-                                                <p class="pera line-clamp-2">
-                                                    Give a great end to your day in Dubai with our
-                                                    premium evening Red Dune Desert Safari. Give a great
-                                                    end to your day in Dubai with our premium evening
-                                                    Red Dune Desert Safari.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="single-list">
-                                    <a href="tour-details.html">
-                                        <div class="search-flex">
-                                            <div class="content-img">
-                                                <img src="assets/images/gallery/search-img-3.jpeg" alt="travello">
-                                            </div>
-                                            <div class="content">
-                                                <h4 class="title line-clamp-1">
-                                                    Admission to Global Village in Dubai
-                                                </h4>
-                                                <p class="pera line-clamp-2">
-                                                    Admission to Dubai’s biggest, multicultural festival
-                                                    park with replicas of iconic landmarks. Admission to
-                                                    Dubai’s biggest, multicultural festival park with
-                                                    replicas of iconic landmarks
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="right-section" id="filterMenu">
-                                <h4 class="title">Filter Options</h4>
-                                <!-- List of Filter -->
-                                <ul class="listing">
-                                    <li>
-                                        <h4 class="search-label">Post Type</h4>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Posts (3)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Posts (3)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Links (44)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Blogs (23)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <!-- List of Filter -->
-                                <ul class="listing">
-                                    <li>
-                                        <h4 class="search-label">Categories</h4>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Articles (3)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Poll (3)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Article (44)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Blogs (23)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <!-- List of Filter -->
-                                <ul class="listing">
-                                    <li>
-                                        <h4 class="search-label">Travel</h4>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Articles (3)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Poll (3)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Article (44)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="single-list">
-                                        <div class="d-flex align-items-center gap-8">
-                                            <label class="checkbox-label">
-                                                <input class="checkbox-style" type="checkbox" value="remember"
-                                                    name="remember">
-                                                <span class="checkmark-style"></span>
-                                            </label>
-                                            <div class="content">
-                                                <p class="pera">Blogs (23)</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="div">
-                            <div class="filter_menu"></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -660,7 +365,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-5">
-                        <img class="w-100 d-none d-lg-block tilt-effect radius-10" src="assets/images/gallery/faq.jpg"
+                        <img class="w-100 d-none d-lg-block tilt-effect radius-10" src="/assets/images/gallery/faq.jpg"
                             alt="image">
                     </div>
                 </div>
@@ -830,7 +535,7 @@
                         <div class="footer-content">
                             <div class="d-flex flex-column gap-20">
                                 <div class="logo">
-                                    <img src="assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
                                 </div>
                                 <p class="pera">
                                     Travel is a transformative and enriching experience that
@@ -891,12 +596,24 @@
     <!-- Add an search-overlay element -->
     <div class="search-overlay"></div>
     <!-- jquery-->
-    <script src="assets/js/jquery-3.7.0.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap-5.3.0.min.js"></script>
+    <script>
+        function handleChangeAvatar() {
+            document.getElementById('avatarInput').click();
+        }
+
+        function handleFileChange() {
+            const avatarInput = document.getElementById('avatarInput');
+            if (avatarInput.files.length > 0) {
+                document.getElementById('changeAvatarForm').submit();
+            }
+        }
+    </script>
+    <script src="/assets/js/jquery-3.7.0.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap-5.3.0.min.js"></script>
     <!-- Plugin -->
-    <script src="assets/js/plugin.js"></script>
+    <script src="/assets/js/plugin.js"></script>
     <!-- Main js-->
-    <script src="assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>

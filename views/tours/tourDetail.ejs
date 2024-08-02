@@ -160,6 +160,9 @@
                                                             </li>
                                                         </ul>
                                                     </li>
+                                                    <li class="single-list">
+                                                        <a href="/static/contact" class="single">Contact</a>
+                                                    </li>
                                                     <% if (user) { %>
                                                         <li class="single-list">
                                                             <a href="javascript:void(0)" class="single">User <img src="<%= user.profilePicture %>" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture"> <i
@@ -183,13 +186,7 @@
                                                             </ul>
                                                         </li>
                                                     <% } else { %>
-                                                        <li class="single-list">
-                                                            <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
-                                                        </li>
                                                     <% } %>
-                                                    <li class="single-list">
-                                                        <a href="/static/contact" class="single">Contact</a>
-                                                    </li>
                                                     <li class="d-block d-lg-none">
                                                         <div class="header-right pl-15">
                                                             <div class="d-flex align-items-center gap-12">
@@ -218,7 +215,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="sign-btn">
-                                                        <a href="/user/login" class="btn-secondary-sm">Sign In</a>
+                                                        <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
                                                     </div>
                                                     <!-- Theme Mode -->
                                                     <li class="single-list">
