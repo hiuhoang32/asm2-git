@@ -7,6 +7,8 @@ const MongoStore = require("connect-mongo");
 const app = express();
 const PORT = 80;
 
+const User = require("./models/User");
+
 // Connect to MongoDB (adjust as per your MongoDB URI)
 mongoose
     .connect(
