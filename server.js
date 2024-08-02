@@ -9,10 +9,9 @@ const PORT = 80;
 
 const User = require("./models/User");
 
-// Connect to MongoDB (adjust as per your MongoDB URI)
 mongoose
     .connect(
-        "mongodb+srv://r3zenix:i3MvACPd9JFrdfi9@main.awegdum.mongodb.net/?retryWrites=true&w=majority&appName=Main",
+        process.env.MONGO_URL,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
@@ -21,11 +20,9 @@ mongoose
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log(err));
 
-// Set EJS as the view engine
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.use("/assets", express.static(__dirname + "/public/assets"));
-// Middleware
 app.use(express.urlencoded({ extended: true }));
 
 const userSession = session({
@@ -34,8 +31,7 @@ const userSession = session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl:
-            "mongodb+srv://r3zenix:i3MvACPd9JFrdfi9@main.awegdum.mongodb.net/?retryWrites=true&w=majority&appName=Main",
+        mongoUrl: process.env.MONGO_URL
     }),
 });
 
@@ -45,8 +41,7 @@ const adminSession = session({
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl:
-            "mongodb+srv://r3zenix:i3MvACPd9JFrdfi9@main.awegdum.mongodb.net/?retryWrites=true&w=majority&appName=Main",
+        mongoUrl: process.env.MONGO_URL
     }),
 });
 
