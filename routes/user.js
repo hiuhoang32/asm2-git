@@ -80,24 +80,21 @@ router.get('/checkUsername/:username', async (req, res) => {
     }
 });
 router.get("/login", async (req, res) => {
-    if (req.session.username && req.session.isUserLoggedIn) {
-        return res.redirect("/");
-    };
-    if (req.session.isLoggedIn) {
+    if (req.user) {
         return res.redirect("/");
     };
     res.render("user/login");
 });
 
 router.get("/forgot-pass", async (req, res) => {
-    if (req.session.username && req.session.isUserLoggedIn) {
+    if (req.user) {
         return res.redirect("/");
     };
     res.render("user/forgot-pass");
 });
 
 router.post("/forgot-pass", async (req, res) => {
-    if (req.session.username && req.session.isUserLoggedIn) {
+    if (req.user) {
         return res.redirect("/");
     };
 
@@ -105,7 +102,7 @@ router.post("/forgot-pass", async (req, res) => {
 });
 
 router.get('/verification', async (req, res) => {
-    if (req.session.username && req.session.isUserLoggedIn) {
+    if (req.user) {
         return res.redirect("/");
     };
     const { username } = req.query;
@@ -125,7 +122,7 @@ router.get('/verification', async (req, res) => {
 });
 
 router.post('/verification', async (req, res) => {
-    if (req.session.username && req.session.isUserLoggedIn) {
+    if (req.user) {
         return res.redirect("/");
     };
     const { username, code } = req.body;
@@ -155,7 +152,7 @@ router.post('/verification', async (req, res) => {
 });
 
 router.get('/new-password', async (req, res) => {
-    if (req.session.username && req.session.isUserLoggedIn) {
+    if (req.user) {
         return res.redirect("/");
     };
     const { token } = req.query;
@@ -175,7 +172,7 @@ router.get('/new-password', async (req, res) => {
 });
 
 router.post('/new-password', async (req, res) => {
-    if (req.session.username && req.session.isUserLoggedIn) {
+    if (req.user) {
         return res.redirect("/");
     };
     const { changePassToken, txtPasswordLogin2 } = req.body;
@@ -207,7 +204,7 @@ router.post('/new-password', async (req, res) => {
 
 
 router.post("/login", async (req, res) => {
-    if (req.session.username && req.session.isUserLoggedIn) {
+    if (req.user) {
         return res.redirect("/");
     };
     const { username, password } = req.body;
@@ -219,7 +216,6 @@ router.post("/login", async (req, res) => {
             res.redirect("/user/login");
         } else {
             req.session.username = user.username;
-            req.session.isUserLoggedIn = true;
             res.redirect("/");
         };
 
@@ -239,7 +235,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.get("/register", (req, res) => {
-    if (req.session.username && req.session.isUserLoggedIn) {
+    if (req.user) {
         return res.redirect("/");
     };
     const secret = speakeasy.generateSecret({
@@ -251,7 +247,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-    if (req.session.username && req.session.isUserLoggedIn) {
+    if (req.user) {
         return res.redirect("/");
     };
     const { username, password1: password, secret, "2fatoken": token } = req.body;
@@ -273,12 +269,11 @@ router.post("/register", async (req, res) => {
     if (twoFactorEnabled) newUser.twoFASecret = secret;
     await newUser.save();
     req.session.username = newUser.username;
-    req.session.isUserLoggedIn = true;
     res.redirect("/");
 });
 
 router.post("/changeAvatar", upload.array("avatar", 1), async (req, res) => {
-    if (!req.session.isUserLoggedIn || !req.session.username) {
+    if (!req.user) {
         return res.redirect("/user/login");
     };
     if (req.fileValidationError) {
