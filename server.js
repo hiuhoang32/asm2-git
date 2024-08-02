@@ -5,7 +5,7 @@ const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const app = express();
-const PORT = 80;
+const PORT = process.env.PORT ||80;
 
 const User = require("./models/User");
 
