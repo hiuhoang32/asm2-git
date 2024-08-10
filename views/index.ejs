@@ -96,10 +96,13 @@
                                                             class="ri-arrow-down-s-line"></i></a>
                                                     <ul class="submenu">
                                                         <li class="single-list">
-                                                             <a class="single">Username: <%= user.username %></a>
+                                                            <a class="single">Username: <%= user.username %></a>
                                                         </li>
                                                         <li class="single-list">
-                                                            <a class="single">Balance: $<%= user.balance || '0' %></a>
+                                                           <a class="single">Balance: $<%= balance || '0' %></a>
+                                                        </li>
+                                                        <li class="single-list">
+                                                            <a class="single" href="/user/deposit/<%= user._id %>">Deposit</a>
                                                         </li>
                                                         <li class="single-list" >
                                                             <a class="single" href="javascript:void(0)" id="changeAvatarLink" onclick="handleChangeAvatar()">Change Profile Picture</a>
@@ -693,7 +696,7 @@
                                     <div class="package-card">
                                         <div class="package-img imgEffect4">
                                             <a href="/tours/detail/<%= tour._id %>">
-                                                <img src="<%= tour.images[0] %>" alt="travello">
+                                                <img src="<%= tour.images[0] %>" alt="SwinTours">
                                             </a>
                                             <div class="image-badge">
                                                 <p class="pera">Featured</p>

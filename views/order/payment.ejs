@@ -35,7 +35,7 @@
     <meta name="csrf-token" content="...">
     <meta name="currency" content="$">
     <!-- Title -->
-    <title>Multipurpose travel and tour booking </title>
+    <title>Order - <%= tour.title %></title>
     <link rel="icon" type="image/x-icon" sizes="20x20" href="/assets/images/icon/favicon.png">
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-5.3.0.min.css">
@@ -163,6 +163,30 @@
                                                     <li class="single-list">
                                                         <a href="/static/contact" class="single">Contact</a>
                                                     </li>
+                                                    <% if (user) { %>
+                                                        <li class="single-list">
+                                                            <a href="javascript:void(0)" class="single">User <img src="<%= user.profilePicture %>" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture"> <i
+                                                                    class="ri-arrow-down-s-line"></i></a>
+                                                            <ul class="submenu">
+                                                                <li class="single-list">
+                                                                     <a class="single">Username: <%= user.username %></a>
+                                                                </li>
+                                                                <li class="single-list">
+                                                                    <a class="single">Balance: $<%= balance || '0' %></a>
+                                                                </li>
+                                                                <li class="single-list" >
+                                                                    <a class="single" href="javascript:void(0)" id="changeAvatarLink" onclick="handleChangeAvatar()">Change Profile Picture</a>
+                                                                </li>
+                                                                <form id="changeAvatarForm" action="/user/changeAvatar" method="POST" enctype="multipart/form-data" style="display: none;">
+                                                                    <input type="file" id="avatarInput" name="avatar" accept="image/*" onchange="handleFileChange()">
+                                                                </form>
+                                                                <li class="single-list">
+                                                                    <a class="single" href="/user/logout">Log Out</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    <% } else { %>
+                                                    <% } %>
                                                     <li class="d-block d-lg-none">
                                                         <div class="header-right pl-15">
                                                             <div class="d-flex align-items-center gap-12">
@@ -175,7 +199,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="sign-btn">
-                                                                <a href="/user/login" class="btn-secondary-sm">Sign In</a>
+                                                                <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -191,7 +215,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="sign-btn">
-                                                        <a href="/user/login" class="btn-secondary-sm">Sign In</a>
+                                                        <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
                                                     </div>
                                                     <!-- Theme Mode -->
                                                     <li class="single-list">
@@ -231,108 +255,241 @@
             <!-- / End-Search -->
         </div>
     </header>
-    <main>
-        <!-- Breadcrumbs S t a r t -->
-        <section class="breadcrumbs-area breadcrumb-bg">
-            <div class="container">
-                <h1 class="title wow fadeInUp" data-wow-delay="0.0s">Verification</h1>
-                <div class="breadcrumb-text">
-                    <nav aria-label="breadcrumb" class="breadcrumb-nav wow fadeInUp" data-wow-delay="0.1s">
-                        <ul class="breadcrumb listing">
-                            <li class="breadcrumb-item single-list"><a href="/" class="single">Home</a></li>
-                            <li class="breadcrumb-item single-list" aria-current="page"><a href="javascript:void(0)"
-                                    class="single active">Verification</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+	<main>
+		<!-- Breadcrumbs S t a r t -->
+		<section class="breadcrumbs-area breadcrumb-bg">
+			<div class="container">
+				<h1 class="title wow fadeInUp" data-wow-delay="0.0s">Payment</h1>
+				<div class="breadcrumb-text">
+					<nav aria-label="breadcrumb" class="breadcrumb-nav wow fadeInUp" data-wow-delay="0.1s">
+						<ul class="breadcrumb listing">
+							<li class="breadcrumb-item single-list"><a href="/" class="single">Home</a></li>
+							<li class="breadcrumb-item single-list" aria-current="page"><a href="javascript:void(0)"
+									class="single active">Payment</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
 
-        </section>
-        <!--/ End-of Breadcrumbs-->
+		</section>
+		<!--/ End-of Breadcrumbs-->
 
-        <!-- Login area S t a r t  -->
-        <div class="login-area section-padding">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10">
-                        <div class="login-card">
-                            <!-- Logo -->
-                            <div class="logo mb-40">
-                                <a href="/" class="mb-30 d-block">
-                                    <img src="/assets/images/logo/logo.png" alt="logo" class="changeLogo">
-                                </a>
-                            </div>
-                            <!-- Form -->
-                            <form action="/user/verification" method="POST" id="2faVerificationForm">
-                                <div class="contact-form">
-                                    <label class="contact-label">2FA Code </label>
-                                </div>
+		<!-- Destination area S t a r t -->
+		<section class="tour-details-section section-padding2">
+			<div class="tour-details-area">
+				<div class="tour-details-container">
+					<div class="container">
+						<div class="details-heading mb-30">
+							<div class="d-flex flex-column">
+								<h4 class="title"><%= tour.title %></h4>
+								<div class="d-flex flex-wrap align-items-center gap-30 mt-16">
+									<div class="location">
+										<i class="ri-map-pin-line"></i>
+										<div class="name"><%= tour.location %></div>
+									</div>
+									<div class="divider"></div>
+									<div class="d-flex align-items-center flex-wrap gap-20">
+										<div class="count">
+											<i class="ri-time-line"></i>
+											<p class="pera"><%= tour.duration %></p>
+										</div>
+										<div class="count">
+											<i class="ri-user-line"></i>
+											<p class="pera" id="peopleDisplay"><%= peopleCount %> Persons</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="price-review">
+								<div class="d-flex gap-10 align-items-end">
+									<p class="light-pera">From</p>
+									<p class="pera"><%= pricePerPerson %>$</p>
+								</div>
+							</div>
+						</div>
+						<div class="row g-4">
+							<div class="col-xl-8">
+								<!-- Included Exclude-->
+								<div class="tour-include-exclude m-0 mb-30 radius-6">
+									<div class="includ-exclude-point">
+										<h4 class="title">Included</h4>
+										<ul class="expect-list">
+                                            <% tour.included.filter(item => Boolean(item)).forEach(item => { %>
+                                                <li class="list"><%= item %></li>
+                                            <% }) %>
+										</ul>
+									</div>
+									<div class="divider"></div>
+									<div class="includ-exclude-point">
+										<h4 class="title">Exclude</h4>
+										<ul class="expect-list">
+                                            <% tour.excluded.filter(item => Boolean(item)).forEach(item => { %>
+                                                <li class="list"><%= item %></li>
+                                            <% }) %>
+										</ul>
+									</div>
+								</div>
+                                <div class="tour-include-exclude m-0 mb-30 radius-6">
+									<div class="includ-exclude-point" style="width: 50%;">
+										<h4 class="title"><i class="ri-flight-takeoff-fill"></i> Flight Detail</h4>
+										<ul class="expect-list">
+                                            <li class="list">Avaliable flight: <strong><%= tourDetails.flightNumber %></strong></li>
+                                            <li class="list">Airline: <strong><%= tourDetails.airline %></strong></li>
+                                            <li class="list">Ticket price (currently): <strong>$<%= tourDetails.flightPricePerPerson %></strong></li>
+                                            <li class="list" id="priceFlightPersonDisplay">Quantity: <strong><%= peopleCount %></strong> Persons</li>
+                                            <li class="list" id="priceFlightDisplay">Total: <strong>$<%= tourDetails.flightPricePerPerson * peopleCount %></strong></li>
+										</ul>
+									</div>
+									<div class="divider"></div>
+									<div class="includ-exclude-point" style="width: 50%;">
+										<h4 class="title"><i class="ri-map-pin-line"></i> Hotel Detail</h4>
+										<ul class="expect-list" >
+                                            <li class="list">Avaliable hotel: <strong><%= tourDetails.hotel %></strong></li>
+                                            <li class="list">Hotel room: <strong><%= tourDetails.hotelNumber %></strong></li>
+                                            <li class="list">Room price (currently): <strong>$<%= tourDetails.hotelPricePerPerson %></strong></li>
+                                            <li class="list" id="priceHotelPersonDisplay">Quantity: <strong><%= peopleCount %></strong> Persons</li>
+                                            <li class="list" id="priceHotelDisplay">Total: <strong>$<%= tourDetails.hotelPricePerPerson * peopleCount %></strong></li>
+										</ul>
+									</div>
+								</div>
+								<!--/ Included Exclude-->
 
-                                <div class="row">
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit0" class="form-control contact-input text-center" type="text"
-                                                placeholder="5">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit1" class="form-control contact-input text-center" type="text"
-                                                placeholder="0">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit2" class="form-control contact-input text-center" type="text"
-                                                placeholder="0">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit3" class="form-control contact-input text-center" type="text"
-                                                placeholder="1">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit4" class="form-control contact-input text-center" type="text"
-                                                placeholder="1">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit5" class="form-control contact-input text-center" type="text"
-                                                placeholder="1">
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="hidden" name="username" value="<%= username %>" id="username" />
-                                <input type="hidden" name="code" id="code" />
-                                <a class="btn-primary-fill justify-content-center w-100" id="submitBtn">
-                                    <span class="d-flex justify-content-center gap-6">
-                                        <i class="ri-lock-line"></i>
-                                        <span>Verify</span>
-                                    </span>
-                                </a>
-                            </form>
+								<!-- Payment S t a r t -->
+								<div class="donation-payment">
+									<!-- Payment -->
+									<div class="card-style box-shadow border-0">
+										<form action="/order/buy/<%= tour._id %>" method="POST" id="paymentForm">
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="contact-form mb-24">
+														<label class="contact-label">2FA Code</label>
+														<input class="form-control contact-input" type="number" name="verificationCode"
+															placeholder="123456">
+													</div>
+												</div>
+											</div>
 
-                            <div class="login-footer">
-                                <div class="create-account">
-                                    <p class="mb-0">
-                                        Go back to
-                                        <a href="/user/login">
-                                            <span class="text-primary">Login</span>
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/ End-of Login -->
-    </main>
+											<div class="form-group col-12 payment-gateway-wrapper mt-10">
+												<div class="remember-me terms-condition">
+													<label>
+														<input class="checkbox-style" type="checkbox" id="checkboxPayment">
+														<small>I agree to all the
+															<a href="/static/terms-condition">
+																<span class="text-primary">Terms</span></a> and <a
+																href="/static/privacy-policy"><span class="text-primary">Privacy Policy</span>
+															</a>
+														</small>
+														<span class="checkmark-style"></span>
+													</label>
+												</div>
+												<button class="btn-primary-submit" id="paymentButton">Payment Now</button>
+											</div>
+										</form>
+									</div>
+								</div>
+								<!--End-of Payment -->
+							</div>
+							<div class="col-xl-4">
+								<div class="date-travel-card position-sticky top-0">
+									<div class="price-review">
+										<div class="d-flex gap-10 align-items-end">
+											<p class="light-pera">Total</p>
+											<p class="pera" id="totalPrice"><%= pricePerPerson * peopleCount %>$</p>
+										</div>
+										<div class="rating">
+											<p class="pera">Price varies by group size</p>
+										</div>
+									</div>
+									<h4 class="heading-card">Select Date and Travelers</h4>
+									<div class="date-time-dropdown">
+										<i class="ri-time-line"></i>
+										<p class="date-time-result">Wednesday, Jan 17, 2023</p>
+									</div>
+									<div class="dropdown-section position-relative user-picker-dropdown">
+										<div class="d-flex gap-12 align-items-center">
+											<i class="dropdown-icon ri-user-line"></i>
+											<div class="custom-dropdown">
+												<h4 class="title">Guests</h4>
+												<div class="arrow">
+													<i class="ri-arrow-down-s-line"></i>
+												</div>
+											</div>
+										</div>
+										<div class="user-result" id="peopleCount"><%= peopleCount %></div>
+                                        
+										<div class="user-picker dropdown-shadow">
+											<div class="user-category">
+												<div class="category-name">
+													<h4 class="title">Adults</h4>
+													<p class="pera">12years and above</p>
+												</div>
+												<div class="qty-container">
+													<button class="qty-btn-minus mr-1" type="button">
+														<i class="ri-subtract-fill"></i>
+													</button>
+													<input type="text" name="qty" value="0"
+														class="input-qty input-rounded">
+													<button class="qty-btn-plus ml-1" type="button">
+														<i class="ri-add-fill"></i>
+													</button>
+												</div>
+											</div>
+											<div class="user-category">
+												<div class="category-name">
+													<h4 class="title">Children</h4>
+													<p class="pera">2-11 years</p>
+												</div>
+												<div class="qty-container">
+													<button class="qty-btn-minus mr-1" type="button">
+														<i class="ri-subtract-fill"></i>
+													</button>
+													<input type="text" name="qty" value="0"
+														class="input-qty input-rounded">
+													<button class="qty-btn-plus ml-1" type="button">
+														<i class="ri-add-fill"></i>
+													</button>
+												</div>
+											</div>
+											<div class="user-category">
+												<div class="category-name">
+													<h4 class="title">Infant</h4>
+													<p class="pera">Below 2 years</p>
+												</div>
+												<div class="qty-container">
+													<button class="qty-btn-minus mr-1" type="button">
+														<i class="ri-subtract-fill"></i>
+													</button>
+													<input type="text" name="qty" value="0"
+														class="input-qty input-rounded">
+													<button class="qty-btn-plus ml-1" type="button">
+														<i class="ri-add-fill"></i>
+													</button>
+												</div>
+											</div>
+											<div class="btn-section">
+												<a href="javascript:void(0)" class="done-btn">Done</a>
+											</div>
+										</div>
+									</div>
+                                    <form action="/order/buy/<%= tour._id %>" method="GET">
+                                        <div class="mt-30">
+                                            <input type="hidden" name="peopleCount" id="peopleCountInput" value="<%= peopleCount %>"/>
+                                            <button type="submit" class="send-btn w-100" style="text-align: center;">Check Availability Again</button>
+                                        </div>
+                                    </form>
+                                    <div class="footer bg-transparent">
+                                        <h4 class="title">Free Cancellation</h4>
+                                        <p class="pera">Up to 24 hours in advance</p>
+                                    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/ End-of Destination -->
+	</main>
 
     <!-- Footer S t a r t -->
     <footer>
@@ -347,9 +504,6 @@
                                     <ul class="listing">
                                         <li class="single-lsit">
                                             <a href="/static/about">About Us</a>
-                                        </li>
-                                        <li class="single-lsit">
-                                            <a href="/static/news">News</a>
                                         </li>
                                         <li class="single-lsit"><a href="/static/faq">Faq</a></li>
                                         <li class="single-lsit">
@@ -474,39 +628,199 @@
     </footer>
     <!--/ End-of Footer -->
 
-    <!-- Scroll Up  -->
-    <div class="progressParent" id="back-top">
-        <svg class="backCircle svg-inner" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-        </svg>
-    </div>
-    <!-- Add an search-overlay element -->
-    <div class="search-overlay"></div>
-    <!-- jquery-->
-    <script src="/assets/js/jquery-3.7.0.min.js"></script>
-    <script src="/assets/js/popper.min.js"></script>
-    <script src="/assets/js/bootstrap-5.3.0.min.js"></script>
-    <!-- Plugin -->
-    <script src="/assets/js/plugin.js"></script>
-    <!-- Main js-->
-    <script src="/assets/js/main.js"></script>
+	<!-- Scroll Up  -->
+	<div class="progressParent" id="back-top">
+		<svg class="backCircle svg-inner" width="100%" height="100%" viewBox="-1 -1 102 102">
+			<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+		</svg>
+	</div>
+	<!-- Add an search-overlay element -->
+	<div class="search-overlay"></div>
+	<!-- jquery-->
     <script>
-        document.getElementById('submitBtn').addEventListener('click', function(event) {
-            const code = [
-                document.getElementById('digit0').value,
-                document.getElementById('digit1').value,
-                document.getElementById('digit2').value,
-                document.getElementById('digit3').value,
-                document.getElementById('digit4').value,
-                document.getElementById('digit5').value
-            ].join('');
-            if (!code) {
-                return alert("Please fill in the code.")
-            }
-            document.getElementById('code').value = code;
+        document.getElementById('paymentButton').addEventListener('click', async function(event) {
+            event.preventDefault();
 
-            document.getElementById('2faVerificationForm').submit();
+            const agree = document.getElementById('checkboxPayment');
+            if (!agree.checked) return alert("Please agree to our Terms of Service and Privacy Policy.");
+
+            let form = document.getElementById("paymentForm");
+
+            var input1 = document.createElement("input");
+            input1.type = "hidden";
+            input1.name = "peopleCount";
+            input1.value = peopleCount;
+            form.appendChild(input1);
+
+            var input2 = document.createElement("input");
+            input2.type = "hidden";
+            input2.name = "pricePerPerson";
+            input2.value = pricePerPerson;
+            form.appendChild(input2);
+
+            var input3 = document.createElement("input");
+            input3.type = "hidden";
+            input3.name = "flightPricePerPerson";
+            input3.value = flightPricePerPerson;
+            form.appendChild(input3);
+
+            var input4 = document.createElement("input");
+            input4.type = "hidden";
+            input4.name = "totalPriceFlight";
+            input4.value = totalPriceFlight;
+            form.appendChild(input4);
+
+            var input5 = document.createElement("input");
+            input5.type = "hidden";
+            input5.name = "totalPriceHotel";
+            input5.value = totalPriceHotel;
+            form.appendChild(input5);
+
+            var input6 = document.createElement("input");
+            input6.type = "hidden";
+            input6.name = "baseTotalPrice";
+            input6.value = baseTotalPrice;
+            form.appendChild(input6);
+
+            var input8 = document.createElement("input");
+            input8.type = "hidden";
+            input8.name = "flightNumber";
+            input8.value = tourDetails.flightNumber;
+            form.appendChild(input8);
+
+            var input9 = document.createElement("input");
+            input9.type = "hidden";
+            input9.name = "airline";
+            input9.value = tourDetails.airline;
+            form.appendChild(input9);
+
+            var input10 = document.createElement("input");
+            input10.type = "hidden";
+            input10.name = "hotel";
+            input10.value = tourDetails.hotel;
+            form.appendChild(input10);
+
+            var input11 = document.createElement("input");
+            input11.type = "hidden";
+            input11.name = "hotelNumber";
+            input11.value = tourDetails.hotelNumber;
+            form.appendChild(input11);
+
+            form.submit();
+
         });
+        let peopleCount = Number("<%= peopleCount %>");
+        let pricePerPerson = Number("<%= pricePerPerson %>");
+        let flightPricePerPerson = Number("<%= tourDetails.flightPricePerPerson %>");
+        let hotelPricePerPerson = Number("<%= tourDetails.hotelPricePerPerson %>");
+        let totalPriceFlight = flightPricePerPerson * peopleCount;
+        let totalPriceHotel = hotelPricePerPerson * peopleCount;
+        let basePricePerPerson = Number("<%= pricePerPerson %>");
+        let baseTotalPrice = basePricePerPerson * peopleCount;
+        let tourId = "<%= tour._id %>";
+
+        let tourDetails = {
+            flightNumber: "<%= tourDetails.flightNumber %>",
+            airline: "<%= tourDetails.airline %>",
+            hotel: "<%= tourDetails.hotel %>",
+            hotelNumber: "<%= tourDetails.hotelNumber %>",
+            flightPricePerPerson: "<%= tourDetails.flightPricePerPerson %>",
+            hotelPricePerPerson: "<%= tourDetails.hotelPricePerPerson %>"
+        }
+
+        function handleChangeAvatar() {
+            document.getElementById('avatarInput').click();
+        }
+
+        function handleFileChange() {
+            const avatarInput = document.getElementById('avatarInput');
+            if (avatarInput.files.length > 0) {
+                document.getElementById('changeAvatarForm').submit();
+            }
+        };
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let TotalPriceDisplay = totalPriceFlight + totalPriceHotel + baseTotalPrice;
+
+            
+            document.getElementById('totalPrice').innerHTML = `<strong>$${(TotalPriceDisplay)}</strong>$`;;
+        });
+
+
+        const targetNode = document.getElementById('peopleCount');
+
+        const observer = new MutationObserver((mutationsList) => {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'childList' || mutation.type === 'characterData') {
+
+                    console.log(targetNode.textContent);
+
+                    peopleCount = Number(targetNode.textContent);
+
+                    const display = document.getElementById('peopleDisplay');
+
+
+                    if (display) {
+                        display.innerText = peopleCount + ' Persons';
+                    }
+
+                    const input = document.getElementById("peopleCountInput");
+
+                    if (input) {
+                        input.value = peopleCount;
+                    }
+
+                    // const input2 = document.getElementById("peopleCountInput2");
+
+                    // if (input2) {
+                    //     input2.value = peopleCount;
+                    // }
+
+                    const personFlightDisplay = document.getElementById('priceFlightPersonDisplay');
+
+                    if (personFlightDisplay) {
+                        personFlightDisplay.innerHTML = `Quantity: <strong>${peopleCount}</strong> Persons`;
+                    }
+                    const personHotelDisplay = document.getElementById('priceHotelPersonDisplay');
+
+                    if (personHotelDisplay) {
+                        personHotelDisplay.innerHTML = `Quantity: <strong>${peopleCount}</strong> Persons`;
+                    }
+                    const totalPriceFlightDisplay = document.getElementById('priceFlightDisplay');
+
+                    if (totalPriceFlightDisplay) {
+                        totalPriceFlight = flightPricePerPerson * peopleCount;
+                        totalPriceFlightDisplay.innerHTML = `Total: <strong>$${(totalPriceFlight)}</strong>`;
+                    }
+
+                    const totalPriceHotelDisplay = document.getElementById('priceHotelDisplay');
+
+                    if (totalPriceHotelDisplay) {
+                        totalPriceHotel = hotelPricePerPerson * peopleCount;
+                        totalPriceHotelDisplay.innerHTML = `Total: <strong>$${(totalPriceHotel)}</strong>`;
+                    }
+
+                    const totalPriceDisplay = document.getElementById('totalPrice');
+
+                    if (totalPriceDisplay) {
+                        baseTotalPrice = basePricePerPerson * peopleCount;
+                        finalTotalPrice = totalPriceFlight + totalPriceHotel + baseTotalPrice;
+                        totalPriceDisplay.innerHTML = `<strong>$${(finalTotalPrice)}</strong>$`;
+                    }
+                }
+            }
+        });
+        observer.observe(targetNode, { characterData: true, subtree: true, childList: true });
+
+
     </script>
+	<script src="/assets/js/jquery-3.7.0.min.js"></script>
+	<script src="/assets/js/popper.min.js"></script>
+	<script src="/assets/js/bootstrap-5.3.0.min.js"></script>
+	<!-- Plugin -->
+	<script src="/assets/js/plugin.js"></script>
+	<!-- Main js-->
+	<script src="/assets/js/main.js"></script>
 </body>
 </html>

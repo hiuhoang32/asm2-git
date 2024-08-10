@@ -15,13 +15,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Travello - Multipurpose travel and tour booking.These products is suitable for  travel agency , tour, travel website , tour operator , tourism , booking  trip or adventure website. ">
+    <meta name="description" content="SwinTours - Multipurpose travel and tour booking.These products is suitable for  travel agency , tour, travel website , tour operator , tourism , booking  trip or adventure website. ">
     <meta name="keywords" content="travel, trip booking,tour, hotel, tour guide, tourism, blog, flight, travel agency, tourism agency, accommodation, tour website">
     <meta name="author" content="SwinTours">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Multipurpose travel and tour booking">
-    <meta property="og:site_name" content="Travello">
+    <meta property="og:site_name" content="SwinTours">
     <meta property="og:url" content="https://SwinTours.com">
     <meta property="og:image" content="https://SwinTours.com/images/selfie.jpg">
     <meta property="og:description" content="Multipurpose travel and tour booking, multipurpose products">
@@ -169,10 +169,13 @@
                                                                     class="ri-arrow-down-s-line"></i></a>
                                                             <ul class="submenu">
                                                                 <li class="single-list">
-                                                                     <a class="single">Username: <%= user.username %></a>
+                                                                    <a class="single">Username: <%= user.username %></a>
                                                                 </li>
                                                                 <li class="single-list">
-                                                                    <a class="single">Balance: $<%= user.balance || '0' %></a>
+                                                                   <a class="single">Balance: $<%= balance || '0' %></a>
+                                                                </li>
+                                                                <li class="single-list">
+                                                                    <a class="single" href="/user/deposit/<%= user._id %>">Deposit</a>
                                                                 </li>
                                                                 <li class="single-list" >
                                                                     <a class="single" href="javascript:void(0)" id="changeAvatarLink" onclick="handleChangeAvatar()">Change Profile Picture</a>
@@ -344,23 +347,23 @@
                                 Subscription.</p>
                             <p class="pera mb-20">At the end of each Billing Cycle, your Subscription will automatically
                                 renew under
-                                the exact same conditions unless you cancel it or SwinTours Travello cancels it. You
+                                the exact same conditions unless you cancel it or SwinTours SwinTours cancels it. You
                                 may cancel your
                                 Subscription renewal either through your online account management page or by contacting
                             </p>
                             <p class="pera mb-20">A valid payment method is required to process the payment for your
                                 subscription. You
-                                shall provide SwinTours Travello with accurate and complete billing information that
+                                shall provide SwinTours SwinTours with accurate and complete billing information that
                                 may include but
                                 not limited to full name, address, state, postal or zip code, telephone number, and a
                                 valid payment
                                 method information. By submitting such payment information, you automatically authorize
                                 SwinTours
-                                Travello to charge all Subscription fees incurred through your account to any such
+                                SwinTours to charge all Subscription fees incurred through your account to any such
                                 payment instruments.
                             </p>
                             <p class="pera mb-20">Should automatic billing fail to occur for any reason, SwinTours
-                                Travello reserves
+                                SwinTours reserves
                                 the right to terminate your access to the Service with immediate effect.</p>
                         </div>
                         <!-- Single -->
@@ -404,12 +407,12 @@
                                 includes the right for us to make your Content available to other users of Service, who
                                 may also use
                                 your Content subject to these Terms.</p>
-                            <p class="pera mb-20">SwinToursTravello has the right but not the obligation to monitor and
+                            <p class="pera mb-20">SwinToursSwinTours has the right but not the obligation to monitor and
                                 edit all
                                 Content provided by users.</p>
                             <p class="pera mb-20">In addition, Content found on or through this Service are the property
                                 of SwinTours
-                                Travello or used with permission. You may not distribute, modify, transmit, reuse,
+                                SwinTours or used with permission. You may not distribute, modify, transmit, reuse,
                                 download, repost,
                                 copy, or use said Content, whether in whole or in part, for commercial purposes or for
                                 personal gain,
@@ -595,7 +598,7 @@
                         <div class="footer-content">
                             <div class="d-flex flex-column gap-20">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="pera">
                                     Travel is a transformative and enriching experience that

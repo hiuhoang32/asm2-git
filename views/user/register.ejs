@@ -15,13 +15,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Travello - Multipurpose travel and tour booking.These products is suitable for  travel agency , tour, travel website , tour operator , tourism , booking  trip or adventure website. ">
+    <meta name="description" content="SwinTours - Multipurpose travel and tour booking.These products is suitable for  travel agency , tour, travel website , tour operator , tourism , booking  trip or adventure website. ">
     <meta name="keywords" content="travel, trip booking,tour, hotel, tour guide, tourism, blog, flight, travel agency, tourism agency, accommodation, tour website">
     <meta name="author" content="SwinTours">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Multipurpose travel and tour booking">
-    <meta property="og:site_name" content="Travello">
+    <meta property="og:site_name" content="SwinTours">
     <meta property="og:url" content="https://SwinTours.com">
     <meta property="og:image" content="https://SwinTours.com/images/selfie.jpg">
     <meta property="og:description" content="Multipurpose travel and tour booking, multipurpose products">
@@ -284,7 +284,7 @@
                                         id="txtPasswordLogin2" name="password2" placeholder="Confirm Password">
                                     <i class="toggle-password ri-eye-line"></i>
                                 </div>
-                                <input type="hidden" name="secret" value="<%= secret %>"  />
+                                <input type="hidden" name="secret" value="<%= secret %>" id="secret2fa"  />
                                 <img style="width: 50%" src="<%= qrcode %>" alt="QR code">
                                 <div class="position-relative contact-form mb-24">
                                     <label class="contact-label">2FA Code</label>
@@ -402,7 +402,7 @@
                         <div class="footer-content">
                             <div class="d-flex flex-column gap-20">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="pera">
                                     Travel is a transformative and enriching experience that
@@ -478,6 +478,9 @@
             const password1 = document.getElementById('txtPasswordLogin').value;
             const password2 = document.getElementById('txtPasswordLogin2').value;
             const code = document.getElementById('2faToken').value;
+            const secret = document.getElementById('secret2fa').value;
+
+            if (!secret) return alert("There was an error. Please reload the page.")
 
             if (!username || !password1 || !password2 || !code) {
                 alert('Please fill in all fields.');
@@ -488,6 +491,29 @@
                 alert('Passwords do not match.');
                 return;
             };
+
+            try {
+                const response = await fetch(`/user/check2fa/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ token: code, secret }),
+                });
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'There was an error checking the two factor code.');
+                }
+
+                if (!data.verify) {
+                    alert('2FA Code is wrong.');
+                    return;
+                };
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error checking the two factor code.');
+            }
             
 
             // Check if username is taken

@@ -8,13 +8,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "/assets/images/default/avatar.webp",
     },
-    balance: {
-        type: Number,
-        default: 0  
-    },
-    twoFASecret: { type: String },
+    twoFASecret: { type: String, required: true },
     changePassToken: { type: String },
-    expireDateChangePass: { type: Number }
+    expireDateChangePass: { type: Number },
+    ethAccount: { type: String, required: true }
 });
 
 userSchema.methods.matchPassword = async function (enteredPassword) {

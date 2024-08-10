@@ -11,6 +11,8 @@ const multer = require("multer");
 const multerS3 = require("multer-s3");
 const crypto = require('crypto');
 
+const { TourNFT, web3 } = require('../handler/crypto');
+
 function isImage(file) {
     const validMimeTypes = [
         "image/jpeg",
@@ -201,6 +203,40 @@ router.post('/new-password', async (req, res) => {
     // res.json(req.body);
 });
 
+router.get("/deposit/:id", async (req, res) => {
+    if (!req.user) {
+        return res.redirect("/");
+    };
+    const { id } = req.params;
+    if (!id) return res.redirect("/");
+    if (id !== req.user._id.toString()) return res.send('<p>Invalid deposit link.</p><br><a href="/">Home</a>');
+
+    return res.render('user/deposit.ejs', { user: req.user, balance: req.balance });
+
+    // res.json(req.body);
+})
+
+router.post("/deposit/:id", async (req, res) => {
+    if (!req.user || !req.body) {
+        return res.redirect("/");
+    };
+    const { id } = req.params;
+    if (!id) return res.redirect("/");
+    if (id !== req.user._id.toString()) return res.send('<p>Invalid deposit link.</p><br><a href="/">Home</a>');
+
+    const { amount } = req.body;
+
+    if (!amount || isNaN(parseInt(amount)) || parseInt(amount) <= 0) return res.send(`<p>Invalid deposit amount.</p><br><a href="/deposit/${id}">Go back</a>`);
+
+    const tourNFTInstance = await TourNFT.deployed();
+    
+    await tourNFTInstance.addBalance(amount, { from: userAddress });
+
+    return res.render('user/deposit.ejs', { user: req.user, balance: req.balance });
+
+    // res.json(req.body);
+})
+
 
 
 router.post("/login", async (req, res) => {
@@ -215,7 +251,7 @@ router.post("/login", async (req, res) => {
         if (!matchPassword) {
             res.redirect("/user/login");
         } else {
-            req.session.username = user.username;
+            req.session.userId = user._id;
             res.redirect("/");
         };
 
@@ -234,17 +270,32 @@ router.get('/logout', (req, res) => {
     });
 });
 
+router.post("/check2fa", (req, res) => {
+    const { secret, token } = req.body;
+
+    if (!secret || !token) {
+        return res.json({ verify: false });
+    };
+    const verify = speakeasy.totp.verify({
+        secret,
+        encoding: "base32",
+        token,
+    });
+    return res.json({ verify, secret, token });
+});
+
 router.get("/register", (req, res) => {
     if (req.user) {
         return res.redirect("/");
     };
     const secret = speakeasy.generateSecret({
-        name: "SwinTours",
+        name: `SwinTours-${Date.now()}`,
     });
     qrcode.toDataURL(secret.otpauth_url, (err, data_url) => {
         res.render("user/register", { secret: secret.base32, qrcode: data_url });
     });
 });
+
 
 router.post("/register", async (req, res) => {
     if (req.user) {
@@ -252,23 +303,28 @@ router.post("/register", async (req, res) => {
     };
     const { username, password1: password, secret, "2fatoken": token } = req.body;
 
-    let twoFactorEnabled = false;
+    if (!username || !password || !secret || !token) {
+        return res.send("Missing input. Please fill in all fields.");
+    }
 
-    if (secret && token) {
-        twoFactorEnabled = speakeasy.totp.verify({
-            secret,
-            encoding: "base32",
-            token,
-        });
-    };
+    const verify = speakeasy.totp.verify({
+        secret,
+        encoding: "base32",
+        token,
+    });
+
+    if (!verify) {
+        return res.send("Invalid 2FA token. Please go back and try again.");
+    }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Create a new admin
-    const newUser = new User({ username, password: hashedPassword });
-    if (twoFactorEnabled) newUser.twoFASecret = secret;
+    const account = await web3.eth.personal.newAccount('');
+
+    const newUser = new User({ username, password: hashedPassword, ethAccount: account, twoFASecret: secret });
     await newUser.save();
-    req.session.username = newUser.username;
+    req.session.userId = newUser._id;
     res.redirect("/");
 });
 
@@ -282,108 +338,11 @@ router.post("/changeAvatar", upload.array("avatar", 1), async (req, res) => {
 
     // Handle files and form data
     const images = req.files.map((file) => file.location);
-    
 
-    const user = await User.findOne({ username: req.session.username });
+    req.user.profilePicture = images[0];
 
-    if (!user) {
-        return res.redirect("/user/logout");
-    }
-
-    user.profilePicture = images[0];
-
-    await user.save();
+    await req.user.save();
     res.redirect("/");
 });
-
-// // Admin dashboard route
-// router.get("/dashboard", async (req, res) => {
-//     if (!req.session.isAdminLoggedIn || !req.session.is2FAVerified) {
-//         return res.redirect("/admin/login");
-//     }
-//     try {
-//         const tours = await Tour.find();
-//         res.render("admin/dashboard", { tours });
-//     } catch (err) {
-//         res.status(500).send("Error fetching tours");
-//     }
-// });
-
-// router.get("/add-tour", (req, res) => {
-//     if (!req.session.isAdminLoggedIn || !req.session.is2FAVerified) {
-//         return res.redirect("/admin/login");
-//     }
-//     res.render("admin/addTours");
-// });
-
-// // Add tour route
-// router.post("/add-tour", upload.array("images", 10), async (req, res) => {
-//     if (!req.session.isAdminLoggedIn || !req.session.is2FAVerified) {
-//         return res.redirect("/admin/login");
-//     };
-
-    
-//     // Handle any errors from multer's file filter
-//     if (req.fileValidationError) {
-//         return res.status(400).send(req.fileValidationError);
-//     }
-
-//     // Handle files and form data
-//     const images = req.files.map((file) => file.location); // Array of URLs to uploaded images
-
-//     const tourPlan = [];
-//     Object.keys(req.body).forEach(key => {
-//         if (key.startsWith('dayTitle')) {
-//             const dayNumber = key.replace('dayTitle', '');
-//             tourPlan.push({
-//                 dayTitle: req.body[`dayTitle${dayNumber}`],
-//                 dayDescription: req.body[`dayDescription${dayNumber}`]
-//             });
-//         }
-//     });
-
-
-
-//     const {
-//         title,
-//         location,
-//         duration,
-//         peopleCount,
-//         price,
-//         description,
-//         included,
-//         excluded
-//     } = req.body;
-
-//     const newTour = new Tour({
-//         title,
-//         location,
-//         duration,
-//         recommendedPeopleCount: peopleCount,
-//         basePrice: price,
-//         about: description,
-//         included: included.split("\n").filter(x => Boolean(x)).map(x => x.trim()),
-//         excluded: excluded.split("\n").filter(x => Boolean(x)).map(x => x.trim()),
-//         plan: tourPlan,
-//         images,
-//     });
-
-//     await newTour.save();
-//     res.redirect("/admin/dashboard");
-// });
-
-// router.delete('/deleteTour/:id', async (req, res) => {
-//     if (!req.session.isAdminLoggedIn || !req.session.is2FAVerified) {
-//         return res.redirect("/admin/login");
-//     };
-
-//     try {
-//         await Tour.findByIdAndDelete(req.params.id);
-//         res.status(200).json({ message: 'Tour deleted successfully' });
-//     } catch (error) {
-//         res.status(500).json({ message: 'Error deleting tour', error });
-//     }
-// });
-
 
 module.exports = router;

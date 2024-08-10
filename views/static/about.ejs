@@ -15,13 +15,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Travello - Multipurpose travel and tour booking.These products is suitable for  travel agency , tour, travel website , tour operator , tourism , booking  trip or adventure website. ">
+    <meta name="description" content="SwinTours - Multipurpose travel and tour booking.These products is suitable for  travel agency , tour, travel website , tour operator , tourism , booking  trip or adventure website. ">
     <meta name="keywords" content="travel, trip booking,tour, hotel, tour guide, tourism, blog, flight, travel agency, tourism agency, accommodation, tour website">
     <meta name="author" content="SwinTours">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Multipurpose travel and tour booking">
-    <meta property="og:site_name" content="Travello">
+    <meta property="og:site_name" content="SwinTours">
     <meta property="og:url" content="https://SwinTours.com">
     <meta property="og:image" content="https://SwinTours.com/images/selfie.jpg">
     <meta property="og:description" content="Multipurpose travel and tour booking, multipurpose products">
@@ -172,7 +172,10 @@
                                                                      <a class="single">Username: <%= user.username %></a>
                                                                 </li>
                                                                 <li class="single-list">
-                                                                    <a class="single">Balance: $<%= user.balance || '0' %></a>
+                                                                    <a class="single">Balance: $<%= balance || '0' %></a>
+                                                                </li>
+                                                                <li class="single-list">
+                                                                    <a class="single" href="/user/deposit/<%= user._id %>">Deposit</a>
                                                                 </li>
                                                                 <li class="single-list" >
                                                                     <a class="single" href="javascript:void(0)" id="changeAvatarLink" onclick="handleChangeAvatar()">Change Profile Picture</a>
@@ -282,7 +285,7 @@
                         <div class="section-title mx-430 mb-30 w-md-100">
                             <span class="highlights fancy-font font-400">About Us</span>
                             <h4 class="title">
-                                Get The Best Travel Experience With Travello
+                                Get The Best Travel Experience With SwinTours
                             </h4>
                             <p class="pera">
                                 Travel is a transformative and enriching experience that
@@ -317,7 +320,7 @@
                     <div class="col-xl-7 col-lg-6">
                         <div class="about-count-section about-count-before-bg">
                             <div class="banner">
-                                <img src="/assets/images/gallery/about-banner-three.png" alt="travello">
+                                <img src="/assets/images/gallery/about-banner-three.png" alt="SwinTours">
                             </div>
                             <div class="all-count-list">
                                 <div class="details">
@@ -351,25 +354,25 @@
                 <div class="swiper brandSwiper-active">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="/assets/images/brand/brand-1.jpeg" alt="travello">
+                            <img src="/assets/images/brand/brand-1.jpeg" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="/assets/images/brand/brand-2.jpg" alt="travello">
+                            <img src="/assets/images/brand/brand-2.jpg" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="/assets/images/brand/brand-3.jpg" alt="travello">
+                            <img src="/assets/images/brand/brand-3.jpg" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="/assets/images/brand/brand-4.png" alt="travello">
+                            <img src="/assets/images/brand/brand-4.png" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="/assets/images/brand/brand-5.png" alt="travello">
+                            <img src="/assets/images/brand/brand-5.png" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="/assets/images/brand/brand-1.jpeg" alt="travello">
+                            <img src="/assets/images/brand/brand-1.jpeg" alt="SwinTours">
                         </div>
                         <div class="swiper-slide">
-                            <img src="/assets/images/brand/brand-2.jpg" alt="travello">
+                            <img src="/assets/images/brand/brand-2.jpg" alt="SwinTours">
                         </div>
                     </div>
                 </div>
@@ -397,7 +400,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-1.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-1.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Emily Johnson</p>
@@ -412,7 +415,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Feb 10, 2024</p>
                             </div>
@@ -420,7 +423,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-2.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-2.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Michael Smith</p>
@@ -435,7 +438,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Mar 15, 2024</p>
                             </div>
@@ -443,7 +446,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-3.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-3.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Sophia Davis</p>
@@ -458,7 +461,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Apr 20, 2024</p>
                             </div>
@@ -466,7 +469,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-4.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-4.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">James Wilson</p>
@@ -481,7 +484,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">May 05, 2024</p>
                             </div>
@@ -489,7 +492,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-5.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-5.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Olivia Brown</p>
@@ -504,7 +507,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Jun 25, 2024</p>
                             </div>
@@ -512,7 +515,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-6.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-6.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Liam Martinez</p>
@@ -527,7 +530,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Jul 10, 2024</p>
                             </div>
@@ -539,7 +542,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-1.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-1.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Noah White</p>
@@ -554,7 +557,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Aug 15, 2024</p>
                             </div>
@@ -562,7 +565,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-2.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-2.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Emma Harris</p>
@@ -577,7 +580,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Sep 20, 2024</p>
                             </div>
@@ -585,7 +588,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-3.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-3.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Ava Lopez</p>
@@ -600,7 +603,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Oct 25, 2024</p>
                             </div>
@@ -608,7 +611,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-4.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-4.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Lucas King</p>
@@ -623,7 +626,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Nov 30, 2024</p>
                             </div>
@@ -631,7 +634,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-5.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-5.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Mia Martinez</p>
@@ -646,7 +649,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Dec 05, 2024</p>
                             </div>
@@ -654,7 +657,7 @@
                         <div class="swiper-slide testimonial-card">
                             <div class="testimonial-header">
                                 <div class="user-img">
-                                    <img src="/assets/images/testimonial/testimonial-6.jpeg" alt="travello">
+                                    <img src="/assets/images/testimonial/testimonial-6.jpeg" alt="SwinTours">
                                 </div>
                                 <div class="user-info">
                                     <p class="name">Ethan Clark</p>
@@ -669,7 +672,7 @@
                             </div>
                             <div class="testimonial-footer">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="date">Dec 25, 2024</p>
                             </div>
@@ -711,7 +714,7 @@
                 <div class="row g-4">
                     <div class="col-lg-6 col-md-6">
                         <a href="/tours" class="offer-banner imgEffect4 wow fadeInLeft" data-wow-delay="0.0s">
-                            <img src="/assets/images/gallery/offercard-1.jpg" alt="travello">
+                            <img src="/assets/images/gallery/offercard-1.jpg" alt="SwinTours">
                             <div class="offer-content">
                                 <p class="highlights-text">Save up to</p>
                                 <h4 class="title">50%</h4>
@@ -726,7 +729,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <a href="/tours" class="offer-banner imgEffect4 wow fadeInLeft" data-wow-delay="0.0s">
-                            <img src="/assets/images/gallery/offercard-2.jpg" alt="travello">
+                            <img src="/assets/images/gallery/offercard-2.jpg" alt="SwinTours">
                             <div class="offer-content-two">
                                 <h4 class="title">Nearby Hotel</h4>
                                 <p class="pera">
@@ -832,7 +835,7 @@
                         <div class="footer-content">
                             <div class="d-flex flex-column gap-20">
                                 <div class="logo">
-                                    <img src="/assets/images/logo/logo.png" alt="travello" class="changeLogo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
                                 </div>
                                 <p class="pera">
                                     Travel is a transformative and enriching experience that
@@ -875,7 +878,7 @@
                                     © <span class="current-year">2023</span> SwinTours. All rights
                                     reserved
                                 </p>
-                                <p class="pera">Powered by @Travello</p>
+                                <p class="pera">Powered by @SwinTours</p>
                             </div>
                         </div>
                     </div>

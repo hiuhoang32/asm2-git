@@ -5,7 +5,7 @@ const Tour = require("../models/Tour");
 
 router.get('/', async (req, res) => {
     const tours = await Tour.find();
-    res.render('index.ejs', { user: req.user, tours });
+    res.render('index.ejs', { user: req.user, tours, balance: req.balance });
 });
 
 module.exports = router;

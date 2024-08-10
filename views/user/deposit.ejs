@@ -35,7 +35,7 @@
     <meta name="csrf-token" content="...">
     <meta name="currency" content="$">
     <!-- Title -->
-    <title>Multipurpose travel and tour booking </title>
+    <title>Deposit - <%= user.username %></title>
     <link rel="icon" type="image/x-icon" sizes="20x20" href="/assets/images/icon/favicon.png">
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-5.3.0.min.css">
@@ -163,6 +163,33 @@
                                                     <li class="single-list">
                                                         <a href="/static/contact" class="single">Contact</a>
                                                     </li>
+                                                    <% if (user) { %>
+                                                        <li class="single-list">
+                                                            <a href="javascript:void(0)" class="single">User <img src="<%= user.profilePicture %>" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture"> <i
+                                                                    class="ri-arrow-down-s-line"></i></a>
+                                                            <ul class="submenu">
+                                                                <li class="single-list">
+                                                                    <a class="single">Username: <%= user.username %></a>
+                                                                </li>
+                                                                <li class="single-list">
+                                                                   <a class="single">Balance: $<%= balance || '0' %></a>
+                                                                </li>
+                                                                <li class="single-list">
+                                                                    <a class="single" href="/user/deposit/<%= user._id %>">Deposit</a>
+                                                                </li>
+                                                                <li class="single-list" >
+                                                                    <a class="single" href="javascript:void(0)" id="changeAvatarLink" onclick="handleChangeAvatar()">Change Profile Picture</a>
+                                                                </li>
+                                                                <form id="changeAvatarForm" action="/user/changeAvatar" method="POST" enctype="multipart/form-data" style="display: none;">
+                                                                    <input type="file" id="avatarInput" name="avatar" accept="image/*" onchange="handleFileChange()">
+                                                                </form>
+                                                                <li class="single-list">
+                                                                    <a class="single" href="/user/logout">Log Out</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    <% } else { %>
+                                                    <% } %>
                                                     <li class="d-block d-lg-none">
                                                         <div class="header-right pl-15">
                                                             <div class="d-flex align-items-center gap-12">
@@ -175,7 +202,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="sign-btn">
-                                                                <a href="/user/login" class="btn-secondary-sm">Sign In</a>
+                                                                <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -191,7 +218,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="sign-btn">
-                                                        <a href="/user/login" class="btn-secondary-sm">Sign In</a>
+                                                        <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
                                                     </div>
                                                     <!-- Theme Mode -->
                                                     <li class="single-list">
@@ -235,17 +262,17 @@
         <!-- Breadcrumbs S t a r t -->
         <section class="breadcrumbs-area breadcrumb-bg">
             <div class="container">
-                <h1 class="title wow fadeInUp" data-wow-delay="0.0s">Verification</h1>
+                <h1 class="title wow fadeInUp" data-wow-delay="0.0s">Deposit</h1>
                 <div class="breadcrumb-text">
                     <nav aria-label="breadcrumb" class="breadcrumb-nav wow fadeInUp" data-wow-delay="0.1s">
                         <ul class="breadcrumb listing">
                             <li class="breadcrumb-item single-list"><a href="/" class="single">Home</a></li>
                             <li class="breadcrumb-item single-list" aria-current="page"><a href="javascript:void(0)"
-                                    class="single active">Verification</a></li>
+                                    class="single active">Deposit</a></li>
                         </ul>
                     </nav>
                 </div>
-            </div>
+            </div> 
 
         </section>
         <!--/ End-of Breadcrumbs-->
@@ -263,55 +290,15 @@
                                 </a>
                             </div>
                             <!-- Form -->
-                            <form action="/user/verification" method="POST" id="2faVerificationForm">
-                                <div class="contact-form">
-                                    <label class="contact-label">2FA Code </label>
+                            <form action="/user/deposit/<%= user._id %>" method="POST" id="depositForm">
+                                <div class="contact-form mb-24">
+                                    <label class="contact-label">Amount </label>
+                                    <input id= "amount" name="amount" class="form-control contact-input" type="number" placeholder="100$" required>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit0" class="form-control contact-input text-center" type="text"
-                                                placeholder="5">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit1" class="form-control contact-input text-center" type="text"
-                                                placeholder="0">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit2" class="form-control contact-input text-center" type="text"
-                                                placeholder="0">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit3" class="form-control contact-input text-center" type="text"
-                                                placeholder="1">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit4" class="form-control contact-input text-center" type="text"
-                                                placeholder="1">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3" style="flex: 1">
-                                        <div class="contact-form mb-24">
-                                            <input id="digit5" class="form-control contact-input text-center" type="text"
-                                                placeholder="1">
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="hidden" name="username" value="<%= username %>" id="username" />
-                                <input type="hidden" name="code" id="code" />
-                                <a class="btn-primary-fill justify-content-center w-100" id="submitBtn">
+                                <a href="javascript:void(0)" class="btn-primary-fill justify-content-center w-100" id="depositBtn">
                                     <span class="d-flex justify-content-center gap-6">
-                                        <i class="ri-lock-line"></i>
-                                        <span>Verify</span>
+                                        <span>Deposit</span>
                                     </span>
                                 </a>
                             </form>
@@ -319,10 +306,7 @@
                             <div class="login-footer">
                                 <div class="create-account">
                                     <p class="mb-0">
-                                        Go back to
-                                        <a href="/user/login">
-                                            <span class="text-primary">Login</span>
-                                        </a>
+                                        ETH Account: <%= user.ethAccount %>
                                     </p>
                                 </div>
                             </div>
@@ -333,7 +317,6 @@
         </div>
         <!--/ End-of Login -->
     </main>
-
     <!-- Footer S t a r t -->
     <footer>
         <div class="footer-wrapper footer-bg">
@@ -347,9 +330,6 @@
                                     <ul class="listing">
                                         <li class="single-lsit">
                                             <a href="/static/about">About Us</a>
-                                        </li>
-                                        <li class="single-lsit">
-                                            <a href="/static/news">News</a>
                                         </li>
                                         <li class="single-lsit"><a href="/static/faq">Faq</a></li>
                                         <li class="single-lsit">
@@ -430,14 +410,6 @@
                                     and landscapes.
                                 </p>
                             </div>
-                            <!-- <div class="footer-right">
-                                <h4 class="title">Subscribe Our Newsletter</h4>
-                                <div class="subscribe-wraper">
-                                    <input class="footer-search" type="search" name="footer"
-                                        placeholder="Enter Your Email">
-                                    <button class="subscribe-btn">Subscribe</button>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                     <div class="footer-bottom">
@@ -463,8 +435,9 @@
                             <div class="d-flex justify-content-between gap-14 flex-wrap">
                                 <p class="pera">
                                     © <span class="current-year">2023</span> SwinTours. All rights
-                                    reserved.
+                                    reserved
                                 </p>
+                                <p class="pera">Powered by @SwinTours</p>
                             </div>
                         </div>
                     </div>
@@ -483,6 +456,30 @@
     <!-- Add an search-overlay element -->
     <div class="search-overlay"></div>
     <!-- jquery-->
+    <script>
+        
+        function handleChangeAvatar() {
+            document.getElementById('avatarInput').click();
+        };
+
+        function handleFileChange() {
+            const avatarInput = document.getElementById('avatarInput');
+            if (avatarInput.files.length > 0) {
+                document.getElementById('changeAvatarForm').submit();
+            }
+        };
+
+        document.getElementById('depositBtn').addEventListener('click', async function(event) {
+            event.preventDefault();
+            const amount = document.getElementById('amount').value;
+            
+            if (!amount || isNaN(parseInt(amount)) || parseInt(amount) <= 0) {
+                alert('Please fill in the valid amount you want to deposit. Larger than 0.');
+                return;
+            };
+            document.getElementById('depositForm').submit();
+        });
+    </script>
     <script src="/assets/js/jquery-3.7.0.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap-5.3.0.min.js"></script>
@@ -490,23 +487,5 @@
     <script src="/assets/js/plugin.js"></script>
     <!-- Main js-->
     <script src="/assets/js/main.js"></script>
-    <script>
-        document.getElementById('submitBtn').addEventListener('click', function(event) {
-            const code = [
-                document.getElementById('digit0').value,
-                document.getElementById('digit1').value,
-                document.getElementById('digit2').value,
-                document.getElementById('digit3').value,
-                document.getElementById('digit4').value,
-                document.getElementById('digit5').value
-            ].join('');
-            if (!code) {
-                return alert("Please fill in the code.")
-            }
-            document.getElementById('code').value = code;
-
-            document.getElementById('2faVerificationForm').submit();
-        });
-    </script>
 </body>
 </html>
