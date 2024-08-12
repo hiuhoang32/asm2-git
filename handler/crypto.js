@@ -1,7 +1,7 @@
 const Web3 = require('web3');
 const contract = require('@truffle/contract');
 
-const provider = new Web3.providers.HttpProvider("http://localhost:7545");
+const provider = new Web3.providers.HttpProvider("http://13.229.181.97:8545");
 const TourNFTArtifact = require('../build/contracts/TourNFT.json');
 
 const web3 = new Web3(provider);

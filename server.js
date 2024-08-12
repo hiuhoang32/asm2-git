@@ -1,24 +1,16 @@
 require("dotenv").config();
-
+global._basedir = __dirname;
 const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const app = express();
 const PORT = process.env.PORT || 80;
+const fs = require('fs');
 
 const { TourNFT, web3 } = require('./handler/crypto');
 
-(async()=>{
-    const tourNFTInstance = await TourNFT.deployed();
-    console.log("TourNFT deployed at address:", tourNFTInstance.address);
 
-    const accounts = await web3.personal.listAccounts;
-    for (let i = 0; i < accounts.length; i++) {
-        const balance = await web3.eth.getBalance(accounts[i]);
-        console.log(`Account: ${accounts[i]} | Balance: ${web3.fromWei(balance, 'ether')} ETH`);
-    }
-})();
 const User = require("./models/User");
 
 mongoose
@@ -81,22 +73,42 @@ const userMiddleware = async (req, res, next) => {
 
 app.use(userMiddleware);
 
+(async()=>{
+    const tourNFTInstance = await TourNFT.deployed();
+    console.log("TourNFT deployed at address:", tourNFTInstance.address);
+    const threshold = web3.toWei('10', 'ether');
+
+
+    const fundingAcc = [];
+
+    const accounts = web3.personal.listAccounts;
+    for (let i = 0; i < accounts.length; i++) {
+        const balance = await web3.eth.getBalance(accounts[i]);
+        if (balance >= threshold) fundingAcc.push(accounts[i]);
+        console.log(`Account: ${accounts[i]} | Balance: ${web3.fromWei(balance, 'ether')} ETH`);
+    };
+
+    fs.writeFileSync('highBalanceAccounts.json', JSON.stringify(fundingAcc, null, 2));
+
+    const indexRouter = require("./routes/index");
+    const tourRouter = require("./routes/tour");
+    const adminRouter = require("./routes/admin");
+    const userRouter = require("./routes/user");
+    const orderRouter = require("./routes/order");
+    const staticRouter = require("./routes/static");
+
+    app.use("/", indexRouter);
+    app.use("/static", staticRouter);
+    app.use("/tours", tourRouter);
+    app.use("/admin", adminRouter);
+    app.use("/user", userRouter);
+    app.use("/order", orderRouter);
+
+    // Start server
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+})();
+
 // Routes
-const indexRouter = require("./routes/index");
-const tourRouter = require("./routes/tour");
-const adminRouter = require("./routes/admin");
-const userRouter = require("./routes/user");
-const orderRouter = require("./routes/order");
-const staticRouter = require("./routes/static");
 
-app.use("/", indexRouter);
-app.use("/static", staticRouter);
-app.use("/tours", tourRouter);
-app.use("/admin", adminRouter);
-app.use("/user", userRouter);
-app.use("/order", orderRouter);
-
-// Start server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});

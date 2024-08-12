@@ -3,14 +3,19 @@ const router = express.Router();
 const speakeasy = require("speakeasy");
 const qrcode = require("qrcode");
 const bcrypt = require("bcryptjs");
-const path = require("path");
 const User = require("../models/User");
 const { S3Client } = require("@aws-sdk/client-s3");
 // const Tour = require("../models/Tour");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const crypto = require('crypto');
-const fundingAccounts = require('../assets/fundingAccounts.json');
+const fs = require('fs');
+const path = require('path');
+
+// Define the path to your JSON file
+const filePath = path.resolve(_basedir, 'highBalanceAccounts.json');
+const jsonData = fs.readFileSync(filePath, 'utf-8');
+const fundingAccounts = JSON.parse(jsonData);
 
 const { TourNFT, web3 } = require('../handler/crypto');
 

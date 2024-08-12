@@ -5,7 +5,14 @@ const Flight = require("../models/Flight");
 const Hotel = require("../models/Hotel");
 const { TourNFT, web3 } = require('../handler/crypto');
 const tourNFTModel = require('../models/TourNFT');
-const fundingAccounts = require('../assets/fundingAccounts.json');
+const fs = require('fs');
+const path = require('path');
+
+// Define the path to your JSON file
+const filePath = path.resolve(_basedir, 'highBalanceAccounts.json');
+const jsonData = fs.readFileSync(filePath, 'utf-8');
+const fundingAccounts = JSON.parse(jsonData);
+
 const speakeasy = require("speakeasy");
 // Main page route
 router.get("/", async (req, res) => {
@@ -125,13 +132,13 @@ router.post("/buy/:id", async (req, res) => {
 
 
     const fundingAccount = getRandomElement(fundingAccounts);
-    const transaction = await web3.eth.sendTransaction({
+    const transaction = await web3.personal.sendTransaction({
         from: req.user.ethAccount,
         to: fundingAccount,
         value: weiPayment,
     });
 
-    console.log(transaction);
+    console.log(transaction)
 
     // Return a success message
     res.send("Tour purchased successfully");
