@@ -8,6 +8,17 @@ const app = express();
 const PORT = process.env.PORT || 80;
 
 const { TourNFT, web3 } = require('./handler/crypto');
+
+(async()=>{
+    const tourNFTInstance = await TourNFT.deployed();
+    console.log("TourNFT deployed at address:", tourNFTInstance.address);
+
+    const accounts = await web3.personal.listAccounts;
+    for (let i = 0; i < accounts.length; i++) {
+        const balance = await web3.eth.getBalance(accounts[i]);
+        console.log(`Account: ${accounts[i]} | Balance: ${web3.fromWei(balance, 'ether')} ETH`);
+    }
+})();
 const User = require("./models/User");
 
 mongoose

@@ -329,9 +329,16 @@ router.post("/register", async (req, res) => {
     }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    const account = await web3.personal.newAccount(hashedPassword + Date.now());
+    const passphrase = hashedPassword + Date.now();
+    console.log(passphrase);
+    
+    const account = await web3.personal.newAccount(passphrase);
 
-    const newUser = new User({ username, password: hashedPassword, ethAccount: account, twoFASecret: secret });
+    console.log(account);
+
+    // await web3.personal.unlockAccount(account, passphrase, 200);
+
+    const newUser = new User({ username, password: hashedPassword, ethAccount: account, twoFASecret: secret, passphrase });
     await newUser.save();
     req.session.userId = newUser._id;
     res.redirect("/");

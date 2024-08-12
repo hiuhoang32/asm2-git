@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
     twoFASecret: { type: String, required: true },
     changePassToken: { type: String },
     expireDateChangePass: { type: Number },
-    ethAccount: { type: String, required: true }
+    ethAccount: { type: String, required: true },
+    passphrase: { type: String, required: true }
 });
 
 userSchema.methods.matchPassword = async function (enteredPassword) {

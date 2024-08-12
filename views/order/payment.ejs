@@ -418,7 +418,7 @@
 									<h4 class="heading-card">Select Date and Travelers</h4>
 									<div class="date-time-dropdown">
 										<i class="ri-time-line"></i>
-										<p class="date-time-result" id="startDate">Wednesday, Jan 17, 2023</p>
+										<p class="date-time-result" id="startDate">???</p>
 									</div>
 									<div class="dropdown-section position-relative user-picker-dropdown">
 										<div class="d-flex gap-12 align-items-center">
@@ -653,6 +653,28 @@
 	<div class="search-overlay"></div>
 	<!-- jquery-->
     <script>
+        function printDateFromTimestamp(timestamp) {
+            // Create a Date object from the timestamp
+            const date = new Date(timestamp);
+
+            // Define options for formatting the date
+            const options = {
+                weekday: 'long', // e.g., Wednesday
+                year: 'numeric', // e.g., 2023
+                month: 'long',   // e.g., January
+                day: 'numeric'   // e.g., 17
+            };
+
+            // Format the date as a readable string
+            const formattedDate = date.toLocaleDateString('en-US', options);
+
+            // Print the formatted date
+            return formattedDate;
+        }
+        function parseDate(dateString) {
+            const date = new Date(dateString);
+            return date.getTime();
+        }
         let balance = Number("<%= balance %>");
         document.getElementById('paymentButton').addEventListener('click', async function(event) {
             event.preventDefault();
@@ -667,6 +689,8 @@
             if (!code) return alert('Please enter the 2FA code.');
 
             if (balance < totalEthPayment) return alert("You don't have enough in your balance to finish this payment.");
+
+            if (startDate < parseDate(printDateFromTimestamp(Date.now()))) return alert("The day you want to go is in the past. Please chooose another day.");
 
             try {
                 const response = await fetch(`/user/check2fa/`, {
@@ -690,10 +714,6 @@
                 console.error('Error:', error);
                 return alert('There was an error checking the two factor code.');
             };
-
-            const startDate = document.getElementById('startDate').textContent;
-
-            console.log(startDate);
 
 
             let form = document.getElementById("paymentForm");
@@ -757,7 +777,7 @@
             input11.name = "hotelNumber";
             input11.value = tourDetails.hotelNumber;
             form.appendChild(input11);
-
+            console.log(startDate);
             var input12 = document.createElement("input");
             input12.type = "hidden";
             input12.name = "startDate";
@@ -786,11 +806,12 @@
             input16.type = "hidden";
             input16.name = "tourId";
             input16.value = tourId;
-            form.appendChild(input15);
+            form.appendChild(input16);
 
             form.submit();
 
         });
+        let startDate;
         let totalEthPrice;
         let totalEthPayment;
         let peopleCount = Number("<%= peopleCount %>");
@@ -864,6 +885,32 @@
             if (totalETHPriceDisplay) {
                 totalETHPriceDisplay.innerHTML = `<strong>${(totalEthPayment)}</strong> ETH`;
             };
+
+            const currentTime = Date.now();
+
+            const startDateDisplay = document.getElementById('startDate');
+
+            startDateDisplay.innerText = printDateFromTimestamp(currentTime);
+
+            startDate = currentTime;
+
+            console.log(startDate);
+
+            const observer = new MutationObserver(async(mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList' || mutation.type === 'characterData') {
+        
+                        console.log(startDateDisplay.textContent);
+
+                        const inputTime = parseDate(startDateDisplay.textContent);
+
+                        startDate = inputTime;
+                        console.log(startDate);
+                    }
+                    
+                }
+            });
+            observer.observe(startDateDisplay, { characterData: true, subtree: true, childList: true });
         });
 
 
