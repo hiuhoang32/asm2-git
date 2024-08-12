@@ -7,8 +7,7 @@ const MongoStore = require("connect-mongo");
 const app = express();
 const PORT = process.env.PORT || 80;
 
-const { TourNFT } = require('./handler/crypto');
-
+const { TourNFT, web3 } = require('./handler/crypto');
 const User = require("./models/User");
 
 mongoose
@@ -21,11 +20,11 @@ mongoose
     )
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log(err));
-app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.use("/assets", express.static(__dirname + "/public/assets"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
 const userSession = session({
@@ -61,9 +60,9 @@ const userMiddleware = async (req, res, next) => {
         const user = await User.findById(req.session.userId);
         if (user) {
             req.user = user;
-            const tourNFTInstance = await TourNFT.deployed();
-            const balance = await tourNFTInstance.getBalance({ from: user.ethAccount });
-            req.balance = balance;
+            const balance = await web3.eth.getBalance(user.ethAccount);
+            req.balance = web3.fromWei(balance.toString(), 'ether');
+            req.usdBalance = req.balance * 2000;
         };
     };
     next();

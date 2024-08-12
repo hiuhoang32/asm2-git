@@ -172,7 +172,7 @@
                                                                     <a class="single">Username: <%= user.username %></a>
                                                                 </li>
                                                                 <li class="single-list">
-                                                                   <a class="single">Balance: $<%= balance || '0' %></a>
+                                                                   <a class="single">Balance: <%= balance || '0' %> ETH ($<%= usdBalance || '0' %>)</a>
                                                                 </li>
                                                                 <li class="single-list">
                                                                     <a class="single" href="/user/deposit/<%= user._id %>">Deposit</a>
@@ -292,8 +292,8 @@
                             <!-- Form -->
                             <form action="/user/deposit/<%= user._id %>" method="POST" id="depositForm">
                                 <div class="contact-form mb-24">
-                                    <label class="contact-label">Amount </label>
-                                    <input id= "amount" name="amount" class="form-control contact-input" type="number" placeholder="100$" required>
+                                    <label class="contact-label">Amount (1 ETH = 2000$)</label>
+                                    <input id= "amount" name="amount" class="form-control contact-input" type="number" placeholder="10 ETH" required>
                                 </div>
 
                                 <a href="javascript:void(0)" class="btn-primary-fill justify-content-center w-100" id="depositBtn">

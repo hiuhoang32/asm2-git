@@ -10,6 +10,7 @@ const { S3Client } = require("@aws-sdk/client-s3");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const crypto = require('crypto');
+const fundingAccounts = require('../assets/fundingAccounts.json');
 
 const { TourNFT, web3 } = require('../handler/crypto');
 
@@ -211,7 +212,7 @@ router.get("/deposit/:id", async (req, res) => {
     if (!id) return res.redirect("/");
     if (id !== req.user._id.toString()) return res.send('<p>Invalid deposit link.</p><br><a href="/">Home</a>');
 
-    return res.render('user/deposit.ejs', { user: req.user, balance: req.balance });
+    return res.render('user/deposit.ejs', { user: req.user, balance: req.balance, usdBalance: req.usdBalance });
 
     // res.json(req.body);
 })
@@ -220,19 +221,23 @@ router.post("/deposit/:id", async (req, res) => {
     if (!req.user || !req.body) {
         return res.redirect("/");
     };
+    
     const { id } = req.params;
     if (!id) return res.redirect("/");
     if (id !== req.user._id.toString()) return res.send('<p>Invalid deposit link.</p><br><a href="/">Home</a>');
 
     const { amount } = req.body;
 
-    if (!amount || isNaN(parseInt(amount)) || parseInt(amount) <= 0) return res.send(`<p>Invalid deposit amount.</p><br><a href="/deposit/${id}">Go back</a>`);
+    if (!amount || isNaN(parseInt(amount)) || parseInt(amount) <= 0 || parseInt(amount) >= 20) return res.send(`<p>Invalid deposit amount.</p><br><a href="/deposit/${id}">Go back</a>`);
 
-    const tourNFTInstance = await TourNFT.deployed();
-    
-    await tourNFTInstance.addBalance(amount, { from: userAddress });
+    const fundingAccount = getRandomElement(fundingAccounts)
+    await web3.eth.sendTransaction({
+        from: fundingAccount,
+        to: req.user.ethAccount,
+        value: web3.toWei(amount.toString(), 'ether'),
+    });
 
-    return res.render('user/deposit.ejs', { user: req.user, balance: req.balance });
+    return res.send(`<p>Deposit successfully.</p><br><a href="/">Go home</a>`);
 
     // res.json(req.body);
 })
@@ -273,13 +278,19 @@ router.get('/logout', (req, res) => {
 router.post("/check2fa", (req, res) => {
     const { secret, token } = req.body;
 
-    if (!secret || !token) {
+    if (!token) {
+        return res.json({ verify: false });
+    }
+
+    if (!secret && !req.user) {
         return res.json({ verify: false });
     };
+    const secret2fa = secret || req.user.twoFASecret;
     const verify = speakeasy.totp.verify({
-        secret,
+        secret: secret2fa,
         encoding: "base32",
         token,
+        window: 1
     });
     return res.json({ verify, secret, token });
 });
@@ -318,9 +329,7 @@ router.post("/register", async (req, res) => {
     }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Create a new admin
-    const account = await web3.eth.personal.newAccount('');
+    const account = await web3.personal.newAccount(hashedPassword + Date.now());
 
     const newUser = new User({ username, password: hashedPassword, ethAccount: account, twoFASecret: secret });
     await newUser.save();
@@ -344,5 +353,8 @@ router.post("/changeAvatar", upload.array("avatar", 1), async (req, res) => {
     await req.user.save();
     res.redirect("/");
 });
+function getRandomElement(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
 
 module.exports = router;

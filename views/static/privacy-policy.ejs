@@ -172,7 +172,7 @@
                                                                     <a class="single">Username: <%= user.username %></a>
                                                                 </li>
                                                                 <li class="single-list">
-                                                                   <a class="single">Balance: $<%= balance || '0' %></a>
+                                                                   <a class="single">Balance: <%= balance || '0' %> ETH ($<%= usdBalance || '0' %>)</a>
                                                                 </li>
                                                                 <li class="single-list">
                                                                     <a class="single" href="/user/deposit/<%= user._id %>">Deposit</a>

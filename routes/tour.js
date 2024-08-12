@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
         tours.forEach(tour => {
             tour.pricePerPerson = Math.floor(tour.basePrice / tour.recommendedPeopleCount)
         });
-        res.render("tours/tourList", { tours, user: req.user, balance: req.balance });
+        res.render("tours/tourList", { tours, user: req.user, balance: req.balance, usdBalance: req.usdBalance });
     } catch (err) {
         console.error(err);
         res.status(500).send("Server Error");
@@ -30,7 +30,7 @@ router.get("/detail/:id", async (req, res) => {
             return res.status(404).send("Tour not found");
         };
         const pricePerPerson = Math.floor(tour.basePrice / (tour.recommendedPeopleCount));
-        res.render("tours/tourDetail", { tour, user: req.user, pricePerPerson, balance: req.balance });
+        res.render("tours/tourDetail", { tour, user: req.user, pricePerPerson, balance: req.balance, usdBalance: req.usdBalance });
     } catch (err) {
         console.error(err);
         res.status(500).send("Server Error");

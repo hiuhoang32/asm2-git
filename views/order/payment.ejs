@@ -172,7 +172,10 @@
                                                                      <a class="single">Username: <%= user.username %></a>
                                                                 </li>
                                                                 <li class="single-list">
-                                                                    <a class="single">Balance: $<%= balance || '0' %></a>
+                                                                    <a class="single">Balance: <%= balance || '0' %> ($<%= usdBalance || '0' %>)</a>
+                                                                </li>
+                                                                <li class="single-list">
+                                                                    <a class="single" href="/user/deposit/<%= user._id %>">Deposit</a>
                                                                 </li>
                                                                 <li class="single-list" >
                                                                     <a class="single" href="javascript:void(0)" id="changeAvatarLink" onclick="handleChangeAvatar()">Change Profile Picture</a>
@@ -363,8 +366,7 @@
 												<div class="col-lg-6">
 													<div class="contact-form mb-24">
 														<label class="contact-label">2FA Code</label>
-														<input class="form-control contact-input" type="number" name="verificationCode"
-															placeholder="123456">
+														<input class="form-control contact-input" type="number" name="verificationCode" placeholder="123456" id="verificationCode">
 													</div>
 												</div>
 											</div>
@@ -392,18 +394,31 @@
 							<div class="col-xl-4">
 								<div class="date-travel-card position-sticky top-0">
 									<div class="price-review">
+                                        <p class="light-pera">in USD</p>
 										<div class="d-flex gap-10 align-items-end">
-											<p class="light-pera">Total</p>
+
 											<p class="pera" id="totalPrice"><%= pricePerPerson * peopleCount %>$</p>
 										</div>
 										<div class="rating">
-											<p class="pera">Price varies by group size</p>
+											<p class="light-pera">Price varies by group size</p>
 										</div>
 									</div>
+                                    <div class="price-review" style="margin-top: 20px;">
+                                        <p class="light-pera">in Ether</p>
+                                        <div class="d-flex gap-10 align-items-end">
+
+                                            <p class="pera" id="totalPriceETH">??? ETH</p>
+
+                                            
+									    </div>
+                                        <div class="rating">
+                                            <p class="pera" id="ethFees">Fees: ??? ETH</p>
+                                        </div>
+                                    </div> 
 									<h4 class="heading-card">Select Date and Travelers</h4>
 									<div class="date-time-dropdown">
 										<i class="ri-time-line"></i>
-										<p class="date-time-result">Wednesday, Jan 17, 2023</p>
+										<p class="date-time-result" id="startDate">Wednesday, Jan 17, 2023</p>
 									</div>
 									<div class="dropdown-section position-relative user-picker-dropdown">
 										<div class="d-flex gap-12 align-items-center">
@@ -638,11 +653,48 @@
 	<div class="search-overlay"></div>
 	<!-- jquery-->
     <script>
+        let balance = Number("<%= balance %>");
         document.getElementById('paymentButton').addEventListener('click', async function(event) {
             event.preventDefault();
 
+            if (!totalEthPayment) return alert("Please wait for the order form to finish.");
+
             const agree = document.getElementById('checkboxPayment');
             if (!agree.checked) return alert("Please agree to our Terms of Service and Privacy Policy.");
+
+            const code = document.getElementById('verificationCode').value;
+
+            if (!code) return alert('Please enter the 2FA code.');
+
+            if (balance < totalEthPayment) return alert("You don't have enough in your balance to finish this payment.");
+
+            try {
+                const response = await fetch(`/user/check2fa/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ token: code }),
+                });
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'There was an error checking the two factor code.');
+                }
+
+                if (!data.verify) {
+                    alert('2FA Code is wrong.');
+                    return;
+                };
+            } catch (error) {
+                console.error('Error:', error);
+                return alert('There was an error checking the two factor code.');
+            };
+
+            const startDate = document.getElementById('startDate').textContent;
+
+            console.log(startDate);
+
 
             let form = document.getElementById("paymentForm");
 
@@ -706,9 +758,41 @@
             input11.value = tourDetails.hotelNumber;
             form.appendChild(input11);
 
+            var input12 = document.createElement("input");
+            input12.type = "hidden";
+            input12.name = "startDate";
+            input12.value = startDate;
+            form.appendChild(input12);
+
+            var input13 = document.createElement("input");
+            input13.type = "hidden";
+            input13.name = "totalEthPrice";
+            input13.value = totalEthPrice;
+            form.appendChild(input13);
+
+            var input14 = document.createElement("input");
+            input14.type = "hidden";
+            input14.name = "totalEthPayment";
+            input14.value = totalEthPayment;
+            form.appendChild(input14);
+
+            var input15 = document.createElement("input");
+            input15.type = "hidden";
+            input15.name = "hotelPricePerPerson";
+            input15.value = hotelPricePerPerson;
+            form.appendChild(input15);
+
+            var input16 = document.createElement("input");
+            input16.type = "hidden";
+            input16.name = "tourId";
+            input16.value = tourId;
+            form.appendChild(input15);
+
             form.submit();
 
         });
+        let totalEthPrice;
+        let totalEthPayment;
         let peopleCount = Number("<%= peopleCount %>");
         let pricePerPerson = Number("<%= pricePerPerson %>");
         let flightPricePerPerson = Number("<%= tourDetails.flightPricePerPerson %>");
@@ -740,17 +824,52 @@
         };
 
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", async function() {
             let TotalPriceDisplay = totalPriceFlight + totalPriceHotel + baseTotalPrice;
 
-            
             document.getElementById('totalPrice').innerHTML = `<strong>$${(TotalPriceDisplay)}</strong>$`;;
+            totalEthPrice = TotalPriceDisplay / 2000;
+            let ethFees = 0;
+
+
+            const response = await fetch(`/order/checkFees/`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        eth: totalEthPrice,
+                        from: "<%= user.ethAccount %>",
+                    }),
+                });
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || "There was an error checking the transaction fees.");
+            }
+
+            if (!data.totalFee) {
+                alert("There was an error checking the transaction fees.");
+                return;
+            };
+            ethFees = data.totalFee;
+            const ethFeesDisplay = document.getElementById("ethFees");
+            ethFeesDisplay.innerHTML = `Fees: ${data.totalFee} ETH (included)`;
+
+            const totalETHPriceDisplay = document.getElementById('totalPriceETH');
+
+            totalEthPayment = totalEthPrice + ethFees;
+
+            if (totalETHPriceDisplay) {
+                totalETHPriceDisplay.innerHTML = `<strong>${(totalEthPayment)}</strong> ETH`;
+            };
         });
 
 
         const targetNode = document.getElementById('peopleCount');
 
-        const observer = new MutationObserver((mutationsList) => {
+        const observer = new MutationObserver(async(mutationsList) => {
             for (let mutation of mutationsList) {
                 if (mutation.type === 'childList' || mutation.type === 'characterData') {
 
@@ -799,7 +918,7 @@
                     if (totalPriceHotelDisplay) {
                         totalPriceHotel = hotelPricePerPerson * peopleCount;
                         totalPriceHotelDisplay.innerHTML = `Total: <strong>$${(totalPriceHotel)}</strong>`;
-                    }
+                    };
 
                     const totalPriceDisplay = document.getElementById('totalPrice');
 
@@ -808,7 +927,47 @@
                         finalTotalPrice = totalPriceFlight + totalPriceHotel + baseTotalPrice;
                         totalPriceDisplay.innerHTML = `<strong>$${(finalTotalPrice)}</strong>$`;
                     }
+
+                    let ethFees = 0;
+
+                    totalEthPrice = finalTotalPrice / 2000;
+
+
+                    const response = await fetch(`/order/checkFees/`,
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                eth: totalEthPrice,
+                                from: "<%= user.ethAccount %>",
+                            }),
+                        });
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.message || "There was an error checking the transaction fees.");
+                    }
+
+                    if (!data.totalFee) {
+                        alert("There was an error checking the transaction fees.");
+                        return;
+                    };
+                    ethFees = data.totalFee;
+                    const ethFeesDisplay = document.getElementById("ethFees");
+                    ethFeesDisplay.innerHTML = `Fees: ${data.totalFee} ETH (included)`;
+
+                    totalEthPayment = totalEthPrice + ethFees;
+
+                    const totalETHPriceDisplay = document.getElementById('totalPriceETH');
+                    
+
+                    if (totalETHPriceDisplay) {
+                        totalETHPriceDisplay.innerHTML = `<strong>${(totalEthPayment)}</strong> ETH`;
+                    }
                 }
+                
             }
         });
         observer.observe(targetNode, { characterData: true, subtree: true, childList: true });
