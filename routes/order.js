@@ -125,11 +125,7 @@ router.post("/buy/:id", async (req, res) => {
         to: fundingAccount,
         value: weiPayment,
     });
-
-    console.log(transaction)
-
-    // Return a success message
-    res.send("Tour purchased successfully");
+    res.redirect("/nft/inventory");
 }); 
 
 function getRandomElement(arr) {
