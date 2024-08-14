@@ -35,7 +35,7 @@
     <meta name="csrf-token" content="...">
     <meta name="currency" content="$">
     <!-- Title -->
-    <title>Multipurpose travel and tour booking </title>
+    <title><%= user.username %>'s Inventory - SwinTours</title>
     <link rel="icon" type="image/x-icon" sizes="20x20" href="/assets/images/icon/favicon.png">
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-5.3.0.min.css">
@@ -412,7 +412,7 @@
                     </div>
                     <div class="col-xl-9">
                         <div class="showing-result">
-                            <h4 class="title">Showing <%= tours.length %> Results</h4>
+                            <h4 class="title">Showing <%= nfts.length %> Results</h4>
                             <div class="d-flex gap-10 align-items-center">
                                 <div class="expand-icon hamburger block d-xl-none" id="hamburger">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -433,35 +433,35 @@
                         </div>
                         <div class="all-tour-list">
                             <div class="row g-4">
-                                <% tours.forEach(tour => { %>
+                                <% nfts.forEach(nft => { %>
                                     <div class="col-xl-4 col-lg-4 col-sm-6">
                                         <div class="package-card">
                                             <div class="package-img imgEffect4">
-                                                <a href="/tours/detail/<%= tour._id %>">
-                                                    <img src="<%= tour.images[0] %>" alt="SwinTours">
+                                                <a href="/nft/detail/<%= nft._id %>">
+                                                    <img src="<%= nft.tourDetails.images[0] %>" alt="SwinTours">
                                                 </a>
                                             </div>
                                             <div class="package-content">
                                                 <h4 class="area-name">
-                                                    <a href="/tours/detail/<%= tour._id %>"><%= tour.title %></a>
+                                                    <a href="/nft/detail/<%= nft._id %>"><%= nft.tourDetails.title %></a>
                                                 </h4>
                                                 <div class="location">
                                                     <i class="ri-map-pin-line"></i>
-                                                    <div class="name"><%= tour.location %></div>
+                                                    <div class="name"><%= nft.tourDetails.location %></div>
                                                 </div>
                                                 <div class="packages-person">
                                                     <div class="count">
                                                         <p class="pera">Owner |</p>
-                                                        <p class="pera">Owner</p>
+                                                        <p class="pera"><%= nft.userDetails.username %> <%= nft.isForSale ? '(Selling)' : "" %></p>
                                                     </div>
                                                     <div class="count">
-                                                        <img src="<%= user.profilePicture %>" alt="Profile Picture" style="width: 30px; height: 30px;"  id="sign-in-profile-picture" class="profile-picture">
+                                                        <img src="<%= nft.userDetails.profilePicture %>" alt="Profile Picture" style="width: 30px; height: 30px;"  id="sign-in-profile-picture" class="profile-picture">
                                                     </div>
                                                 </div>
                                                 <div class="price-review">
                                                     <div class="d-flex gap-10">
                                                         <p class="light-pera">From</p>
-                                                        <p class="pera"><%= tour.pricePerPerson %> ETH</p>
+                                                        <p class="pera"><%= nft.totalEthPrice %> ETH</p>
                                                     </div>
                                                 </div>
                                             </div>

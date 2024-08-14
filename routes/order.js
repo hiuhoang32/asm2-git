@@ -35,20 +35,6 @@ router.get("/buy/:id", async (req, res) => {
         res.status(500).send("Server Error");
     }
 });
-
-router.get("/inventory/", async (req, res) => {
-    try {
-        const tours = await Tour.find();
-        tours.forEach(tour => {
-            tour.pricePerPerson = Math.floor(tour.basePrice / tour.recommendedPeopleCount)
-        });
-        res.render("order/inventory", { tours, user: req.user, balance: req.balance, usdBalance: req.usdBalance });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Server Error");
-    }
-});
-
 router.post("/checkFees/", async (req, res) => {
     const { eth, from } = req.body;
 
@@ -128,11 +114,13 @@ router.post("/buy/:id", async (req, res) => {
     await web3.personal.unlockAccount(req.user.ethAccount, req.user.passphrase, 200);
 
     const tourNFTInstance = await TourNFT.deployed();
-    await tourNFTInstance.createTour.call(weiPayment, tourId, flightBooking._id, hotelBooking._id, req.user.username, startDate, { from: req.user.ethAccount });
+    const result = await tourNFTInstance.createTour.call(weiPayment, tourId, flightBooking._id, hotelBooking._id, req.user.username, startDate, { from: req.user.ethAccount });
+
+    console.log(result);
 
 
     const fundingAccount = getRandomElement(fundingAccounts);
-    const transaction = await web3.personal.sendTransaction({
+    const transaction = await web3.eth.sendTransaction({
         from: req.user.ethAccount,
         to: fundingAccount,
         value: weiPayment,

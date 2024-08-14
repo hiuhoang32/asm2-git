@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zxx" dir="lrt">
+<head>
+    <script>
+        const setTheme = (theme) => {
+            theme ??= localStorage.theme || "light";
+            document.documentElement.dataset.theme = theme;
+            localStorage.theme = theme;
+        };
+        setTheme();
+    </script>
+    <meta logo="/assets/images/logo/logo.png">
+    <meta white-logo="/assets/images/logo/logo-white.png">
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="SwinTours - Multipurpose travel and tour booking.These products is suitable for  travel agency , tour, travel website , tour operator , tourism , booking  trip or adventure website. ">
+    <meta name="keywords" content="travel, trip booking,tour, hotel, tour guide, tourism, blog, flight, travel agency, tourism agency, accommodation, tour website">
+    <meta name="author" content="SwinTours">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Multipurpose travel and tour booking">
+    <meta property="og:site_name" content="SwinTours">
+    <meta property="og:url" content="https://SwinTours.com">
+    <meta property="og:image" content="https://SwinTours.com/images/selfie.jpg">
+    <meta property="og:description" content="Multipurpose travel and tour booking, multipurpose products">
+    <meta name="twitter:title" content="Multipurpose travel and tour booking">
+    <meta name="twitter:description" content="Multipurpose travel and tour booking, multipurpose products">
+    <meta name="twitter:image" content="https://twitter.com/SwinTours/photo">
+    <meta name="twitter:card" content="summary">
+    <!-- Google site verification -->
+    <meta name="google-site-verification" content="...">
+    <meta name="facebook-domain-verification" content="...">
+    <meta name="csrf-token" content="...">
+    <meta name="currency" content="$">
+    <!-- Title -->
+    <title>Order - <%= nft.tourDetails.title %></title>
+    <link rel="icon" type="image/x-icon" sizes="20x20" href="/assets/images/icon/favicon.png">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap-5.3.0.min.css">
+    <!-- Fonts & icon -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/remixicon.css">
+    <!-- Plugin -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/plugin.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main-style.css">
+    <!-- RTL CSS::When Need RTL Uncomments File -->
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/rtl.css"> -->
+</head>
+<body>
+    <header>
+        <div class="header-area">
+            <div class="main-header">
+                <!-- Header Top -->
+                <div class="header-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="top-menu-wrapper d-flex align-items-center justify-content-between">
+                                    <!-- Top Left Side -->
+                                    <div class="top-header-left d-flex align-items-center">
+                                        <!-- Logo-->
+                                        <div class="logo">
+                                            <a href="/"><img src="/assets/images/logo/logo.png" alt="logo" class="changeLogo"></a>
+                                        </div>
+                                        <!-- search box -->
+                                        <div class="search-box search-bar d-none d-lg-block">
+                                            <div class="header-search">
+                                                <span class="pera">Destination, attraction</span>
+                                                <div class="search-icon">
+                                                    <i class="ri-search-line"></i>
+                                                </div>
+                                                <kbd class="light-text">
+                                                    <abbr title="Ctrl">Ctrl +</abbr> k
+                                                </kbd>
+                                            </div>
+                                        </div>
+                                        <!-- Mobile Device Seach & Theme Mode -->
+                                        <div class="search-header-position d-block d-lg-none">
+                                            <div class="d-flex gap-15">
+                                                <div class="search-bar">
+                                                    <a href="javascript:void(0)" class="rounded-btn">
+                                                        <i  class="ri-search-line"></i>
+                                                    </a>
+                                                </div>
+                                                <!-- Theme Mode -->
+                                                <button class="ToggleThemeButton change-theme-mode m-0 p-0 border-0">
+                                                    <i class="ri-sun-line"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- / Mobile Device Seach & Theme Mode-->
+                                    </div>
+                                    <!--Top Right Side -->
+                                    <div class="top-header-right">
+                                        <!-- contact us -->
+                                        <div class="contact-section">
+                                            <div class="circle-primary-sm">
+                                                <i class="ri-mail-line"></i>
+                                            </div>
+                                            <div class="info">
+                                                <p class="pera">Email Anytime</p>
+                                                <h4 class="title">
+                                                    <a href="javascript:void(0)">example@gmail.com</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="contact-section">
+                                            <div class="circle-primary-sm">
+                                                <i class="ri-phone-line"></i>
+                                            </div>
+                                            <div class="info">
+                                                <p class="pera">Call Anytime</p>
+                                                <h4 class="title">
+                                                    <a href="javascript:void(0)">00 (888) +123456</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Bottom -->
+                <div class="header-bottom header-sticky">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="menu-wrapper">
+                                    <!-- Main-menu for desktop -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <ul class="listing" id="navigation">
+                                                    <li class="single-list">
+                                                        <a href="/" class="single">Home</a>
+                                                    </li>
+                                                    <li class="single-list">
+                                                        <a href="/static/about" class="single">About</a>
+                                                    </li>
+                                                    <li class="single-list">
+                                                        <a href="/tours" class="single">Tour Package</a>
+                                                    </li>
+                                                    <li class="single-list">
+                                                        <a href="javascript:void(0)" class="single">About Us <i
+                                                                class="ri-arrow-down-s-line"></i></a>
+                                                        <ul class="submenu">
+                                                            <li class="single-list">
+                                                                <a href="/static/faq" class="single">FAQs</a>
+                                                            </li>
+                                                            <li class="single-list">
+                                                                <a href="/static/privacy-policy" class="single">Privacy
+                                                                    Policy</a>
+                                                            </li>
+                                                            <li class="single-list">
+                                                                <a href="/static/terms-condition"
+                                                                    class="single">Terms And Condition</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="single-list">
+                                                        <a href="/static/contact" class="single">Contact</a>
+                                                    </li>
+                                                    <% if (user) { %>
+                                                        <li class="single-list">
+                                                            <a href="javascript:void(0)" class="single">User <img src="<%= user.profilePicture %>" alt="Profile Picture" id="sign-in-profile-picture" class="profile-picture"> <i
+                                                                    class="ri-arrow-down-s-line"></i></a>
+                                                            <ul class="submenu">
+                                                                <li class="single-list">
+                                                                     <a class="single">Username: <%= user.username %></a>
+                                                                </li>
+                                                                <li class="single-list">
+                                                                    <a class="single">Balance: <%= balance || '0' %> ($<%= usdBalance || '0' %>)</a>
+                                                                </li>
+                                                                <li class="single-list">
+                                                                    <a class="single" href="/user/deposit/<%= user._id %>">Deposit</a>
+                                                                </li>
+                                                                <li class="single-list" >
+                                                                    <a class="single" href="javascript:void(0)" id="changeAvatarLink" onclick="handleChangeAvatar()">Change Profile Picture</a>
+                                                                </li>
+                                                                <form id="changeAvatarForm" action="/user/changeAvatar" method="POST" enctype="multipart/form-data" style="display: none;">
+                                                                    <input type="file" id="avatarInput" name="avatar" accept="image/*" onchange="handleFileChange()">
+                                                                </form>
+                                                                <li class="single-list">
+                                                                    <a class="single" href="/user/logout">Log Out</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    <% } else { %>
+                                                    <% } %>
+                                                    <li class="d-block d-lg-none">
+                                                        <div class="header-right pl-15">
+                                                            <div class="d-flex align-items-center gap-12">
+                                                                <div class="lang">
+                                                                    <i class="ri-global-line"></i>
+                                                                </div>
+                                                                <div class="divider gradient-divider"></div>
+                                                                <div class="money">
+                                                                    <p class="pera">USD</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="sign-btn">
+                                                                <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <div class="header-right">
+                                                    <div class="d-flex align-items-center gap-12">
+                                                        <div class="lang">
+                                                            <i class="ri-global-line"></i>
+                                                        </div>
+                                                        <div class="divider gradient-divider"></div>
+                                                        <div class="money">
+                                                            <p class="pera">USD</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sign-btn">
+                                                        <a href="<%= user ? '/user/logout' : '/user/login' %>" class="btn-secondary-sm"><%= user ? 'Sign Out' : 'Sign In' %></a>
+                                                    </div>
+                                                    <!-- Theme Mode -->
+                                                    <li class="single-list">
+                                                        <button class="ToggleThemeButton change-theme-mode m-0 p-0 border-0">
+                                                            <i class="ri-sun-line"></i>
+                                                        </button>
+                                                    </li>
+                                                </div>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- Mobile Menu -->
+                                <div class="div">
+                                    <div class="mobile_menu d-block d-lg-none"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Search box -->
+            <div class="search-container">
+                <div class="top-section">
+                    <div class="search-icon">
+                        <i class="ri-search-line"></i>
+                    </div>
+                    <div class="modal-search-box">
+                        <input type="text" id="searchField" class="search-field"
+                            placeholder="Destination, Agency, Country">
+                        <button id="closeSearch" class="close-search-btn">
+                            <kbd class="light-text"> ESC </kbd>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- / End-Search -->
+        </div>
+    </header>
+	<main>
+		<!-- Breadcrumbs S t a r t -->
+		<section class="breadcrumbs-area breadcrumb-bg">
+			<div class="container">
+				<h1 class="title wow fadeInUp" data-wow-delay="0.0s">Payment</h1>
+				<div class="breadcrumb-text">
+					<nav aria-label="breadcrumb" class="breadcrumb-nav wow fadeInUp" data-wow-delay="0.1s">
+						<ul class="breadcrumb listing">
+							<li class="breadcrumb-item single-list"><a href="/" class="single">Home</a></li>
+							<li class="breadcrumb-item single-list" aria-current="page"><a href="javascript:void(0)"
+									class="single active">Payment</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+
+		</section>
+		<!--/ End-of Breadcrumbs-->
+
+		<!-- Destination area S t a r t -->
+		<section class="tour-details-section section-padding2">
+			<div class="tour-details-area">
+				<div class="tour-details-container">
+					<div class="container">
+						<div class="details-heading mb-30">
+							<div class="d-flex flex-column">
+								<h4 class="title"><%= nft.tourDetails.title %></h4>
+								<div class="d-flex flex-wrap align-items-center gap-30 mt-16">
+									<div class="location">
+										<i class="ri-map-pin-line"></i>
+										<div class="name"><%= nft.tourDetails.location %></div>
+									</div>
+									<div class="divider"></div>
+									<div class="d-flex align-items-center flex-wrap gap-20">
+										<div class="count">
+											<i class="ri-time-line"></i>
+											<p class="pera"><%= nft.startDate %></p>
+										</div>
+										<div class="count">
+											<i class="ri-user-line"></i>
+											<p class="pera" id="peopleDisplay"><%= nft.peopleCount %> Persons</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="price-review">
+								<div class="d-flex gap-10 align-items-end">
+									<p class="light-pera">Total</p>
+									<p class="pera"><%= nft.totalEthPrice %> ETH</p>
+								</div>
+							</div>
+						</div>
+						<div class="row g-4">
+							<div class="col-xl-8">
+								<!-- Included Exclude-->
+								<div class="tour-include-exclude m-0 mb-30 radius-6">
+									<div class="includ-exclude-point">
+										<h4 class="title">Included</h4>
+										<ul class="expect-list">
+                                            <% nft.tourDetails.included.filter(item => Boolean(item)).forEach(item => { %>
+                                                <li class="list"><%= item %></li>
+                                            <% }) %>
+										</ul>
+									</div>
+									<div class="divider"></div>
+									<div class="includ-exclude-point">
+										<h4 class="title">Exclude</h4>
+										<ul class="expect-list">
+                                            <% nft.tourDetails.excluded.filter(item => Boolean(item)).forEach(item => { %>
+                                                <li class="list"><%= item %></li>
+                                            <% }) %>
+										</ul>
+									</div>
+								</div>
+                                <div class="tour-include-exclude m-0 mb-30 radius-6">
+									<div class="includ-exclude-point" style="width: 50%;">
+										<h4 class="title"><i class="ri-flight-takeoff-fill"></i> Flight Detail</h4>
+										<ul class="expect-list">
+                                            <li class="list">Avaliable flight: <strong><%= nft.flightDetails.flightNumber %></strong></li>
+                                            <li class="list">Airline: <strong><%= nft.flightDetails.airline %></strong></li>
+                                            <li class="list">Ticket price (currently): <strong>$<%= nft.flightDetails.flightPricePerPerson %></strong></li>
+                                            <li class="list" id="priceFlightPersonDisplay">Quantity: <strong><%= nft.peopleCount %></strong> Persons</li>
+                                            <li class="list" id="priceFlightDisplay">Total: <strong>$<%= nft.flightDetails.totalPriceFlight %></strong></li>
+										</ul>
+									</div>
+									<div class="divider"></div>
+									<div class="includ-exclude-point" style="width: 50%;">
+										<h4 class="title"><i class="ri-map-pin-line"></i> Hotel Detail</h4>
+										<ul class="expect-list" >
+                                            <li class="list">Avaliable hotel: <strong><%= nft.hotelDetails.hotel %></strong></li>
+                                            <li class="list">Hotel room: <strong><%= nft.hotelDetails.hotelNumber %></strong></li>
+                                            <li class="list">Room price (currently): <strong>$<%= nft.hotelDetails.hotelPricePerPerson %></strong></li>
+                                            <li class="list" id="priceHotelPersonDisplay">Quantity: <strong><%= nft.peopleCount %></strong> Persons</li>
+                                            <li class="list" id="priceHotelDisplay">Total: <strong>$<%= nft.hotelDetails.totalPriceHotel %></strong></li>
+										</ul>
+									</div>
+								</div>
+								<!--/ Included Exclude-->
+
+								<!-- Payment S t a r t -->
+								<div class="donation-payment">
+									<!-- Payment -->
+									<div class="card-style box-shadow border-0">
+										<form action="/nft/buy/<%= nft._id %>" method="POST" id="paymentForm">
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="contact-form mb-24">
+														<label class="contact-label">2FA Code</label>
+														<input class="form-control contact-input" type="number" name="verificationCode" placeholder="123456" id="verificationCode">
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group col-12 payment-gateway-wrapper mt-10">
+												<div class="remember-me terms-condition">
+													<label>
+														<input class="checkbox-style" type="checkbox" id="checkboxPayment">
+														<small>I agree to all the
+															<a href="/static/terms-condition">
+																<span class="text-primary">Terms</span></a> and <a
+																href="/static/privacy-policy"><span class="text-primary">Privacy Policy</span>
+															</a>
+														</small>
+														<span class="checkmark-style"></span>
+													</label>
+												</div>
+												<button class="btn-primary-submit" id="paymentButton">Payment Now</button>
+											</div>
+										</form>
+									</div>
+								</div>
+								<!--End-of Payment -->
+							</div>
+							<div class="col-xl-4">
+								<div class="date-travel-card position-sticky top-0">
+                                    <div class="price-review" style="margin-top: 20px;">
+                                        <p class="light-pera">total</p>
+                                        <div class="d-flex gap-10 align-items-end">
+
+                                            <p class="pera" id="totalPriceETH"><%= nft.totalEthPrice %> ETH</p>
+
+                                            
+									    </div>
+                                    </div> 
+                                    <div class="footer bg-transparent">
+                                        <h4 class="title">Free Cancellation</h4>
+                                        <p class="pera">Up to 24 hours in advance</p>
+                                    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/ End-of Destination -->
+	</main>
+
+    <!-- Footer S t a r t -->
+    <footer>
+        <div class="footer-wrapper footer-bg">
+            <div class="container">
+                <div class="footer-area">
+                    <div class="row g-4">
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-footer-caption">
+                                <div class="footer-tittle">
+                                    <h4 class="title">Company</h4>
+                                    <ul class="listing">
+                                        <li class="single-lsit">
+                                            <a href="/static/about">About Us</a>
+                                        </li>
+                                        <li class="single-lsit"><a href="/static/faq">Faq</a></li>
+                                        <li class="single-lsit">
+                                            <a href="/static/contact">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-footer-caption">
+                                <div class="footer-tittle">
+                                    <h4 class="title">Explore</h4>
+                                    <ul class="listing">
+                                        <li class="single-lsit"><a href="/static/faq">Faq</a></li>
+                                        <li class="single-lsit">
+                                            <a href="/tours">Tour Listings</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-footer-caption">
+                                <div class="footer-tittle">
+                                    <h4 class="title">Quick Links</h4>
+                                    <ul class="listing">
+                                        <li class="single-lsit"><a href="/">Home</a></li>
+                                        <li class="single-lsit">
+                                            <a href="/static/about">About Us</a>
+                                        </li>
+                                        <li class="single-lsit">
+                                            <a href="/static/contact">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-sm-6">
+                            <div class="single-footer-caption">
+                                <div class="footer-tittle">
+                                    <h4 class="title">Contact</h4>
+                                    <ul class="listing">
+                                        <li class="single-lsit">
+                                            <a href="#" class="mb-20 d-block">70/A Floor Divo Tower Melbourne,
+                                                Australia</a>
+                                        </li>
+                                        <li class="single-lsit">
+                                            <a href="#">
+                                                <div class="d-flex gap-12">
+                                                    <i class="ri-phone-line"></i> (00) +888 123456 789
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="single-lsit">
+                                            <a href="#">
+                                                <div class="d-flex gap-12">
+                                                    <i class="ri-mail-line"></i> example@gmail.com
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-middle-area">
+                    <div class="footer-body">
+                        <div class="footer-content">
+                            <div class="d-flex flex-column gap-20">
+                                <div class="logo">
+                                    <img src="/assets/images/logo/logo.png" alt="SwinTours" class="changeLogo">
+                                </div>
+                                <p class="pera">
+                                    Travel is a transformative and enriching experience that
+                                    allows individuals to explore new destinations, cultures,
+                                    and landscapes.
+                                </p>
+                            </div>
+                            <!-- <div class="footer-right">
+                                <h4 class="title">Subscribe Our Newsletter</h4>
+                                <div class="subscribe-wraper">
+                                    <input class="footer-search" type="search" name="footer"
+                                        placeholder="Enter Your Email">
+                                    <button class="subscribe-btn">Subscribe</button>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <ul class="listing">
+                            <li class="single-list">
+                                <a href="/static/terms-condition" class="single">Terms And Condition</a>
+                            </li>
+                            <li class="single-list">
+                                <a href="/static/privacy-policy" class="single">Privacy and Cookies Statement</a>
+                            </li>
+                            <li class="single-list">
+                                <a href="/static/contact" class="single">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- footer-bottom area -->
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex justify-content-between gap-14 flex-wrap">
+                                <p class="pera">
+                                    © <span class="current-year">2023</span> SwinTours. All rights
+                                    reserved.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--/ End-of Footer -->
+
+	<!-- Scroll Up  -->
+	<div class="progressParent" id="back-top">
+		<svg class="backCircle svg-inner" width="100%" height="100%" viewBox="-1 -1 102 102">
+			<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+		</svg>
+	</div>
+	<!-- Add an search-overlay element -->
+	<div class="search-overlay"></div>
+	<!-- jquery-->
+    <script>
+        let balance = Number("<%= balance %>");
+        document.getElementById('paymentButton').addEventListener('click', async function(event) {
+            event.preventDefault();
+
+            const agree = document.getElementById('checkboxPayment');
+            if (!agree.checked) return alert("Please agree to our Terms of Service and Privacy Policy.");
+
+            const code = document.getElementById('verificationCode').value;
+
+            if (!code) return alert('Please enter the 2FA code.');
+
+            if (balance < totalEthPayment) return alert("You don't have enough in your balance to finish this payment.");
+
+            try {
+                const response = await fetch(`/user/check2fa/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ token: code }),
+                });
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'There was an error checking the two factor code.');
+                }
+
+                if (!data.verify) {
+                    alert('2FA Code is wrong.');
+                    return;
+                };
+            } catch (error) {
+                console.error('Error:', error);
+                return alert('There was an error checking the two factor code.');
+            };
+
+
+            let form = document.getElementById("paymentForm");
+            form.submit();
+
+        });
+        let startDate;
+        let totalEthPrice;
+        let totalEthPayment;
+
+        function handleChangeAvatar() {
+            document.getElementById('avatarInput').click();
+        }
+
+        function handleFileChange() {
+            const avatarInput = document.getElementById('avatarInput');
+            if (avatarInput.files.length > 0) {
+                document.getElementById('changeAvatarForm').submit();
+            }
+        };
+    </script>
+	<script src="/assets/js/jquery-3.7.0.min.js"></script>
+	<script src="/assets/js/popper.min.js"></script>
+	<script src="/assets/js/bootstrap-5.3.0.min.js"></script>
+	<!-- Plugin -->
+	<script src="/assets/js/plugin.js"></script>
+	<!-- Main js-->
+	<script src="/assets/js/main.js"></script>
+</body>
+</html>

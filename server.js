@@ -96,6 +96,7 @@ app.use(userMiddleware);
     const userRouter = require("./routes/user");
     const orderRouter = require("./routes/order");
     const staticRouter = require("./routes/static");
+    const nftRouter = require("./routes/nft");
 
     app.use("/", indexRouter);
     app.use("/static", staticRouter);
@@ -103,6 +104,7 @@ app.use(userMiddleware);
     app.use("/admin", adminRouter);
     app.use("/user", userRouter);
     app.use("/order", orderRouter);
+    app.use("/nft", nftRouter);
 
     // Start server
     app.listen(PORT, () => {
